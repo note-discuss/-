@@ -38,6 +38,8 @@ public class LoginActivity extends Activity {
 				if(flag){
 					Log.i("TAG","登录成功");               //提示登录成功
 					Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_LONG).show(); //以默认效果在屏幕显示登陆成功
+					Intent classnote=new Intent(LoginActivity.this,ClassNoteActivity.class);//启动register活动
+					startActivity(classnote);
 				}else{
 					Log.i("TAG","登录失败");
 					Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_LONG).show();

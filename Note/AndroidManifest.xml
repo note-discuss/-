@@ -23,6 +23,8 @@
         </activity>
         <activity 
             android:name=".RegisterActivity"></activity>
+        <activity 
+            android:name=".ClassNoteActivity"></activity>
         <uses-library android:name="android.test.runner"/>
     </application>
 
