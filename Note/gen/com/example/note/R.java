@@ -1097,6 +1097,7 @@ containing a value of this type.
         public static final int ageRegister=0x7f050043;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
+        public static final int btn=0x7f050040;
         public static final int checkbox=0x7f05002d;
         public static final int collapseActionView=0x7f05000d;
         public static final int default_activity_button=0x7f050028;
@@ -1120,7 +1121,6 @@ containing a value of this type.
         public static final int never=0x7f050009;
         public static final int none=0x7f050010;
         public static final int normal=0x7f050000;
-        public static final int note=0x7f050040;
         public static final int password=0x7f05003d;
         public static final int passwordRegister=0x7f050042;
         public static final int progress_circular=0x7f050018;
