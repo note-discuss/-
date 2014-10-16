@@ -26,6 +26,9 @@
         <activity 
             android:name=".ClassNoteActivity"></activity>
         <uses-library android:name="android.test.runner"/>
+        <activity 
+            android:name=".AddTopicActivity"></activity>
+        <uses-library android:name="android.test.runner"/>
     </application>
 
 </manifest>

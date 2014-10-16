@@ -15,9 +15,8 @@ public class UserTest extends AndroidTestCase {
 	public void registerTest() throws Throwable{	
 		UserService uService=new UserService(this.getContext());
 		User user=new User();
-		user.setUsername("renhaili");
+		user.setName("renhaili");
 		user.setPassword("123");
-		user.setAge(20);
 		user.setSex("Ů");
 		uService.register(user);
 	}

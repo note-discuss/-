@@ -13,7 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 	//只在创建的时候用一次
 	public void onCreate(SQLiteDatabase db) {
-		String sql="create table user(id integer primary key autoincrement,username varchar(20),password varchar(20),age integer,sex varchar(2))";
+		String sql="create table user(id varchar(20) primary key,name varchar(20),password varchar(20), role varchar(10), sex varchar(2))";
 		db.execSQL(sql);
 	}
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

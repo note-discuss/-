@@ -14,7 +14,7 @@ import com.note.service.UserService;
 
 
 public class LoginActivity extends Activity {
-	EditText username;
+	EditText id;
 	EditText password;
 	Button login,register;
 	@Override
@@ -24,17 +24,17 @@ public class LoginActivity extends Activity {
 		findViews();
 	}
 	private void findViews() {
-		username=(EditText) findViewById(R.id.username);  //生成输入文本框
+		id=(EditText) findViewById(R.id.id);  //生成输入文本框
 		password=(EditText) findViewById(R.id.password);
 		login=(Button) findViewById(R.id.login);           //生成一个按钮，与布局里的login对应
 		register=(Button) findViewById(R.id.register);
 		login.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {         //通过view可以获取点击的id，可以知道点击了哪个按钮
-				String name=username.getText().toString();
-				String pass=password.getText().toString();
-				Log.i("TAG",name+"_"+pass);               //调试的时候输出name 和password
+				String idstr=id.getText().toString();
+				String passstr=password.getText().toString();
+				Log.i("TAG",idstr+"_"+passstr);               //调试的时候输出name 和password
 				UserService uService=new UserService(LoginActivity.this);  //注意这里传入LoginActivity.this，获得当前activity的上下文
-				boolean flag=uService.login(name, pass);
+				boolean flag=uService.login(idstr, passstr);
 				if(flag){
 					Log.i("TAG","登录成功");               //提示登录成功
 					Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_LONG).show(); //以默认效果在屏幕显示登陆成功

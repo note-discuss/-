@@ -12,10 +12,10 @@ public class UserService {
 	}
 	
 	//µÇÂ¼ÓÃ
-	public boolean login(String username,String password){
+	public boolean login(String id,String password){
 		SQLiteDatabase sdb=dbHelper.getReadableDatabase();
-		String sql="select * from user where username=? and password=?";
-		Cursor cursor=sdb.rawQuery(sql, new String[]{username,password});		
+		String sql="select * from user where id=? and password=?";
+		Cursor cursor=sdb.rawQuery(sql, new String[]{id,password});		
 		if(cursor.moveToFirst()==true){
 			cursor.close();
 			return true;
@@ -25,8 +25,8 @@ public class UserService {
 	//×¢²áÓÃ
 	public boolean register(User user){
 		SQLiteDatabase sdb=dbHelper.getReadableDatabase();
-		String sql="insert into user(username,password,age,sex) values(?,?,?,?)";
-		Object obj[]={user.getUsername(),user.getPassword(),user.getAge(),user.getSex()};
+		String sql="insert into user(id,name,password,role,sex) values(?,?,?,?,?)";
+		Object obj[]={user.getId(),user.getName(),user.getPassword(),user.getRole(), user.getSex()};
 		sdb.execSQL(sql, obj);	
 		return true;
 	}

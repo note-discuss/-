@@ -3,33 +3,34 @@ package com.note.domain;
 import java.io.Serializable;
 
 public class User implements Serializable{
-	private int id;
-	private String username;
+	private String id;
+	private String name;
 	private String password;
-	private int age;
+	private String role;
 	private String sex;
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public User(String username, String password, int age, String sex) {
+	public User(String id, String name, String password, String role, String sex) {
 		super();
-		this.username = username;
+		this.id = id;
+		this.name = name;
 		this.password = password;
-		this.age = age;
+		this.role = role;
 		this.sex = sex;
 	}
-	public int getId() {
+	public String getId(){
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id){
 		this.id = id;
 	}
-	public String getUsername() {
-		return username;
+	public String getName() {
+		return name;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getPassword() {
 		return password;
@@ -37,11 +38,11 @@ public class User implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getAge() {
-		return age;
+	public String getRole(){
+		return role;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public void setRole(String role){
+		this.role = role;
 	}
 	public String getSex() {
 		return sex;
@@ -51,8 +52,8 @@ public class User implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password="
-				+ password + ", age=" + age + ", sex=" + sex + "]";
+		return "User [id=" +id + ", name=" + name + ", password=" + password + ", role=" + role + ", sex=" + sex + "]";
 	}
 	
 }
+

@@ -16,8 +16,9 @@ import com.note.service.UserService;
 public class RegisterActivity extends Activity {
 	EditText username;
 	EditText password;
-	EditText age;
+	EditText id;
 	RadioGroup sex;	
+	RadioGroup role;	
 	Button register;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,16 +28,18 @@ public class RegisterActivity extends Activity {
 			public void onClick(View v) {
 				String name=username.getText().toString().trim();
 				String pass=password.getText().toString().trim();
-				String agestr=age.getText().toString().trim();
+				String idstr=id.getText().toString();
 				String sexstr=((RadioButton)RegisterActivity.this.findViewById(sex.getCheckedRadioButtonId())).getText().toString();
+				String rolestr=((RadioButton)RegisterActivity.this.findViewById(role.getCheckedRadioButtonId())).getText().toString();
 				//public int getCheckedRadioButtonId ()   返回该单选按钮组中所选择的单选按钮的标识ID，如果没有勾选则返回-1
-				Log.i("TAG",name+"_"+pass+"_"+agestr+"_"+sexstr);
+				Log.i("TAG",name+"_"+pass+"_"+idstr+"_"+sexstr);
 				UserService uService=new UserService(RegisterActivity.this);
 				User user=new User();
-				user.setUsername(name);
+				user.setName(name);
 				user.setPassword(pass);
-				user.setAge(Integer.parseInt(agestr));
+				user.setId(idstr);
 				user.setSex(sexstr);
+				user.setRole(rolestr);
 				uService.register(user);
 				Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_LONG).show();
 			}
@@ -45,8 +48,9 @@ public class RegisterActivity extends Activity {
 	private void findViews() {
 		username=(EditText) findViewById(R.id.usernameRegister);
 		password=(EditText) findViewById(R.id.passwordRegister);
-		age=(EditText) findViewById(R.id.ageRegister);
+		id=(EditText) findViewById(R.id.idRegister);
 		sex=(RadioGroup) findViewById(R.id.sexRegister);
+		role=(RadioGroup) findViewById(R.id.roleRegister);
 		register=(Button) findViewById(R.id.Register);
 	}
 
