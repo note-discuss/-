@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+        <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="个人信息"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+        <TableRow >       
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="" 
+                android:id="@+id/name"/>
+        </TableRow>
+        
+        <TableRow >        
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="" 
+                android:id="@+id/number"/>
+        </TableRow>
+        
+        <TableRow >       
+             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="" 
+                android:id="@+id/key"/>
+        </TableRow>
+ 
+        <TableRow > 
+             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="" 
+                android:id="@+id/gender"/>
+        </TableRow>
+  
+        <TableRow > 
+             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="" 
+                android:id="@+id/kind"/>
+        </TableRow>
+                    
+</LinearLayout>

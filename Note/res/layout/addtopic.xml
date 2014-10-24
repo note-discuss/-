@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="讨论纪要：" />
+                android:text="问题详情：" />
 
             <EditText
                 android:id="@+id/Note"
@@ -60,19 +60,6 @@
                 android:hint="" />
         </TableRow>
 
-        <TableRow >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="一致性结论：" />
-
-            <EditText
-                android:id="@+id/Conclusion"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="" />
-        </TableRow>
 
         <TableRow >
             <TextView />

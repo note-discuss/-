@@ -29,6 +29,14 @@
                     android:gravity="center"
                     android:layout_weight='1'
                     android:text="新建主题" />
+                <Button
+                    android:id="@+id/userinfo"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:gravity="center"
+                    android:layout_weight='1'
+                    android:text="个人中心" />
             </LinearLayout>
         </TableRow>
     </TableLayout>
