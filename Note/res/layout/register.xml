@@ -41,13 +41,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="学号：" />
+                android:text="ID：" />
 
             <EditText
                 android:id="@+id/idRegister"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="输入学号或教工号" />
+                android:hint="请输入学号或教工号" />
         </TableRow>
 
         <TableRow >

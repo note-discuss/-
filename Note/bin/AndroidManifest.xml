@@ -29,6 +29,9 @@
         <activity 
             android:name=".AddTopicActivity"></activity>
         <uses-library android:name="android.test.runner"/>
+        <activity 
+            android:name=".UserInfoActivity"></activity>
+        <uses-library android:name="android.test.runner"/>
     </application>
 
 </manifest>

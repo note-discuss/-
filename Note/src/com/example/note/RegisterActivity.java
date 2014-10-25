@@ -28,11 +28,14 @@ public class RegisterActivity extends Activity {
 			public void onClick(View v) {
 				String name=username.getText().toString().trim();
 				String pass=password.getText().toString().trim();
-				String idstr=id.getText().toString();
+				String idstr=id.getText().toString().trim();
 				String sexstr=((RadioButton)RegisterActivity.this.findViewById(sex.getCheckedRadioButtonId())).getText().toString();
 				String rolestr=((RadioButton)RegisterActivity.this.findViewById(role.getCheckedRadioButtonId())).getText().toString();
 				//public int getCheckedRadioButtonId ()   返回该单选按钮组中所选择的单选按钮的标识ID，如果没有勾选则返回-1
 				Log.i("TAG",name+"_"+pass+"_"+idstr+"_"+sexstr);
+				if(idstr.length()==0){
+				Toast.makeText(RegisterActivity.this, "ID不能为空！", Toast.LENGTH_LONG).show();
+				}else{
 				UserService uService=new UserService(RegisterActivity.this);
 				User user=new User();
 				user.setName(name);
@@ -41,7 +44,8 @@ public class RegisterActivity extends Activity {
 				user.setSex(sexstr);
 				user.setRole(rolestr);
 				uService.register(user);
-				Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_LONG).show();
+				Toast.makeText(RegisterActivity.this, "注册成功!", Toast.LENGTH_LONG).show();
+				}
 			}
 		});
 	}

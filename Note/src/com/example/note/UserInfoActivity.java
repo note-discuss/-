@@ -1,6 +1,7 @@
 package com.example.note;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 public class UserInfoActivity extends Activity{
@@ -11,6 +12,8 @@ public class UserInfoActivity extends Activity{
     	 findviews();
      }
      private void findviews(){
-    	 
+    	 Intent intent = this.getIntent();
+    	 Bundle bundle = intent.getExtras();
+    	 String id = bundle.getString("id");
      }
 }

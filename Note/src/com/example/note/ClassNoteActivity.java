@@ -27,6 +27,8 @@ public class ClassNoteActivity extends Activity{
       private void findViews(){
     	  addtopic = (Button) findViewById(R.id.addtopic);
     	  userinfo = (Button) findViewById(R.id.userinfo);
+    	  Intent intent = this.getIntent();
+    	  final Bundle bundle=intent.getExtras();
   		  addtopic.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent=new Intent(ClassNoteActivity.this,AddTopicActivity.class);//Æô¶¯register»î¶¯
@@ -36,6 +38,7 @@ public class ClassNoteActivity extends Activity{
   		  userinfo.setOnClickListener(new OnClickListener(){
   			  public void onClick(View v){
   				  Intent intent1=new Intent(ClassNoteActivity.this,UserInfoActivity.class);
+  				  intent1.putExtra("bundle", bundle);
   				  startActivity(intent1);
   			  }
   		  });
