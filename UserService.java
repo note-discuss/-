@@ -30,6 +30,18 @@ public class UserService {
 		return -1;
 	}
 	//×¢²áÓÃ
+	public User query(String idstr){
+		SQLiteDatabase sdb=dbHelper.getReadableDatabase();
+		String sql= "select * from user where id=?";
+		Cursor cursor=sdb.rawQuery(sql,new String[]{idstr});
+		String id = cursor.getString( cursor.getColumnIndex("id") ); 
+		String name = cursor.getString( cursor.getColumnIndex("name") ); 
+		String password= cursor.getString( cursor.getColumnIndex("password") ); 
+		String role = cursor.getString( cursor.getColumnIndex("role") ); 
+		String sex = cursor.getString( cursor.getColumnIndex("sex") ); 
+		User user = new User(id,name,password,role,sex);
+		return user;
+	}
 	public boolean register(User user){
 		SQLiteDatabase sdb=dbHelper.getReadableDatabase();
 		String sql="insert into user(id,name,password,role,sex) values(?,?,?,?,?)";
