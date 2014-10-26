@@ -6,9 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import com.note.domain.User;
 
 public class UserService {
-	private DatabaseHelper dbHelper;
+	private UserDatabaseHelper dbHelper;
 	public UserService(Context context){
-		dbHelper=new DatabaseHelper(context);
+		dbHelper=new UserDatabaseHelper(context);
 	}
 	
 	//µÇÂ¼ÓÃ

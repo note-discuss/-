@@ -5,10 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class UserDatabaseHelper extends SQLiteOpenHelper {
 	static String name="user.db";
 	static int dbVersion=1;
-	public DatabaseHelper(Context context) {
+	public UserDatabaseHelper(Context context) {
 		super(context, name, null, dbVersion);
 	}
 	//只在创建的时候用一次

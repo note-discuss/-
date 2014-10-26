@@ -1,12 +1,12 @@
 package com.note.domain;
 
 public class Topic {
-    private String id;
+    private String userid;
     private String Title;
     private String question;
     
-    public String getId(){
-    	return this.id;
+    public String getUserId(){
+    	return this.userid;
     }
     
     public String getTitle(){
@@ -17,8 +17,8 @@ public class Topic {
     	return this.question;
     }
     
-    public void setId(String Id){
-    	this.id=Id;
+    public void setId(String userid){
+    	this.userid=userid;
     }
     
     public void setTtile(String Title){
