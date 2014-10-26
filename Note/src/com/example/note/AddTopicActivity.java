@@ -17,15 +17,15 @@ public class AddTopicActivity extends Activity{
 	Button button;
 	EditText title;
 	EditText question;
-    Intent intent = this.getIntent();
-    Bundle bundle = intent.getExtras();
-    String userid = bundle.getString("id");
     public void onCreate(Bundle savedInstanceState){
   	  super.onCreate(savedInstanceState);
 		  setContentView(R.layout.addtopic);
 		  findViews();  
     }
     private void findViews(){
+       Intent intent = this.getIntent();
+       Bundle bundle = intent.getExtras();
+       final String userid = bundle.getString("id");
        button = (Button)findViewById(R.id.publish);
   	   title  = (EditText)findViewById(R.id.title);
   	   question = (EditText)findViewById(R.id.question);

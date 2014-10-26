@@ -27,11 +27,12 @@ public class ClassNoteActivity extends Activity{
       private void findViews(){
     	  addtopic = (Button) findViewById(R.id.addtopic);
     	  userinfo = (Button) findViewById(R.id.userinfo);
-    	  Intent intent = this.getIntent();
-    	  final Bundle bundle=intent.getExtras();
+    	  Intent intent0 = this.getIntent();
+    	  final Bundle bundle=intent0.getExtras();
   		  addtopic.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent=new Intent(ClassNoteActivity.this,AddTopicActivity.class);//Æô¶¯register»î¶¯
+				intent.putExtra("bundle", bundle);
 				startActivity(intent);
 			}
 		});

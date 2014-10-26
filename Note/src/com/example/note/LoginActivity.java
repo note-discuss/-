@@ -37,16 +37,16 @@ public class LoginActivity extends Activity {
 				int flag=uService.login(idstr, passstr);
 				if(flag==1){
 					Log.i("TAG","登录成功!");               //提示登录成功
-					Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_LONG).show(); //以默认效果在屏幕显示登陆成功
+					Toast.makeText(LoginActivity.this, "登录成功！", Toast.LENGTH_LONG).show(); //以默认效果在屏幕显示登陆成功
 					Intent classnote=new Intent(LoginActivity.this,ClassNoteActivity.class);//启动register活动
 					Bundle bundle= new Bundle();
 					bundle.putString("id", idstr);
-					classnote.putExtra("bundle",bundle);
+					classnote.putExtra("bundle", bundle);
 					startActivity(classnote);
 				}else{
 					if(flag==0){
 						Log.i("TAG","ID不存在！");
-						Toast.makeText(LoginActivity.this, "ID不存在", Toast.LENGTH_LONG).show();
+						Toast.makeText(LoginActivity.this, "ID不存在！", Toast.LENGTH_LONG).show();
 					}else{
 					Log.i("TAG","用户名或密码错误！");
 					Toast.makeText(LoginActivity.this, "用户名或密码错误！", Toast.LENGTH_LONG).show();
