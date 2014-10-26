@@ -43,6 +43,7 @@
                 android:id="@+id/Title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:maxLines="5"
                 android:hint="" />
         </TableRow>
 
@@ -57,6 +58,7 @@
                 android:id="@+id/Note"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:maxLines="5"
                 android:hint="" />
         </TableRow>
 
@@ -71,6 +73,7 @@
                 android:id="@+id/Conclusion"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:maxLines="5"
                 android:hint="" />
         </TableRow>
 
