@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="@drawable/q">
 
     <TextView
         android:layout_width="fill_parent"
@@ -10,6 +11,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="欢迎进入注册界面!"
+        android:textColor="#ff8c00"
         android:textSize="30dp"
         android:textStyle="bold" />
 
@@ -24,12 +26,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="#ff8c00"
                 android:text="姓名：" />
 
             <EditText
                 android:id="@+id/usernameRegister"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#ff8c00"
                 android:hint="" />
         </TableRow>
 
@@ -41,12 +45,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="#ff8c00"
                 android:text="学号：" />
 
             <EditText
                 android:id="@+id/idRegister"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#ff8c00"
                 android:hint="输入学号或教工号" />
         </TableRow>
 
@@ -56,12 +62,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="#ff8c00"
                 android:text="密码：" />
 
             <EditText
                 android:id="@+id/passwordRegister"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#ff8c00"
                 android:hint="" />
         </TableRow>
                
@@ -71,6 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="#ff8c00"
                 android:text="性别："
                 android:textSize="20dp" />
 
@@ -83,10 +92,12 @@
 
                 <RadioButton
                     android:id="@+id/man"
+                    android:textColor="#f08080"
                     android:text="男" />
 
                 <RadioButton
                     android:id="@id/woman"
+                    android:textColor="#f08080"
                     android:text="女" />
             </RadioGroup>
         </TableRow>
@@ -97,7 +108,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="人物类别："
+                android:textColor="#ff8c00"
+                android:text="类别："
                 android:textSize="20dp" />
 
             <RadioGroup
@@ -109,10 +121,12 @@
 
                 <RadioButton
                     android:id="@+id/teacher"
+                    android:textColor="#f08080"
                     android:text="教师" />
 
                 <RadioButton
                     android:id="@id/student"
+                    android:textColor="#f08080"
                     android:text="学生" />
             </RadioGroup>
         </TableRow>
@@ -124,8 +138,11 @@
             <LinearLayout >
                 <Button
                     android:id="@+id/Register"
-                    android:layout_width="150dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="#f37301"
+                    android:textStyle="bold"
                     android:text="注册" />
             </LinearLayout>
         </TableRow>
