@@ -1,26 +1,33 @@
 package com.example.note;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.note.R;
+import com.note.service.TopicDatabaseHelper;
 import com.note.service.UserService;
 import com.example.note.R;
 import com.example.note.AddTopicActivity;
 import com.example.note.UserInfoActivity;
-public class ClassNoteActivity extends Activity{
+public class ClassNoteActivity extends ListActivity{
 	  EditText note;
 	  Button   addtopic;
 	  Button   userinfo;
       public void onCreate(Bundle savedInstanceState){
     	  super.onCreate(savedInstanceState);
+    	  this.setTitle("课堂讨论笔记");
+          showlist();
   		  setContentView(R.layout.note);
   		  findViews();  
       }
@@ -43,5 +50,16 @@ public class ClassNoteActivity extends Activity{
   				  startActivity(intent1);
   			  }
   		  });
+      }
+      
+      private void showlist(){//显示笔记列表
+    	  final TopicDatabaseHelper topic = new TopicDatabaseHelper(this);
+    	  Cursor c = topic.query("topic");
+    	  String[] from = {"id","title","note","conclusion"};
+    	  int[] to = {R.id.id,R.id.title,R.id.note,R.id.conclusion};
+    	  SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
+    			  R.layout.note,c,from,to);
+    	  ListView listview = getListView();//列表视图
+    	  listview.setAdapter(adapter);//添加适配器
       }
 }

@@ -16,7 +16,8 @@ import android.view.View.OnClickListener;
 public class AddTopicActivity extends Activity{
 	Button button;
 	EditText title;
-	EditText question;
+	EditText note;
+	EditText conclusion;
     public void onCreate(Bundle savedInstanceState){
   	  super.onCreate(savedInstanceState);
 		  setContentView(R.layout.addtopic);
@@ -28,13 +29,15 @@ public class AddTopicActivity extends Activity{
        final String userid = bundle.getString("id");
        button = (Button)findViewById(R.id.publish);
   	   title  = (EditText)findViewById(R.id.title);
-  	   question = (EditText)findViewById(R.id.question);
+  	   note = (EditText)findViewById(R.id.note);
+  	   conclusion= (EditText)findViewById(R.id.conclusion);
   	   button.setOnClickListener(new OnClickListener(){
   		   public void onClick(View v){
   			   String titlestr=button.getText().toString();
-  			   String questionstr=question.getText().toString();
+  			   String notestr=note.getText().toString();
+  			   String  conclusionstr=conclusion.getText().toString();
                TopicService topicservice = new TopicService(AddTopicActivity.this);
-               Topic topic = new Topic(userid,titlestr,questionstr);
+               Topic topic = new Topic(userid,titlestr,notestr,conclusionstr);
                boolean f = topicservice.insert(topic);
                if(f){
             	   Log.i("TAG","发布成功!");  

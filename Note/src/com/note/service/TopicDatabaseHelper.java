@@ -1,6 +1,7 @@
 package com.note.service;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -13,11 +14,16 @@ public class TopicDatabaseHelper extends SQLiteOpenHelper {
 	}
 	//只在创建的时候用一次
 	public void onCreate(SQLiteDatabase db) {
-		String sql="create table topic(id integer primary key autoincrement,userid varchar(20),title varchar(30),question varchar(300))";
+		String sql="create table topic(id integer primary key autoincrement,"
+		+ "userid varchar(20),title varchar(30),note varchar(300),conclusion varchar(200))";
 		db.execSQL(sql);
 	}
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
 	}
-
+    public Cursor query(String tbl_name){
+    	SQLiteDatabase db= getWritableDatabase();
+    	Cursor c= db.query(tbl_name, null, null, null, null, null, null);
+    	return c;
+    }
 }

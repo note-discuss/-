@@ -3,17 +3,19 @@ package com.note.domain;
 public class Topic {
     private String userid;
     private String title;
-    private String question;
+    private String note;
+    private String conclusion;
     
     public Topic(){
     	super();
     }
     
-    public Topic(String userid,String title,String question){
+    public Topic(String userid,String title,String note,String conclusion){
     	super();
     	this.userid=userid;
     	this.title = title;
-    	this.question = question;
+    	this.note = note;
+    	this.conclusion=conclusion;
     }
     public String getUserId(){
     	return this.userid;
@@ -23,19 +25,27 @@ public class Topic {
     	return this.title;
     }
     
-    public String getQuestion(){
-    	return this.question;
+    public String getNote(){
+    	return this.note;
+    }
+    
+    public String getConclusion(){
+    	return this.conclusion;
     }
     
     public void setId(String userid){
     	this.userid=userid;
     }
     
-    public void setTtile(String title){
+    public void setTitle(String title){
     	this.title=title;
     }
     
-    public void setQuestion(String Question){
-    	this.question=Question;
+    public void setNote(String note){
+    	this.note=note;
+    }
+    
+    public void setConclusion(String Conclusion){
+    	this.conclusion=conclusion;
     }
 }

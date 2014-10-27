@@ -41,13 +41,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="ID：" />
+                android:text="学号：" />
 
             <EditText
                 android:id="@+id/idRegister"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="请输入学号或教工号" />
+                android:hint="输入学号或教工号" />
         </TableRow>
 
         <TableRow >
@@ -71,8 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="性别："
-                android:textSize="20dp" />
+                android:text="性别："/>
 
             <RadioGroup
                 android:id="@+id/sexRegister"
@@ -97,8 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="类别："
-                android:textSize="20dp" />
+                android:text="类别："/>
 
             <RadioGroup
                 android:id="@+id/roleRegister"
@@ -124,8 +122,10 @@
             <LinearLayout >
                 <Button
                     android:id="@+id/Register"
-                    android:layout_width="150dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     android:text="注册" />
             </LinearLayout>
         </TableRow>
