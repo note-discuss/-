@@ -37,14 +37,19 @@ public class RegisterActivity extends Activity {
 				Toast.makeText(RegisterActivity.this, "ID不能为空！", Toast.LENGTH_LONG).show();
 				}else{
 				UserService uService=new UserService(RegisterActivity.this);
-				User user=new User();
-				user.setName(name);
-				user.setPassword(pass);
-				user.setId(idstr);
-				user.setSex(sexstr);
-				user.setRole(rolestr);
-				uService.register(user);
-				Toast.makeText(RegisterActivity.this, "注册成功!", Toast.LENGTH_LONG).show();
+				boolean f=uService.haveid(idstr);
+				if(f==true){
+					Toast.makeText(RegisterActivity.this,"ID已存在！",Toast.LENGTH_LONG).show();
+				}else{
+				    User user=new User();
+				    user.setName(name);
+				    user.setPassword(pass);
+				    user.setId(idstr);
+				    user.setSex(sexstr);
+				    user.setRole(rolestr);
+				    uService.register(user);
+				    Toast.makeText(RegisterActivity.this, "注册成功!", Toast.LENGTH_LONG).show();
+				  }
 				}
 			}
 		});

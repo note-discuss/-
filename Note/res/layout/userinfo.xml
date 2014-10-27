@@ -13,45 +13,39 @@
         android:textSize="30dp"
         android:textStyle="bold" />
 
-        <TableRow >       
+  
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:id="@+id/name"/>
-        </TableRow>
+
         
-        <TableRow >        
+        
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:id="@+id/number"/>
-        </TableRow>
-        
-        <TableRow >       
+    
              <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:id="@+id/key"/>
-        </TableRow>
- 
-        <TableRow > 
+
              <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:id="@+id/gender"/>
-        </TableRow>
-  
-        <TableRow > 
+
              <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:id="@+id/kind"/>
-        </TableRow>
+
                     
 </LinearLayout>
 

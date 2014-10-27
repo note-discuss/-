@@ -29,6 +29,17 @@ public class UserService {
 		}
 		return -1;
 	}
+	public boolean haveid(String id){
+		SQLiteDatabase sdb=dbHelper.getReadableDatabase();
+		String sql0="select * from user where id=?";
+		Cursor cursor0=sdb.rawQuery(sql0, new String[]{id});
+		if(cursor0.moveToFirst()==true){
+			cursor0.close();
+			return true;
+		}else{
+			return false;
+		}
+	}
 	//×¢²áÓÃ
 	public User query(String idstr){
 		SQLiteDatabase sdb=dbHelper.getReadableDatabase();

@@ -20,14 +20,14 @@ import com.note.service.UserService;
 import com.example.note.R;
 import com.example.note.AddTopicActivity;
 import com.example.note.UserInfoActivity;
-public class ClassNoteActivity extends ListActivity{
+public class ClassNoteActivity extends Activity{
 	  EditText note;
 	  Button   addtopic;
 	  Button   userinfo;
       public void onCreate(Bundle savedInstanceState){
     	  super.onCreate(savedInstanceState);
     	  this.setTitle("课堂讨论笔记");
-          showlist();
+         // showlist();
   		  setContentView(R.layout.note);
   		  findViews();  
       }
@@ -52,7 +52,7 @@ public class ClassNoteActivity extends ListActivity{
   		  });
       }
       
-      private void showlist(){//显示笔记列表
+     /* private void showlist(){//显示笔记列表
     	  final TopicDatabaseHelper topic = new TopicDatabaseHelper(this);
     	  Cursor c = topic.query("topic");
     	  String[] from = {"id","title","note","conclusion"};
@@ -61,5 +61,5 @@ public class ClassNoteActivity extends ListActivity{
     			  R.layout.note,c,from,to);
     	  ListView listview = getListView();//列表视图
     	  listview.setAdapter(adapter);//添加适配器
-      }
+      }*/
 }
