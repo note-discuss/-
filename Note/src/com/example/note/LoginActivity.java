@@ -30,9 +30,12 @@ public class LoginActivity extends Activity {
 		register=(Button) findViewById(R.id.register);
 		login.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {         //通过view可以获取点击的id，可以知道点击了哪个按钮
-				String idstr=id.getText().toString();
-				String passstr=password.getText().toString();
+				String idstr=id.getText().toString().trim();
+				String passstr=password.getText().toString().trim();
 				Log.i("TAG",idstr+"_"+passstr);               //调试的时候输出name 和password
+				if(idstr.length()==0){
+					Toast.makeText(LoginActivity.this, "请输入ID！", Toast.LENGTH_LONG).show();
+				}else{
 				UserService uService=new UserService(LoginActivity.this);  //注意这里传入LoginActivity.this，获得当前activity的上下文
 				int flag=uService.login(idstr, passstr);
 				if(flag==1){
@@ -51,6 +54,7 @@ public class LoginActivity extends Activity {
 					Log.i("TAG","用户名或密码错误！");
 					Toast.makeText(LoginActivity.this, "用户名或密码错误！", Toast.LENGTH_LONG).show();
 					}
+				}
 				}
 			}
 		});
