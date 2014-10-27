@@ -2,14 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="@drawable/q">
 
         <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="个人中心"
+        android:textColor="#ff8c00"
+        android:text="个人信息"
         android:textSize="30dp"
         android:textStyle="bold" />
 
@@ -18,7 +20,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="" 
                 android:id="@+id/name"/>
         </TableRow>
         
@@ -27,7 +28,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="" 
                 android:id="@+id/number"/>
         </TableRow>
         
@@ -36,7 +36,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="" 
                 android:id="@+id/key"/>
         </TableRow>
  
@@ -45,7 +44,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="" 
                 android:id="@+id/gender"/>
         </TableRow>
   
@@ -54,8 +52,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="" 
                 android:id="@+id/kind"/>
         </TableRow>
                     
 </LinearLayout>
+
