@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" 
-    android:background="@drawable/e">
+    android:background="@drawable/q">
+
+
     
     <TextView
         android:layout_width="fill_parent"
@@ -11,28 +13,35 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="讨论区"
+        android:textColor="#f37301"
         android:textSize="30dp"
-        android:textStyle="bold" />    
- 
+        android:textStyle="italic" />    
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_alignParentBottom="true" android:layout_marginTop="5.0dip">
                 <Button
                     android:id="@+id/addtopic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_x="10px"
-                    android:layout_y="600px"
-                    android:gravity="center"
-                    android:layout_weight='1'
+                    android:textSize="15sp"
+                    android:textColor="#f37301"
+                    android:textStyle="bold"
+                    android:focusable="false" 
+                    android:layout_width="wrap_content" 
+                    android:layout_height="wrap_content" 
+                    android:layout_marginLeft="8.0dip" 
+                    android:layout_marginRight="12.0dip" 
+                    android:layout_alignParentLeft="true" 
+                    android:layout_centerVertical="true"
                     android:text="新建主题" />
    
                 <Button
                     android:id="@+id/personcenter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_x="150px"
-                    android:layout_y="600px"
-                    android:gravity="center"
-                    android:layout_weight='1'
+                    android:textSize="15sp"
+                    android:textColor="#f37301"
+                    android:textStyle="bold"
+                    android:focusable="false" 
+                    android:layout_width="wrap_content" 
+                    android:layout_height="wrap_content" 
+                    android:layout_marginRight="12.0dip"
+                    android:layout_toRightOf="@id/addtopic" 
+                    android:layout_centerVertical="true"
                     android:text="个人中心" />
-</AbsoluteLayout>
+                </RelativeLayout>
+</RelativeLayout>
