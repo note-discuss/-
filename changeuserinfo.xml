@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="@drawable/q">
 
         <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:textColor="#ff8c00"
         android:text="请修改个人信息"
         android:textSize="30dp"
         android:textStyle="bold" />   
@@ -24,11 +26,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="#ff8c00"
                 android:id="@+id/but1"
-                android:text="姓名：" />
+                android:text="姓名" />
 
             <EditText
-                android:id="@+id/usernameRegister"
+                android:id="@+id/b1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="" />
@@ -42,14 +45,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="#ff8c00"
                 android:id="@+id/but2"
-                android:text="学号：" />
+                android:text="学号" />
 
             <EditText
-                android:id="@+id/idRegister"
+                android:id="@+id/b2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="输入学号或教工号" />
+                android:hint="" />
         </TableRow>
 
         <TableRow >
@@ -58,11 +62,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="#ff8c00"
                 android:id="@+id/but3"
-                android:text="密码：" />
+                android:text="密码" />
 
             <EditText
-                android:id="@+id/passwordRegister"
+                android:id="@+id/b3"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="" />
@@ -74,23 +79,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="#ff8c00"
                 android:id="@+id/but4"
-                android:text="性别："
+                android:text="性别"
                 android:textSize="20dp" />
 
             <RadioGroup
-                android:id="@+id/sexRegister"
+                android:id="@+id/b4"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:checkedButton="@+id/woman"
+                android:checkedButton="@+id/b41"
                 android:orientation="horizontal" >
 
                 <RadioButton
-                    android:id="@+id/man"
+                    android:id="@+id/b42"
+                    android:textColor="#f08080"
                     android:text="男" />
 
                 <RadioButton
-                    android:id="@id/woman"
+                    android:id="@id/b41"
+                    android:textColor="#f08080"
                     android:text="女" />
             </RadioGroup>
         </TableRow>
@@ -101,23 +109,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="#ff8c00"
                 android:id="@+id/but5"
-                android:text="类别："
+                android:text="类别"
                 android:textSize="20dp" />
 
             <RadioGroup
-                android:id="@+id/roleRegister"
+                android:id="@+id/b5"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:checkedButton="@+id/student"
+                android:checkedButton="@+id/b51"
                 android:orientation="horizontal" >
 
                 <RadioButton
-                    android:id="@+id/teacher"
+                    android:id="@+id/b52"
+                    android:textColor="#f08080"
                     android:text="教师" />
 
                 <RadioButton
-                    android:id="@id/student"
+                    android:id="@id/b51"
+                    android:textColor="#f08080"
                     android:text="学生" />
             </RadioGroup>
         </TableRow>
@@ -132,3 +143,4 @@
         </TableRow>
     </TableLayout>        
 </LinearLayout>
+
