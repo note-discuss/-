@@ -53,7 +53,7 @@ public class ClassNoteActivity extends ListActivity{
       }
       private void showlist(){//显示笔记列表
        	  final TopicDatabaseHelper topicdb=new TopicDatabaseHelper(this);
-       	  Cursor c = topicdb.query("topic");
+       	  Cursor c = topicdb.queryNote("topic");
        	  String[] from = {"_id","title","note","conclusion"};
        	  int[] to = {R.id.id,R.id.title,R.id.note1,R.id.conclusion};
        	  //List<Map<String, String>> listItemsList=new ArrayList<Map<String,String>>();

@@ -21,9 +21,10 @@ public class TopicDatabaseHelper extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
 	}
-    public Cursor query(String tbl_name){
-    	SQLiteDatabase db= getWritableDatabase();
-    	Cursor c= db.query(tbl_name, null, null, null, null, null, null);
+    public Cursor queryNote(String tbl_name){
+    	SQLiteDatabase db= getReadableDatabase();
+    	Cursor c= db.query(tbl_name, new String[]{"id as _id","title","note","conclusion"},
+    			null, null, null, null, null, null);
     	return c;
     }
 }

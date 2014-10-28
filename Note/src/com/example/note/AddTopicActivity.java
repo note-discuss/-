@@ -33,7 +33,7 @@ public class AddTopicActivity extends Activity{
   	   conclusion= (EditText)findViewById(R.id.conclusion);
   	   button.setOnClickListener(new OnClickListener(){
   		   public void onClick(View v){
-  			   String titlestr=button.getText().toString();
+  			   String titlestr=title.getText().toString();
   			   String notestr=note.getText().toString();
   			   String  conclusionstr=conclusion.getText().toString();
                TopicService topicservice = new TopicService(AddTopicActivity.this);
