@@ -28,30 +28,35 @@ public class ClassNoteActivity extends ListActivity{
     	  super.onCreate(savedInstanceState);
     	  this.setTitle("课堂讨论笔记");
   		  setContentView(R.layout.note);
-  		  showlist();
-  		  findViews();  
-      }
-      private void findViews(){
-    	  addtopic = (Button) findViewById(R.id.addtopic);
-    	  userinfo = (Button) findViewById(R.id.userinfo);
     	  Intent intent0 = this.getIntent();
     	  final Bundle bundle=intent0.getExtras();
+    	  String id = bundle.getString("id");
+     	 if (id==null){
+     		 Log.i("in calssnoteactivity id is null!","_");  
+     	 }
+     	 else Log.i("TAG",id); 
+  		  showlist(bundle);
+  		  findViews(bundle);  
+      }
+      private void findViews(final Bundle bundle){
+    	  addtopic = (Button) findViewById(R.id.addtopic);
+    	  userinfo = (Button) findViewById(R.id.userinfo);
   		  addtopic.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent=new Intent(ClassNoteActivity.this,AddTopicActivity.class);//启动register活动
-				intent.putExtra("bundle", bundle);
+				intent.putExtras(bundle);
 				startActivity(intent);
 			}
 		});
   		  userinfo.setOnClickListener(new OnClickListener(){
   			  public void onClick(View v){
   				  Intent intent1=new Intent(ClassNoteActivity.this,UserInfoActivity.class);
-  				  intent1.putExtra("bundle", bundle);
+  				  intent1.putExtras(bundle);
   				  startActivity(intent1);
   			  }
   		  });
       }
-      private void showlist(){//显示笔记列表
+      private void showlist(final Bundle bundle){//显示笔记列表
        	  final TopicDatabaseHelper topicdb=new TopicDatabaseHelper(this);
        	  Cursor c = topicdb.queryNote("topic");
        	  String[] from = {"_id","title","note","conclusion"};

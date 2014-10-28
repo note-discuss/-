@@ -18,15 +18,14 @@ public class UserInfoActivity extends ListActivity{
 	 User user;
      public void onCreate(Bundle savedInstanceState){
     	 super.onCreate(savedInstanceState);
-    	/* Intent intent = this.getIntent();
+    	Intent intent = this.getIntent();
     	 Bundle bundle = intent.getExtras();
     	 String id = bundle.getString("id");
     	 if (id==null){
     		 Log.i("id is null!","_");  
     	 }
-    	 else Log.i("TAG",id);  */
+    	 else Log.i("TAG",id); 
     	 setContentView(R.layout.userinfo);
-    	 String id="1120310121";
     	 showlist(id);
     	 //UserService userservice=new UserService(UserInfoActivity.this);
     	 findviews();

@@ -47,7 +47,7 @@ public class LoginActivity extends Activity {
 					Intent classnote=new Intent(LoginActivity.this,ClassNoteActivity.class);//Æô¶¯register»î¶¯
 					Bundle bundle= new Bundle();
 					bundle.putString("id", idstr);
-					classnote.putExtra("bundle", bundle);
+					classnote.putExtras(bundle);
 					startActivity(classnote);
 				}else{
 					if(flag==0){
