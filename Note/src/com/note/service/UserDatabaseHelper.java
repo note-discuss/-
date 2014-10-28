@@ -1,6 +1,7 @@
 package com.note.service;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -19,5 +20,11 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
 	}
-
+    public Cursor queryUser(String tbl_name,String idstr){
+    	SQLiteDatabase db= getReadableDatabase();
+    	String sql= "id=?";
+    	Cursor c= db.query(tbl_name, new String[]{"id as _id","name","sex","role"},
+    			sql, new String[]{idstr}, null, null, null, null);
+    	return c;
+    }
 }

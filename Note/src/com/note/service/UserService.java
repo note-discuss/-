@@ -53,6 +53,12 @@ public class UserService {
 		User user = new User(id,name,password,role,sex);
 		return user;
 	}
+	public Cursor query1(String idstr){
+		SQLiteDatabase sdb=dbHelper.getReadableDatabase();
+		String sql= "select * from user where id=?";
+		Cursor cursor=sdb.rawQuery(sql,new String[]{idstr});
+		return cursor;
+	}
 	public boolean register(User user){
 		SQLiteDatabase sdb=dbHelper.getReadableDatabase();
 		String sql="insert into user(id,name,password,role,sex) values(?,?,?,?,?)";
