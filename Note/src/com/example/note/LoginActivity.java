@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.example.note.R;
 import com.note.service.UserService;
 
@@ -20,6 +22,7 @@ public class LoginActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	//savedInstanceState用于在pause时保存当前activity的状态
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);  //这句话的意思是这个activity对应的布局是res/layout目录下的main.xml文件
 		findViews();
 	}

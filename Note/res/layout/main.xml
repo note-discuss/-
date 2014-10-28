@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="@drawable/c">
       <!-- linearlayout:线性布局，在水平或者竖直方向上所有元素按线性顺序排列 
          android:orientation属于linearout的属性控制，此处“vertical”表示元素按竖直方向排列，不写的话默认水平，这个属性在其他一些布局方式中是无效的
          layout_width和layout_height都是“fill_parent",意思是在水平和竖直方向上适应屏幕大小
@@ -13,7 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="欢迎进入登录界面!"
+        android:text="欢迎进入登录界面! "
+        android:textColor="#ffffff"
         android:textSize="30dp"
         android:textStyle="bold" />
     <!-- textview是在界面添加一个文本视图，这里的layout_height为wrap_content，大意就是有多大就显示多大，如果显示很大的图像就强制性扩展视图显示全部内容
@@ -33,11 +35,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="#ffffff"
                 android:text="ID：" />
             <EditText
                 android:id="@+id/id"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#ffffff"
                 android:hint="" />
               <!-- edittext可编辑文本框，hint用于显示提示字 -->
              <!-- 为edittext设置Android：id属性，该控件有唯一id，"@+id/username"指明在R.id中增加一个id为username，R.java会自动完成这个引用
@@ -52,12 +56,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="#ffffff"
                 android:text="密码：" />
             <EditText
                 android:id="@+id/password"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:password="true"
+                android:textColor="#ffffff"
                 android:hint="" />
         </TableRow>
         
@@ -74,11 +80,13 @@
                     android:id="@+id/login"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
                     android:text="登录" />
                 <Button
                     android:id="@+id/register"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
                     android:text="注册" />
                 <!-- 100dp中的dp是一种像素密度单位，在不同分辨率手机上显示的大小有些不同 -->
             </LinearLayout>
