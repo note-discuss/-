@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class TopicDatabaseHelper extends SQLiteOpenHelper {
+	   //SQLiteOpenHelper 用于创建或打开数据库
 	static String name="topic.db";
 	static int dbVersion=1;
 	public TopicDatabaseHelper(Context context) {

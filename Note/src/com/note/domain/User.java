@@ -3,6 +3,7 @@ package com.note.domain;
 import java.io.Serializable;
 
 public class User implements Serializable{
+	//实现了Serializable接口，对象可序列化
 	private String id;
 	private String name;
 	private String password;
