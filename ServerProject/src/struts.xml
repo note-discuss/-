@@ -10,12 +10,14 @@
 		<action name="jregister" class="com.note.action.RegisterAction"
 			method="register">
 			<result type="json"/>
-			<!--返回值类型设置为json,不设置返回页面-->
 		</action>
 			<action name="addTopic" class="com.note.action.AddTopicAction"
 			method="addTopic">
 			<result type="json"/>
-			<!--返回值类型设置为json,不设置返回页面-->
+		</action>
+		<action name="jlogin" class="com.note.action.LoginAction"
+			method="login">
+			<result type="json"/>
 		</action>
 	</package>
 </struts>

@@ -27,7 +27,6 @@ public class UserInfoActivity extends ListActivity{
     	 else Log.i("TAG",id); 
     	 setContentView(R.layout.userinfo);
     	 showlist(id);
-    	 //UserService userservice=new UserService(UserInfoActivity.this);
     	 findviews();
      }
      private void findviews(){

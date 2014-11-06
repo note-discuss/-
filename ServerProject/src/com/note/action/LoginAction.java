@@ -9,13 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
-import com.note.domain.Topic;
+import com.note.DAO.UserDAO;
 import com.note.domain.User;
 import com.opensymphony.xwork2.ActionSupport;
-import com.note.DAO.*;
-import com.note.util.*;
 
-public class AddTopicAction extends ActionSupport implements ServletRequestAware,
+public class LoginAction extends ActionSupport implements ServletRequestAware,
 ServletResponseAware {
 	private static final long serialVersionUID = 1L;
 
@@ -23,61 +21,25 @@ ServletResponseAware {
 
 	HttpServletResponse response;
 	
-	private String title;
-	private String note;
-	private String date;
-	private String userid;
-	private String site;
-	private String conclusion;
+	private String password;
+	private String id;
 	
+	public String getPassword() {
+		return password;
+	}
 
-    public String getUserid(){
-    	return this.userid;
-    }
-    
-    public String getSite(){
-    	return this.site;
-    }
-    
-    public String getTitle(){
-    	return this.title;
-    }
-    
-    public String getNote(){
-    	return this.note;
-    }
-    
-    public String getConclusion(){
-    	return this.conclusion;
-    }
-    
-    public String getDate(){
-    	return this.date;
-    }
-    
-    public void setUserid(String userid){
-    	this.userid=userid;
-    }
-    
-    public void setTitle(String title){
-    	this.title=title;
-    }
-    
-    public void setNote(String note){
-    	this.note=note;
-    }
-    
-    public void setConclusion(String conclusion){
-    	this.conclusion=conclusion;
-    }
-    
-    public void setSite(String site){
-    	this.site=site;
-    }
-    
-    public void setDate(String date){
-    	this.date=date;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	public String getId() {
+		return this.id;
+	}
+	
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
 	}
@@ -86,7 +48,7 @@ ServletResponseAware {
 		this.response = response;
 	}
 	
-	public void addTopic(){
+	public void login(){
 		try {
             //如果不采用接口注入的方式的获取HttpServletRequest，HttpServletResponse的方式
 			  // HttpServletRequest request =ServletActionContext.getRequest();
@@ -96,14 +58,15 @@ ServletResponseAware {
 			   this.response.setCharacterEncoding("UTF-8");
 			   //JSONObject json=new JSONObject(); 
 			    Map<String,String> json=new HashMap<String,String>();
-			    Topic topic=new Topic(userid,title,note,conclusion,date,site);
-			    TopicDAO topicdao=new TopicDAO();
-			    boolean f=topicdao.addTopic(topic);
-			    System.out.println(title+note+userid+conclusion+site+date);
+			    System.out.println(password+id);
+			    UserDAO userdao = new UserDAO();
+			   boolean f=userdao.queryUser(id);
 				if (f==true) {
-					 json.put("message", "添加成功！");
+					 boolean ff=userdao.login(id, password);
+					 if(ff==true) json.put("message", "登录成功！");
+					 else json.put("message", "用户名或密码错误！");
 				} else {
-					json.put("message", "系统出错！");
+					json.put("message", "ID不存在！");
 				}
 			  byte[] jsonBytes = json.toString().getBytes("utf-8");
 			  response.setContentLength(jsonBytes.length);
