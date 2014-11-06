@@ -39,14 +39,13 @@ import com.note.service.UserService;
 public class RegisterActivity extends Activity {
     private static  String processURL="http://172.17.133.231:8080/ServerProject/jregister.action?";
 	private final String processURL_constant  = "http://172.17.133.231:8080/ServerProject/jregister.action?";
+	String result=null;
 	EditText username;
 	EditText password;
 	EditText id;
 	RadioGroup sex;	
 	RadioGroup role;	
 	Button register;
-	String result=null;
-	String op=null;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);

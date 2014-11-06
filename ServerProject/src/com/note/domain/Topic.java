@@ -6,20 +6,26 @@ public class Topic {
     private String note;
     private String conclusion;
     private String date;
+    private String site;
     public Topic(){
     	super();
     }
     
-    public Topic(String userid,String title,String note,String conclusion,String date){
+    public Topic(String userid,String title,String note,String conclusion,String date,String site){
     	super();
     	this.userid=userid;
     	this.title = title;
     	this.note = note;
     	this.conclusion=conclusion;
     	this.date=date;
+    	this.site=site;
     }
-    public String getUserId(){
+    public String getUserid(){
     	return this.userid;
+    }
+    
+    public String getSite(){
+    	return this.site;
     }
     
     public String getTitle(){
@@ -38,7 +44,7 @@ public class Topic {
     	return this.date;
     }
     
-    public void setUserId(String userid){
+    public void setUserid(String userid){
     	this.userid=userid;
     }
     
@@ -52,6 +58,10 @@ public class Topic {
     
     public void setConclusion(String Conclusion){
     	this.conclusion=conclusion;
+    }
+    
+    public void setSite(String site){
+    	this.site=site;
     }
     
     public void setDate(String date){

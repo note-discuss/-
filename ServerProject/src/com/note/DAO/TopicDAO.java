@@ -18,9 +18,9 @@ public class TopicDAO {
 	public boolean addTopic(Topic topic) {//添加一个主题
 		Connection conn  = dbpool.getConnection();
 		boolean flag=false;
-		String sql_insert="insert into Topic (title,,note,conclusion,userid,date) values('"+
+		String sql_insert="insert into topic (title,note,conclusion,userid,site,date) values('"+
 		topic.getTitle()+"','"+topic.getNote()+"','"+topic.getConclusion()+"','"
-		+topic.getUserId()+"','"+topic.getDate()+"')";
+		+topic.getUserid()+"','"+topic.getSite()+"','"+topic.getDate()+"')";
 		System.out.println(sql_insert);
 		try {
 			stmt=conn.createStatement();
@@ -44,12 +44,13 @@ public class TopicDAO {
 			while(rs.next()){
 				Topic topic=new Topic();
 				System.out.println("TopicDAO"+rs.getString("title")+rs.getString("note")+rs.getString("userid")
-						+rs.getString("date")+rs.getString("conclusion"));
+						+rs.getString("date")+rs.getString("conclusion")+rs.getString("site"));
 				topic.setTitle(rs.getString("title"));
 				topic.setNote(rs.getString("note"));
-				topic.setUserId(rs.getString("userid"));
+				topic.setUserid(rs.getString("userid"));
 				topic.setDate(rs.getString("date"));
 				topic.setConclusion(rs.getString("conclusion"));
+				topic.setSite(rs.getString("site"));
 				list.add(topic);
 			}
 			

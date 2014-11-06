@@ -12,5 +12,10 @@
 			<result type="json"/>
 			<!--返回值类型设置为json,不设置返回页面-->
 		</action>
+			<action name="addTopic" class="com.note.action.AddTopicAction"
+			method="addTopic">
+			<result type="json"/>
+			<!--返回值类型设置为json,不设置返回页面-->
+		</action>
 	</package>
 </struts>
