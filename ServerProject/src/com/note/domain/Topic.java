@@ -7,11 +7,13 @@ public class Topic {
     private String conclusion;
     private String date;
     private String site;
+    private String member;
     public Topic(){
     	super();
     }
     
-    public Topic(String userid,String title,String note,String conclusion,String date,String site){
+    public Topic(String userid,String title,String note,String conclusion,String date,String site
+    		,String member){
     	super();
     	this.userid=userid;
     	this.title = title;
@@ -19,6 +21,7 @@ public class Topic {
     	this.conclusion=conclusion;
     	this.date=date;
     	this.site=site;
+    	this.member=member;
     }
     public String getUserid(){
     	return this.userid;
@@ -26,6 +29,10 @@ public class Topic {
     
     public String getSite(){
     	return this.site;
+    }
+    
+    public String getMember(){
+    	return this.member;
     }
     
     public String getTitle(){
@@ -54,6 +61,10 @@ public class Topic {
     
     public void setNote(String note){
     	this.note=note;
+    }
+    
+    public void setMember(String member){
+    	this.member=member;
     }
     
     public void setConclusion(String Conclusion){

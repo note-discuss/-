@@ -78,7 +78,20 @@
                 android:lines="2"
                 android:hint="" />
         </TableRow>
+        <TableRow >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="成员：" />
 
+            <AutoCompleteTextView
+                android:id="@+id/member"
+                android:layout_width="fill_parent" 
+                android:layout_height="wrap_content"
+                android:hint="input86"/>
+        </TableRow>
+        
         <TableRow >
             <TextView />
             <LinearLayout >

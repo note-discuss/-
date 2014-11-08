@@ -23,6 +23,8 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -39,9 +41,14 @@ public class AddTopicActivity extends Activity{
 	EditText note;
 	EditText conclusion;
 	EditText site;
+	EditText member;
+	private static final String[] phone = new String[] {"8611","8622","8633","8644"}; 
     public void onCreate(Bundle savedInstanceState){
   	  super.onCreate(savedInstanceState);
 		  setContentView(R.layout.addtopic);
+		  ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,phone);
+		  AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.member);
+		  autoCompleteTextView.setAdapter(adapter);
 		  findViews();  
     }
     private void findViews(){
@@ -53,6 +60,7 @@ public class AddTopicActivity extends Activity{
   	   note = (EditText)findViewById(R.id.note);
   	   conclusion= (EditText)findViewById(R.id.conclusion);
   	   site = (EditText)findViewById(R.id.site);
+  	   member  = (EditText)findViewById(R.id.member);
   	   button.setOnClickListener(new OnClickListener(){
   		   public void onClick(View v){
   			   String titlestr=title.getText().toString().trim();
@@ -60,7 +68,8 @@ public class AddTopicActivity extends Activity{
   			   String  conclusionstr=conclusion.getText().toString();
   			   Log.d("mylog",conclusionstr);
   			   String sitestr=site.getText().toString().trim();
-  			 addTopicRemoteService(titlestr,notestr,conclusionstr,idstr,sitestr);
+  			 String memberstr=member.getText().toString().trim();
+  			 addTopicRemoteService(titlestr,notestr,conclusionstr,idstr,sitestr,memberstr);
                /*TopicService topicservice = new TopicService(AddTopicActivity.this);
                Topic topic = new Topic(userid,titlestr,notestr,conclusionstr);
                boolean f = topicservice.insert(topic);
@@ -72,7 +81,7 @@ public class AddTopicActivity extends Activity{
   	   });
     }
 	public void addTopicRemoteService(String title,String note,
-			 String conclusion,String userid,String site){
+			 String conclusion,String userid,String site,String member){
     	try {
    		    String date=getDate();
    		    date=java.net.URLEncoder.encode(date,"utf-8");
@@ -81,36 +90,19 @@ public class AddTopicActivity extends Activity{
    		    conclusion=java.net.URLEncoder.encode(conclusion,"utf-8");
    		    site=java.net.URLEncoder.encode(site,"utf-8");
    		    Log.d("mylog",date);
-	    	//创建一个HttpClient对象
 	    	HttpClient httpclient = new DefaultHttpClient();
-	    	//远程登录URL
-	    	//下面这句是原有的
-	    	//processURL=processURL+"userName="+userName+"&password="+password;
 	    	Log.d("mylog",conclusion);
 	    	processURL= processURL_constant+"title="+title+"&note="+note+
 	    			"&conclusion="+conclusion+"&date="+date+"&userid="+userid
-	    			+"&site="+site;
-	        //创建HttpGet对象
+	    			+"&site="+site+"&member="+member;
 	    	HttpPost request=new HttpPost(processURL);
-	    	Log.d("mylog","request");
 	    	if(request==null) Log.d("mylog","request==null");
-	    	//请求信息类型MIME每种响应类型的输出（普通文本、html 和 XML，json）。允许的响应类型应当匹配资源类中生成的 MIME 类型
-	    	//资源类生成的 MIME 类型应当匹配一种可接受的 MIME 类型。如果生成的 MIME 类型和可接受的 MIME 类型不 匹配，那么将
-	    	//生成 com.sun.jersey.api.client.UniformInterfaceException。例如，将可接受的 MIME 类型设置为 text/xml，而将
-	    	//生成的 MIME 类型设置为 application/xml。将生成 UniformInterfaceException。
 	    	request.addHeader("Accept","text/json");
-	        //获取响应的结果
-	    	Log.d("mylog","addHeader");
 			HttpResponse response =httpclient.execute(request);
-			Log.d("mylog","response");
 			if(response==null) Log.d("mylog","response==null");
-			//获取HttpEntity
 			HttpEntity entity=response.getEntity();
-			//获取响应的结果信息
 			String json =EntityUtils.toString(entity,"UTF-8");
-			//JSON的解析过程
 			if(json!=null){
-				Log.d("mylog",json);
 				JSONObject jsonObject=new JSONObject(json);
 				 Log.d("mylog","new json");
 				result=jsonObject.get("message").toString().trim();

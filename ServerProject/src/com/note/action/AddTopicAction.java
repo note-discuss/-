@@ -29,8 +29,12 @@ ServletResponseAware {
 	private String userid;
 	private String site;
 	private String conclusion;
+    private String member;
 	
-
+    public String getMember(){
+    	return this.member;
+    }
+    
     public String getUserid(){
     	return this.userid;
     }
@@ -63,6 +67,10 @@ ServletResponseAware {
     	this.title=title;
     }
     
+    public void setMember(String member){
+    	this.member=member;
+    }
+    
     public void setNote(String note){
     	this.note=note;
     }
@@ -88,15 +96,11 @@ ServletResponseAware {
 	
 	public void addTopic(){
 		try {
-            //如果不采用接口注入的方式的获取HttpServletRequest，HttpServletResponse的方式
-			  // HttpServletRequest request =ServletActionContext.getRequest();
-			  // HttpServletResponse response=ServletActionContext.getResponse();
-			
 			   this.response.setContentType("text/json;charset=utf-8");
 			   this.response.setCharacterEncoding("UTF-8");
 			   //JSONObject json=new JSONObject(); 
 			    Map<String,String> json=new HashMap<String,String>();
-			    Topic topic=new Topic(userid,title,note,conclusion,date,site);
+			    Topic topic=new Topic(userid,title,note,conclusion,date,site,member);
 			    TopicDAO topicdao=new TopicDAO();
 			    boolean f=topicdao.addTopic(topic);
 			    System.out.println(title+note+userid+conclusion+site+date);
