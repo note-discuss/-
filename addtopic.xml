@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+     <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="请输入你的笔记内容："
+        android:textSize="30dp"
+        android:textStyle="bold" /> 
+
+     <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1" >
+
+        
+        <TableRow >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="标题：" />
+
+            <EditText
+                android:id="@+id/title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:lines="2"
+                android:hint="" />
+        </TableRow>
+
+        <TableRow >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="讨论纪要：" />
+
+            <EditText
+                android:id="@+id/note"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:lines="5"
+                android:hint="" />
+        </TableRow>
+
+        <TableRow >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="一致性结论：" />
+
+            <EditText
+                android:id="@+id/conclusion"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:lines="3"
+                android:hint="" />
+        </TableRow>
+
+        <TableRow >
+            <TextView />
+            <LinearLayout >
+                <Button
+                    android:id="@+id/publish"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="发布" />
+            </LinearLayout>
+        </TableRow>
+    </TableLayout>
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView"
+        android:layout_width="fill_parent" 
+        android:layout_height="wrap_content"
+        android:hint="input86"/>
+</LinearLayout>
