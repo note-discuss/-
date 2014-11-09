@@ -16,7 +16,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.note.domain.Topic;
-import com.note.service.TopicService;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -105,27 +104,17 @@ public class AddTopicActivity extends Activity{
     	try{
     	    HttpClient httpclient = new DefaultHttpClient();
          	final String URL= processURL_findstring+"prefix="+prefix;
-         	Log.d("mylog",URL);
             HttpPost request=new HttpPost(URL);
-            Log.d("mylog","request");
     	    request.addHeader("Accept","text/json");
-    	    Log.d("mylog","addHeader");
 		    HttpResponse response =httpclient.execute(request);
-		    Log.d("mylog","response");
 		    HttpEntity entity=response.getEntity();
-		    Log.d("mylog","getentity");
 		    String json =EntityUtils.toString(entity,"UTF-8");
-		    Log.d("mylog","entityToString");
 		    if(json!=null){
 				JSONObject jsonObject=new JSONObject(json);
-				Log.d("mylog","getJSONObject");
 				result=jsonObject.get("message").toString().trim();
-				Log.d("mylog","result="+result);
 				res=result.split("\\)");
 				int size=res.length;
-				Log.d("mylog",res[0]);
 				String len=Integer.toString(size);
-				Log.d("mylog",len);
 		    }else{
 		    	Log.d("mylog","json=null");
 		    }

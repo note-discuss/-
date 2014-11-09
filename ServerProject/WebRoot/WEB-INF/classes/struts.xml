@@ -23,5 +23,9 @@
 			method="findString">
 			<result type="json"/>
 		</action>
+		<action name="getTopicList" class="com.note.action.GetTopicListAction"
+			method="getTopicList">
+			<result type="json"/>
+		</action>
 	</package>
 </struts>

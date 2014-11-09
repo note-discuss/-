@@ -60,6 +60,24 @@ public class TopicDAO {
 			e.printStackTrace();
 		}
 		return list;
-		
+	}
+	public ArrayList<Topic> findTopicList(String id) {
+		Connection conn = dbpool.getConnection();
+		ArrayList<Topic> list = new ArrayList<Topic>();
+		String sql_query="select * from topic where memeber like '%"+id+"%'";
+		System.out.println(sql_query);
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql_query);
+			while(rs.next()){
+				Topic topic = new Topic(rs.getString("userid"),rs.getString("title"),
+				rs.getString("note"),rs.getString("conclusion"),rs.getString("date"),
+				rs.getString("site"),rs.getString("member"));
+				list.add(topic);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }
