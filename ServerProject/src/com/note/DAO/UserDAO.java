@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.note.domain.Topic;
 import com.note.domain.User;
@@ -60,5 +61,22 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	public ArrayList<String> findName(String s) {
+		Connection conn = dbpool.getConnection();
+		ArrayList<String> list = new ArrayList<String>();
+		String sql_query="select * from user where id like '"+s+"%'";
+		System.out.println(sql_query);
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql_query);
+			while(rs.next()){
+				String tmp=rs.getString("username")+"("+rs.getString("id")+")";
+				list.add(tmp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

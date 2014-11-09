@@ -19,5 +19,9 @@
 			method="login">
 			<result type="json"/>
 		</action>
+		<action name="jfindString" class="com.note.action.FindStringAction"
+			method="findString">
+			<result type="json"/>
+		</action>
 	</package>
 </struts>

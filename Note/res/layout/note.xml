@@ -2,11 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#ffffff"
     android:orientation="vertical" >
 
         <TableLayout android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
+        <EditText  
+        android:id="@+id/et"  
+        android:layout_width="251dp"  
+        android:layout_height="wrap_content"  
+        android:layout_gravity="center"   
+        android:drawableLeft="@drawable/search"  
+        android:background="@drawable/shape"  
+        android:padding="10px"   
+        android:singleLine="true"  
+        android:textColor="#77000000"/>
          <ListView 
             android:id="@android:id/list" 
             android:layout_width="fill_parent"  
@@ -24,6 +35,7 @@
                     android:layout_marginRight="12.0dip" 
                     android:layout_alignParentLeft="true" 
                     android:layout_centerVertical="true"
+                    android:textColor="#FF33B5E6"
                     android:text="新建主题" />
    
                 <Button
@@ -36,6 +48,7 @@
                     android:layout_marginRight="12.0dip"
                     android:layout_toRightOf="@id/addtopic" 
                     android:layout_centerVertical="true"
+                    android:textColor="#FF96AA39"
                     android:text="个人中心" />
                 </RelativeLayout>
 </RelativeLayout>

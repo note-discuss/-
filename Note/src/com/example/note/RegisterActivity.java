@@ -136,11 +136,8 @@ public class RegisterActivity extends Activity {
 			String json =EntityUtils.toString(entity,"UTF-8");
 			//JSON的解析过程
 			if(json!=null){
-				Log.d("mylog",json);
 				JSONObject jsonObject=new JSONObject(json);
-				 Log.d("mylog","new json");
 				result=jsonObject.get("message").toString().trim();
-				 Log.d("mylog","result="+result);
 			}
 		   if(result==null){ 
 			   Log.d("mylog","result=null");

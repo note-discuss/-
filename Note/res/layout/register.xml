@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#ffffff"
     android:orientation="vertical" >
 
     <TextView
@@ -24,12 +25,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="#FF96AA39"
                 android:text="姓名：" />
 
             <EditText
                 android:id="@+id/usernameRegister"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#FF96AA39"
                 android:hint="" />
         </TableRow>
 
@@ -41,12 +44,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="#FF3F9FE0"
                 android:text="学号：" />
 
             <EditText
                 android:id="@+id/idRegister"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#FFC74B46"
                 android:hint="输入学号或教工号" />
         </TableRow>
 
@@ -56,12 +61,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="#FF5161BC"
                 android:text="密码：" />
 
             <EditText
                 android:id="@+id/passwordRegister"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#FFF4842D"
                 android:hint="" />
         </TableRow>
                
@@ -71,6 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="#FFE5E5E5"
                 android:text="性别："/>
 
             <RadioGroup
@@ -96,6 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="#FF666666"
                 android:text="类别："/>
 
             <RadioGroup
@@ -126,6 +135,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textColor="#FF33B5E6"
                     android:text="注册" />
             </LinearLayout>
         </TableRow>

@@ -11,6 +11,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +29,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,6 +38,7 @@ import android.view.View.OnClickListener;
 public class AddTopicActivity extends Activity{
     private static  String processURL="http://172.17.133.231:8080/ServerProject/addTopic.action?";
 	private final String processURL_constant  = "http://172.17.133.231:8080/ServerProject/addTopic.action?";
+	private final String processURL_findstring ="http://172.17.133.231:8080/ServerProject/jfindString.action?";
 	String result=null;
 	Button button;
 	EditText title;
@@ -42,13 +46,30 @@ public class AddTopicActivity extends Activity{
 	EditText conclusion;
 	EditText site;
 	EditText member;
-	private static final String[] phone = new String[] {"8611","8622","8633","8644"}; 
+	String res[]=null;
+	ArrayAdapter<String> adapter;
+	AutoCompleteTextView autoCompleteTextView;
+	//private static final String[] phone = new String[] {"8611","8622","8633","8644"}; 
     public void onCreate(Bundle savedInstanceState){
   	  super.onCreate(savedInstanceState);
 		  setContentView(R.layout.addtopic);
-		  ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,phone);
-		  AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.member);
-		  autoCompleteTextView.setAdapter(adapter);
+		 // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,phone);
+		  autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.member);
+		  autoCompleteTextView.setThreshold(1);
+		  autoCompleteTextView.addTextChangedListener(new TextWatcher(){
+			  public void onTextChanged(CharSequence s, int start, int before, int count){
+	              String str = s.toString();     
+                  String [] temp=getRemoteString(str);
+                  adapter = new ArrayAdapter<String>(AddTopicActivity.this,  
+	              android.R.layout.simple_dropdown_item_1line, temp); 
+                  autoCompleteTextView.setAdapter(adapter);
+			  }
+		      public void beforeTextChanged(CharSequence s, int start, int count,  
+		                int after) {  
+		      }  
+		      public void afterTextChanged(Editable s) {  
+		      }  
+		  });
 		  findViews();  
     }
     private void findViews(){
@@ -80,7 +101,47 @@ public class AddTopicActivity extends Activity{
   		   }
   	   });
     }
-	public void addTopicRemoteService(String title,String note,
+    private String[] getRemoteString(String prefix){
+    	try{
+    	    HttpClient httpclient = new DefaultHttpClient();
+         	final String URL= processURL_findstring+"prefix="+prefix;
+         	Log.d("mylog",URL);
+            HttpPost request=new HttpPost(URL);
+            Log.d("mylog","request");
+    	    request.addHeader("Accept","text/json");
+    	    Log.d("mylog","addHeader");
+		    HttpResponse response =httpclient.execute(request);
+		    Log.d("mylog","response");
+		    HttpEntity entity=response.getEntity();
+		    Log.d("mylog","getentity");
+		    String json =EntityUtils.toString(entity,"UTF-8");
+		    Log.d("mylog","entityToString");
+		    if(json!=null){
+				JSONObject jsonObject=new JSONObject(json);
+				Log.d("mylog","getJSONObject");
+				result=jsonObject.get("message").toString().trim();
+				Log.d("mylog","result="+result);
+				res=result.split("\\)");
+				int size=res.length;
+				Log.d("mylog",res[0]);
+				String len=Integer.toString(size);
+				Log.d("mylog",len);
+		    }else{
+		    	Log.d("mylog","json=null");
+		    }
+		    for(int j=0;j<res.length;++j){
+		    	res[j]=res[j]+");";
+		    }
+   	    } catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+    	return res;
+    }
+	private void addTopicRemoteService(String title,String note,
 			 String conclusion,String userid,String site,String member){
     	try {
    		    String date=getDate();
@@ -89,27 +150,20 @@ public class AddTopicActivity extends Activity{
    		    note=java.net.URLEncoder.encode(note,"utf-8");
    		    conclusion=java.net.URLEncoder.encode(conclusion,"utf-8");
    		    site=java.net.URLEncoder.encode(site,"utf-8");
-   		    Log.d("mylog",date);
 	    	HttpClient httpclient = new DefaultHttpClient();
-	    	Log.d("mylog",conclusion);
 	    	processURL= processURL_constant+"title="+title+"&note="+note+
 	    			"&conclusion="+conclusion+"&date="+date+"&userid="+userid
 	    			+"&site="+site+"&member="+member;
 	    	HttpPost request=new HttpPost(processURL);
-	    	if(request==null) Log.d("mylog","request==null");
 	    	request.addHeader("Accept","text/json");
 			HttpResponse response =httpclient.execute(request);
-			if(response==null) Log.d("mylog","response==null");
 			HttpEntity entity=response.getEntity();
 			String json =EntityUtils.toString(entity,"UTF-8");
 			if(json!=null){
 				JSONObject jsonObject=new JSONObject(json);
-				 Log.d("mylog","new json");
 				result=jsonObject.get("message").toString().trim();
-				 Log.d("mylog","result="+result);
 			}
 		   if(result==null){ 
-			   Log.d("mylog","result=null");
 			   json="通信出错！";
 		   }
 			//创建提示框提醒是否登录成功
