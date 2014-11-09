@@ -14,7 +14,7 @@ public class DBPool {
 
 		try{
 			 Class.forName("com.mysql.jdbc.Driver");
-			 System.out.println("DBPool");
+			 //System.out.println("DBPool");
 			return DriverManager.getConnection(url,username,password);//建立数据库连接
 			
 		}catch(Exception ex){

@@ -2,6 +2,7 @@ package com.note.action;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,9 +53,14 @@ ServletResponseAware {
 			  TopicDAO topicdao= new TopicDAO();
               ArrayList<Topic> list = topicdao.findTopicList(userid);
               if(list!=null){
-                  JSONArray jsonarray = JSONArray.fromObject(list);
+            	  System.out.println("1");
+                  JSONArray jsonarray = JSONArray.fromObject(list);//³ö´í
+                  System.out.println("2");
                   String topiclist=jsonarray.toString();
+                  System.out.println("topiclist="+topiclist);
                   json.put("TopicList", topiclist);
+              }else{
+            	  System.out.println("list==null!");
               }
 			  byte[] jsonBytes = json.toString().getBytes("utf-8");
 			  response.setContentLength(jsonBytes.length);

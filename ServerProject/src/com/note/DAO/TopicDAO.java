@@ -63,18 +63,23 @@ public class TopicDAO {
 	}
 	public ArrayList<Topic> findTopicList(String id) {
 		Connection conn = dbpool.getConnection();
-		ArrayList<Topic> list = new ArrayList<Topic>();
-		String sql_query="select * from topic where memeber like '%"+id+"%'";
+		ArrayList<Topic> list = null;
+		boolean f=false;
+		String sql_query="select * from topic where member like '%("+id+")%'";
 		System.out.println(sql_query);
 		try {
 			stmt=conn.createStatement();
 			rs=stmt.executeQuery(sql_query);
+			ArrayList<Topic> list1 = new ArrayList<Topic>();
 			while(rs.next()){
+				//System.out.println("1");
+				f=true;
 				Topic topic = new Topic(rs.getString("userid"),rs.getString("title"),
 				rs.getString("note"),rs.getString("conclusion"),rs.getString("date"),
 				rs.getString("site"),rs.getString("member"));
-				list.add(topic);
+				list1.add(topic);
 			}
+			if(f==true) list=list1;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

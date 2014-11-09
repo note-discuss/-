@@ -52,7 +52,7 @@ public class ClassNoteActivity extends ListActivity{
     	  Intent intent0 = this.getIntent();
     	  final Bundle bundle=intent0.getExtras();
     	  userid = bundle.getString("id");
-  		  showlist(bundle);
+  		  //showlist(bundle);
   		  findViews(bundle); 
   		  remote();
       }
@@ -94,7 +94,7 @@ public class ClassNoteActivity extends ListActivity{
 		    HttpResponse response =httpclient.execute(request);
 		    HttpEntity entity=response.getEntity();
 		    String json =EntityUtils.toString(entity,"UTF-8");
-		    Log.d("mylog",json);
+		    Log.d("mylog","json="+json);
 		    if(json!=null){
 		    	JSONArray jsonarray = new JSONArray(json);
 		    	//List list = (List)JSONArray.toList(jsonarray, Topic.class);
