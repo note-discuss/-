@@ -53,12 +53,11 @@ ServletResponseAware {
 			  TopicDAO topicdao= new TopicDAO();
               ArrayList<Topic> list = topicdao.findTopicList(userid);
               if(list!=null){
-            	 // System.out.println("2");
-//                  JSONArray jsonarray = JSONArray.fromObject(list);//³ö´í
-                 // System.out.println("1");
-//                  String topiclist=jsonarray.toString();
-//                  System.out.println("topiclist="+topiclist);
-//                  json.put("TopicList", topiclist);
+            	  System.out.println("2");
+                 JSONArray jsonarray = JSONArray.fromObject(list);//³ö´í
+                 String topiclist=jsonarray.toString();
+                  System.out.println("topiclist="+topiclist);
+                 json.put("TopicList", topiclist);
               }else{
             	  System.out.println("list==null!");
               }

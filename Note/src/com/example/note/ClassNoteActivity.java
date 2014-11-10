@@ -59,6 +59,7 @@ public class ClassNoteActivity extends ListActivity{
     	  final String URL= processURL_findTopicList+"userid="+userid;
   		  //showlist(bundle);
   		  findViews(bundle); 
+  		Log.d("mylog","findview");
   		  remote(URL);
       }
       private void findViews(final Bundle bundle){
