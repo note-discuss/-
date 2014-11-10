@@ -8,11 +8,24 @@ public class Topic {
 	private String date;
 	private String site;
 	private String member;
+	private String id;
 
 	public Topic() {
 		super();
 	}
 
+	public Topic(String userid, String title, String note, String conclusion,
+			String date, String site, String member,String id) {
+		super();
+		this.userid = userid;
+		this.title = title;
+		this.note = note;
+		this.conclusion = conclusion;
+		this.date = date;
+		this.site = site;
+		this.member = member;
+		this.id=id;
+	}
 	public Topic(String userid, String title, String note, String conclusion,
 			String date, String site, String member) {
 		super();
@@ -25,6 +38,14 @@ public class Topic {
 		this.member = member;
 	}
 
+	public String getId(){
+		return this.id;
+	}
+	
+	public void setId(String id){
+		this.id=id;
+	}
+	
 	public String getUserid() {
 		return this.userid;
 	}

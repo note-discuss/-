@@ -45,7 +45,8 @@ public class TopicDAO {
 			while(rs.next()){
 				Topic topic=new Topic();
 				System.out.println("TopicDAO"+rs.getString("title")+rs.getString("note")+rs.getString("userid")
-						+rs.getString("date")+rs.getString("conclusion")+rs.getString("site"));
+						+rs.getString("date")+rs.getString("conclusion")+rs.getString("site")+
+						rs.getString("id"));
 				topic.setTitle(rs.getString("title"));
 				topic.setNote(rs.getString("note"));
 				topic.setUserid(rs.getString("userid"));
@@ -53,6 +54,7 @@ public class TopicDAO {
 				topic.setConclusion(rs.getString("conclusion"));
 				topic.setSite(rs.getString("site"));
 				topic.setMember(rs.getString("member"));
+				topic.setId(rs.getString("id"));
 				list.add(topic);
 			}
 			
@@ -76,7 +78,7 @@ public class TopicDAO {
 				f=true;
 				Topic topic = new Topic(rs.getString("userid"),rs.getString("title"),
 				rs.getString("note"),rs.getString("conclusion"),rs.getString("date"),
-				rs.getString("site"),rs.getString("member"));
+				rs.getString("site"),rs.getString("member")+rs.getString("id"));
 				list1.add(topic);
 			}
 			if(f==true) list=list1;
@@ -99,7 +101,7 @@ public class TopicDAO {
 				f=true;
 				Topic topic = new Topic(rs.getString("userid"),rs.getString("title"),
 				rs.getString("note"),rs.getString("conclusion"),rs.getString("date"),
-				rs.getString("site"),rs.getString("member"));
+				rs.getString("site"),rs.getString("member")+rs.getString("id"));
 				list1.add(topic);
 			}
 			if(f==true) list=list1;

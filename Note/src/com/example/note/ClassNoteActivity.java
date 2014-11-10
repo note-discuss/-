@@ -3,8 +3,14 @@ package com.example.note;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+//import net.sf.json.JSONArray;
+
+
+
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -29,6 +35,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.example.note.R;
@@ -49,6 +56,7 @@ public class ClassNoteActivity extends ListActivity{
 	  Button   userinfo;
 	  Button search;
 	  String userid;
+	  String result=null;
       public void onCreate(Bundle savedInstanceState){
     	  super.onCreate(savedInstanceState);
     	  this.setTitle("课堂讨论笔记");
@@ -59,7 +67,6 @@ public class ClassNoteActivity extends ListActivity{
     	  final String URL= processURL_findTopicList+"userid="+userid;
   		  //showlist(bundle);
   		  findViews(bundle); 
-  		Log.d("mylog","findview");
   		  remote(URL);
       }
       private void findViews(final Bundle bundle){
@@ -89,15 +96,12 @@ public class ClassNoteActivity extends ListActivity{
   			  }
   		  });
       }
-      private void showlist(final Bundle bundle){//显示笔记列表
-       	  final TopicDatabaseHelper topicdb=new TopicDatabaseHelper(this);
-       	  Cursor c = topicdb.queryNote("topic");
-       	  String[] from = {"id","title","note","conclusion"};
-       	  int[] to = {R.id.id,R.id.title,R.id.note1,R.id.conclusion};
-       	  //List<Map<String, String>> listItemsList=new ArrayList<Map<String,String>>();
-       	  SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-       			  R.layout.topiclist,c,from,to);
-       	  ListView listview = getListView();//列表视图
+      private void showlist(ArrayList<Topic> list){//显示笔记列表
+       	  String[] from = {"title","note","date"};
+       	  int[] to = {R.id.title,R.id.note,R.id.date};
+       	  SimpleAdapter adapter = new SimpleAdapter(this,
+       			  getData(list),R.layout.topiclist,from,to);
+       	  ListView listview = getListView();
        	  listview.setAdapter(adapter);//添加适配器
          }
       private void remote(String url){
@@ -110,8 +114,29 @@ public class ClassNoteActivity extends ListActivity{
 		    String json =EntityUtils.toString(entity,"UTF-8");
 		    Log.d("mylog","json="+json);
 		    if(json!=null){
-		    	JSONArray jsonarray = new JSONArray(json);
-		    	//List list = (List)JSONArray.toList(jsonarray, Topic.class);
+				JSONObject jsonObject=new JSONObject(json);
+				result=jsonObject.get("TopicList").toString().trim();
+				Log.d("mylog","result="+result);
+		    	JSONArray jsonarray = new JSONArray(result);
+		    	int len = jsonarray.length();
+		    	ArrayList<Topic> list = new ArrayList<Topic>();
+		    	for(int i=0;i<len;++i){
+		            JSONObject obj = jsonarray.getJSONObject(i);
+		            String title = obj.getString("title");
+		            String member= obj.getString("member");
+		            String site  = obj.getString("site");
+		            String date = obj.getString("date");
+		            String note = obj.getString("note");
+		            String conclusion = obj.getString("conclusion");
+		            String userid = obj.getString("userid");
+		            String id= obj.getString("id");
+		            Topic topic = new Topic(userid,title,note,conclusion,date,site
+		            		,member,id);
+		            Log.d("mylog","Topic="+userid+title+note+conclusion+date+site
+		            		+member+id);
+		            list.add(topic);
+		    	}
+		    	showlist(list);
 		    }else{
 		    	Log.d("mylog","json=null");
 		    }
@@ -119,53 +144,24 @@ public class ClassNoteActivity extends ListActivity{
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (JSONException e) {
+		} catch(JSONException e){
 			e.printStackTrace();
 		}
       }
-  	/*private List<Map<String, Object>> getData() {
-    	try{
-    	    HttpClient httpclient = new DefaultHttpClient();
-         	final String URL= processURL_findTopicList+"userid="+userid;
-            HttpPost request=new HttpPost(URL);
-    	    request.addHeader("Accept","text/json");
-		    HttpResponse response =httpclient.execute(request);
-		    HttpEntity entity=response.getEntity();
-		    String json =EntityUtils.toString(entity,"UTF-8");
-		    Log.d("mylog",json);
-		    if(json!=null){
-		    	JSONArray jsonarray = new JSONArray(json);
-		    	//List list = (List)JSONArray.toList(jsonarray, Topic.class);
-		    }else{
-		    	Log.d("mylog","json=null");
-		    }
-   	    } catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+  	  private List<Map<String, Object>> getData(ArrayList<Topic> list1) {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("id", "G1");
-		map.put("info", "google 1");
-		map.put("img", R.drawable.i1);
-		list.add(map);
-
-		map = new HashMap<String, Object>();
-		map.put("title", "G2");
-		map.put("info", "google 2");
-		map.put("img", R.drawable.i2);
-		list.add(map);
-
-		map = new HashMap<String, Object>();
-		map.put("title", "G3");
-		map.put("info", "google 3");
-		map.put("img", R.drawable.i3);
-		list.add(map);
-		
+        int len = list.size();
+        for(int i=0;i<len;++i){
+        	Map<String, Object> map = new HashMap<String, Object>();
+        	map.put("title", list1.get(i).getTitle());
+        	String note = list1.get(i).getNote();
+        	if(note.length()>100) note=note.substring(0, 99)+"……";
+        	map.put("note", note);
+        	map.put("date", list1.get(i).getDate());
+        	map.put("id", list1.get(i).getId());
+        	list.add(map);
+        }
+        Log.d("mylog","return map");
 		return list;
-	}*/
+	}
 }

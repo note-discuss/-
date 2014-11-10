@@ -2,32 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
     android:orientation="vertical" >
 
-    <TextView 
-        android:id="@+id/id"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_weight="1"/>
     <TextView 
         android:id="@+id/title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:textColor="#FF33B5E6"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_weight="1"/>
     <TextView 
-        android:id="@+id/note1"
+        android:id="@+id/note"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FF33B5E6"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"/>
+        android:layout_weight="1"/>
     <TextView 
-        android:id="@+id/conclusion"
+        android:id="@+id/date"
         android:layout_width="fill_parent"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_weight="1"
+        android:textColor="#FF33B5E6"
         android:layout_height="wrap_content"/>
 
 </LinearLayout>
