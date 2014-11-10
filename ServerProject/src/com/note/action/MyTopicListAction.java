@@ -1,8 +1,8 @@
 package com.note.action;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,12 +13,11 @@ import net.sf.json.JSONArray;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
-import com.note.DAO.UserDAO;
 import com.note.DAO.TopicDAO;
 import com.note.domain.Topic;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class GetTopicListAction extends ActionSupport implements ServletRequestAware,
+public class MyTopicListAction extends ActionSupport implements ServletRequestAware,
 ServletResponseAware {
 	private static final long serialVersionUID = 1L;
 
@@ -26,16 +25,15 @@ ServletResponseAware {
 
 	HttpServletResponse response;
 	
-	private String userid;
-	
-	public void setUserid(String userid) {
-		this.userid = userid;
+	private String searchstr;
+
+	public String getSearchstr(){
+		return this.searchstr;
 	}
 	
-	public String getUserid() {
-		return this.userid;
+	public void setSearchstr(String searchstr){
+		this.searchstr=searchstr;
 	}
-	
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
 	}
@@ -44,24 +42,24 @@ ServletResponseAware {
 		this.response = response;
 	}
 	
-	public void getTopicList(){
+	public void myTopicList() throws InvocationTargetException{
 		try {
 			   this.response.setContentType("text/json;charset=utf-8");
 			   this.response.setCharacterEncoding("UTF-8");
 			   //JSONObject json=new JSONObject(); 
 			  Map<String,String> json=new HashMap<String,String>();
 			  TopicDAO topicdao= new TopicDAO();
-              ArrayList<Topic> list = topicdao.findTopicList(userid);
-              if(list!=null){
-            	 // System.out.println("2");
-//                  JSONArray jsonarray = JSONArray.fromObject(list);//³ö´í
-                 // System.out.println("1");
-//                  String topiclist=jsonarray.toString();
-//                  System.out.println("topiclist="+topiclist);
-//                  json.put("TopicList", topiclist);
-              }else{
-            	  System.out.println("list==null!");
-              }
+           ArrayList<Topic> list = topicdao.findMyTopicList(searchstr);
+           if(list!=null){
+         	  System.out.println(list.get(0).getDate());
+         	  JSONArray jsonarray = JSONArray.fromObject(list);//³ö´í
+               System.out.println("2");
+           //    String topiclist=jsonarray.toString();
+           //    System.out.println("topiclist="+topiclist);
+           //    json.put("TopicList", topiclist);
+           }else{
+         	  System.out.println("list==null!");
+           }
 			  byte[] jsonBytes = json.toString().getBytes("utf-8");
 			  response.setContentLength(jsonBytes.length);
 			  response.getOutputStream().write(jsonBytes);

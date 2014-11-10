@@ -33,12 +33,15 @@ import android.widget.Toast;
 
 
 
+
 import com.note.domain.User;
 import com.note.service.UserService;
+import com.note.service.remoteURL;
 
 public class RegisterActivity extends Activity {
-    private static  String processURL="http://172.17.133.231:8080/ServerProject/jregister.action?";
-	private final String processURL_constant  = "http://172.17.133.231:8080/ServerProject/jregister.action?";
+	static remoteURL remote = new remoteURL();
+    private static  String processURL=remote.remoteURL+"jregister.action?";
+	private final String processURL_constant  = remote.remoteURL+"jregister.action?";
 	String result=null;
 	EditText username;
 	EditText password;

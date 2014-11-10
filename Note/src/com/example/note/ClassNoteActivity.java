@@ -35,15 +35,19 @@ import com.example.note.R;
 import com.note.domain.Topic;
 import com.note.service.TopicDatabaseHelper;
 import com.note.service.UserService;
+import com.note.service.remoteURL;
 import com.example.note.R;
 import com.example.note.AddTopicActivity;
 import com.example.note.UserInfoActivity;
 public class ClassNoteActivity extends ListActivity{
-	  private   String processURL="http://172.17.133.231:8080/ServerProject/getTopicList.action?";
-	  private final String processURL_findTopicList="http://172.17.133.231:8080/ServerProject/getTopicList.action?";
-	  EditText note;
+	  static remoteURL remote = new remoteURL();
+	  private   String processURL=remote.remoteURL+"getTopicList.action?";
+	  private final String processURL_findTopicList=remote.remoteURL+"getTopicList.action?";
+	  private final String processURL_myTopicList=remote.remoteURL+"myTopicList.action?";
+	  EditText searchtext;
 	  Button   addtopic;
 	  Button   userinfo;
+	  Button search;
 	  String userid;
       public void onCreate(Bundle savedInstanceState){
     	  super.onCreate(savedInstanceState);
@@ -52,13 +56,16 @@ public class ClassNoteActivity extends ListActivity{
     	  Intent intent0 = this.getIntent();
     	  final Bundle bundle=intent0.getExtras();
     	  userid = bundle.getString("id");
+    	  final String URL= processURL_findTopicList+"userid="+userid;
   		  //showlist(bundle);
   		  findViews(bundle); 
-  		  remote();
+  		  remote(URL);
       }
       private void findViews(final Bundle bundle){
     	  addtopic = (Button) findViewById(R.id.addtopic);
     	  userinfo = (Button) findViewById(R.id.userinfo);
+    	  searchtext = (EditText) findViewById(R.id.searchtext);
+    	  search = (Button) findViewById(R.id.search);
   		  addtopic.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent=new Intent(ClassNoteActivity.this,AddTopicActivity.class);//启动register活动
@@ -73,6 +80,13 @@ public class ClassNoteActivity extends ListActivity{
   				  startActivity(intent1);
   			  }
   		  });
+  		 search.setOnClickListener(new OnClickListener(){
+  			  public void onClick(View v){
+  				  String searchstr = searchtext.getText().toString().trim();
+  				  String URL_myTopic=processURL_myTopicList+"searchstr="+searchstr;
+  				  remote(URL_myTopic);
+  			  }
+  		  });
       }
       private void showlist(final Bundle bundle){//显示笔记列表
        	  final TopicDatabaseHelper topicdb=new TopicDatabaseHelper(this);
@@ -85,11 +99,10 @@ public class ClassNoteActivity extends ListActivity{
        	  ListView listview = getListView();//列表视图
        	  listview.setAdapter(adapter);//添加适配器
          }
-      private void remote(){
+      private void remote(String url){
       	try{
     	    HttpClient httpclient = new DefaultHttpClient();
-         	final String URL= processURL_findTopicList+"userid="+userid;
-            HttpPost request=new HttpPost(URL);
+            HttpPost request=new HttpPost(url);
     	    request.addHeader("Accept","text/json");
 		    HttpResponse response =httpclient.execute(request);
 		    HttpEntity entity=response.getEntity();

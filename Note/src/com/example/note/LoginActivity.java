@@ -29,11 +29,13 @@ import android.widget.Toast;
 
 import com.example.note.R;
 import com.note.service.UserService;
+import com.note.service.remoteURL;
 
 
 public class LoginActivity extends Activity {
-    private static  String processURL="http://172.17.133.231:8080/ServerProject/jlogin.action?";
-	private final String processURL_constant  = "http://172.17.133.231:8080/ServerProject/jlogin.action?";
+	static remoteURL remote = new remoteURL();
+    private static  String processURL=remote.remoteURL+"jlogin.action?";
+	private final String processURL_constant  = remote.remoteURL+"jlogin.action?";
 	String result=null;
 	EditText id;
 	EditText password;
@@ -129,9 +131,17 @@ public class LoginActivity extends Activity {
 		   if(result==null){ 
 			   Log.d("mylog","result=null");
 			   json="登录失败,请重新登录!";
+			   Toast.makeText(LoginActivity.this, json, Toast.LENGTH_LONG).show();
+		   }else if("登录成功！".equals(result)){
+			   Toast.makeText(LoginActivity.this, "登陆成功！", Toast.LENGTH_LONG).show();
+				Intent classnote=new Intent(LoginActivity.this,ClassNoteActivity.class);//启动register活动
+				Bundle bundle= new Bundle();
+				bundle.putString("id", id);
+				classnote.putExtras(bundle);
+				startActivity(classnote);
 		   }
 			//创建提示框提醒是否登录成功
-		   Log.d("mylog","AlertDialog");
+		  /* Log.d("mylog","AlertDialog");
 			 AlertDialog.Builder builder=new Builder(LoginActivity.this);
 			 builder.setTitle("提示")
 			 .setMessage(result)
@@ -147,7 +157,7 @@ public class LoginActivity extends Activity {
 					}
 					dialog.dismiss();
 				}
-			}).create().show();
+			}).create().show();*/
 		 
     	 } catch (ClientProtocolException e) {
 			e.printStackTrace();

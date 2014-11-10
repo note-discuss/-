@@ -16,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.note.domain.Topic;
+import com.note.service.remoteURL;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -35,9 +36,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 public class AddTopicActivity extends Activity{
-    private static  String processURL="http://172.17.133.231:8080/ServerProject/addTopic.action?";
-	private final String processURL_constant  = "http://172.17.133.231:8080/ServerProject/addTopic.action?";
-	private final String processURL_findstring ="http://172.17.133.231:8080/ServerProject/jfindString.action?";
+	static remoteURL remote = new remoteURL();
+    private static  String processURL=remote.remoteURL+"addTopic.action?";
+	private final String processURL_constant  = remote.remoteURL+"addTopic.action?";
+	private final String processURL_findstring =remote.remoteURL+"jfindString.action?";
 	String result=null;
 	Button button;
 	EditText title;

@@ -27,5 +27,9 @@
 			method="getTopicList">
 			<result type="json"/>
 		</action>
+		<action name="myTopicList" class="com.note.action.MyTopicListAction"
+			method="myTopicList">
+			<result type="json"/>
+		</action>
 	</package>
 </struts>
