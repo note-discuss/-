@@ -101,8 +101,10 @@ public class ClassNoteActivity extends ListActivity{
        	  int[] to = {R.id.title,R.id.note,R.id.date};
        	  SimpleAdapter adapter = new SimpleAdapter(this,
        			  getData(list),R.layout.topiclist,from,to);
+       	  
        	  ListView listview = getListView();
        	  listview.setAdapter(adapter);//ÃÌº”  ≈‰∆˜
+       	//  this.setListAdapter(adapter);
          }
       private void remote(String url){
       	try{
@@ -150,15 +152,17 @@ public class ClassNoteActivity extends ListActivity{
       }
   	  private List<Map<String, Object>> getData(ArrayList<Topic> list1) {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-        int len = list.size();
+        int len = list1.size();
+        
         for(int i=0;i<len;++i){
+        	Log.d("mylog","2");
         	Map<String, Object> map = new HashMap<String, Object>();
-        	map.put("title", list1.get(i).getTitle());
+        	map.put("title", list1.get(i).getTitle());        	
         	String note = list1.get(i).getNote();
         	if(note.length()>100) note=note.substring(0, 99)+"°≠°≠";
         	map.put("note", note);
         	map.put("date", list1.get(i).getDate());
-        	map.put("id", list1.get(i).getId());
+        	//map.put("id", list1.get(i).getId());
         	list.add(map);
         }
         Log.d("mylog","return map");

@@ -6,32 +6,42 @@
     android:orientation="vertical" >
 
         <TableLayout android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
+            android:layout_height="wrap_content"
+            android:stretchColumns="1"
+            >
+			<TableRow 
+			    android:background="@drawable/shape"
+			    android:width="200dp">
+			<TextView 
+            android:layout_width="wrap_content"  
+            android:layout_height="wrap_content"  
+            android:layout_gravity="left"   
+            android:drawableLeft="@drawable/search"  
+              
+            android:padding="10px" 
+            android:singleLine="true"  
+             android:textColor="#FF33B5E6"/>
             <EditText  
             android:id="@+id/searchtext"  
-            android:layout_width="251dp"  
-            android:layout_height="wrap_content"  
-            android:layout_gravity="center"   
-            android:drawableLeft="@drawable/search"  
-            android:background="@drawable/shape"  
-            android:padding="10px"   
-            android:singleLine="true"  
+            android:layout_width="fill_parent"  
+            android:layout_height="wrap_content"   
+            android:padding="10px"                                              
              android:textColor="#FF33B5E6"/>
              <Button
                     android:id="@+id/search"
-                    android:layout_width="120dp"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FF33B5E6"
                     android:text="搜索" />
-            
-         <ListView 
+            </TableRow>
+            <ListView 
             android:id="@android:id/list" 
             android:layout_width="fill_parent"  
             android:layout_height="wrap_content"/>  
-            </TableLayout>
+         </TableLayout>
             <RelativeLayout android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_alignParentBottom="true" android:layout_marginTop="5.0dip">
                 <Button
                     android:id="@+id/addtopic"

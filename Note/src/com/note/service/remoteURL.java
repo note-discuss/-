@@ -1,5 +1,5 @@
 package com.note.service;
 
 public class remoteURL {
-      final public String remoteURL = "http://172.16.128.44:8080/ServerProject/";
+      final public String remoteURL = "http://172.17.133.231:8080/ServerProject/";
 }

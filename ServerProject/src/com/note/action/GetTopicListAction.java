@@ -55,6 +55,7 @@ ServletResponseAware {
               if(list!=null){
             	  System.out.println("2");
                  JSONArray jsonarray = JSONArray.fromObject(list);//³ö´í
+                 System.out.println("2");
                  String topiclist=jsonarray.toString();
                   System.out.println("topiclist="+topiclist);
                  json.put("TopicList", topiclist);

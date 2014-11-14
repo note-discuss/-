@@ -34,40 +34,11 @@ public class TopicDAO {
 		}	
 		return flag;
 	}
-	public ArrayList<Topic> queryTopic(String UserId) {//查询该ID参与的主题
-		Connection conn  = dbpool.getConnection();
-	    ArrayList<Topic> list= new ArrayList<Topic>();
-	    if(conn==null) System.out.println("conn==null!");
-		String sql_query="select * from Topic where userid='"+UserId+"'";
-		try {
-			stmt=conn.createStatement();
-			rs=stmt.executeQuery(sql_query);
-			while(rs.next()){
-				Topic topic=new Topic();
-				System.out.println("TopicDAO"+rs.getString("title")+rs.getString("note")+rs.getString("userid")
-						+rs.getString("date")+rs.getString("conclusion")+rs.getString("site")+
-						rs.getString("id"));
-				topic.setTitle(rs.getString("title"));
-				topic.setNote(rs.getString("note"));
-				topic.setUserid(rs.getString("userid"));
-				topic.setDate(rs.getString("date"));
-				topic.setConclusion(rs.getString("conclusion"));
-				topic.setSite(rs.getString("site"));
-				topic.setMember(rs.getString("member"));
-				topic.setId(rs.getString("id"));
-				list.add(topic);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
-	public ArrayList<Topic> findTopicList(String id) {
+	public ArrayList<Topic> findTopicList(String memberid) {
 		Connection conn = dbpool.getConnection();
 		ArrayList<Topic> list = null;
 		boolean f=false;
-		String sql_query="select * from topic where member like '%("+id+")%'";
+		String sql_query="select * from topic where member like '%("+memberid+")%'";
 		System.out.println(sql_query);
 		try {
 			stmt=conn.createStatement();
@@ -78,7 +49,7 @@ public class TopicDAO {
 				f=true;
 				Topic topic = new Topic(rs.getString("userid"),rs.getString("title"),
 				rs.getString("note"),rs.getString("conclusion"),rs.getString("date"),
-				rs.getString("site"),rs.getString("member")+rs.getString("id"));
+				rs.getString("site"),rs.getString("member"),rs.getString("id"));
 				list1.add(topic);
 			}
 			if(f==true) list=list1;
@@ -101,7 +72,7 @@ public class TopicDAO {
 				f=true;
 				Topic topic = new Topic(rs.getString("userid"),rs.getString("title"),
 				rs.getString("note"),rs.getString("conclusion"),rs.getString("date"),
-				rs.getString("site"),rs.getString("member")+rs.getString("id"));
+				rs.getString("site"),rs.getString("member"),rs.getString("id"));
 				list1.add(topic);
 			}
 			if(f==true) list=list1;

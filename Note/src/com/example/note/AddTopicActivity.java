@@ -61,9 +61,11 @@ public class AddTopicActivity extends Activity{
 			  public void onTextChanged(CharSequence s, int start, int before, int count){
 	              String str = s.toString();     
                   String [] temp=getRemoteString(str);
+                  if(temp!=null){
                   adapter = new ArrayAdapter<String>(AddTopicActivity.this,  
 	              android.R.layout.simple_dropdown_item_1line, temp); 
                   autoCompleteTextView.setAdapter(adapter);
+                  }
 			  }
 		      public void beforeTextChanged(CharSequence s, int start, int count,  
 		                int after) {  
