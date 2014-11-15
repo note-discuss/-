@@ -4,139 +4,106 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TextView
+     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="欢迎进入注册界面!"
+        android:text="请输入你的笔记内容："
         android:textSize="30dp"
-        android:textStyle="bold" />
+        android:textStyle="bold" /> 
 
-   <TableLayout
+     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:stretchColumns="1" >
 
+        
         <TableRow >
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="#FF96AA39"
-                android:text="姓名：" />
+                android:text="标题：" />
 
             <EditText
-                android:id="@+id/usernameRegister"
+                android:id="@+id/title2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FF96AA39"
+                android:lines="2"
                 android:hint="" />
         </TableRow>
 
-
-
         <TableRow >
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="#FF3F9FE0"
-                android:text="学号：" />
+                android:text="讨论纪要：" />
 
             <EditText
-                android:id="@+id/idRegister"
+                android:id="@+id/note2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFC74B46"
-                android:hint="输入学号或教工号" />
-        </TableRow>
-
-        <TableRow >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="#FF5161BC"
-                android:text="密码：" />
-
-            <EditText
-                android:id="@+id/passwordRegister"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#FFF4842D"
+                android:lines="5"
                 android:hint="" />
         </TableRow>
-               
-        <TableRow >
 
+        <TableRow >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="#FFE5E5E5"
-                android:text="性别："/>
+                android:text="一致性结论：" />
 
-            <RadioGroup
-                android:id="@+id/sexRegister"
+            <EditText
+                android:id="@+id/conclusion2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:checkedButton="@+id/woman"
-                android:orientation="horizontal" >
-
-                <RadioButton
-                    android:id="@+id/man"
-                    android:text="男" />
-
-                <RadioButton
-                    android:id="@id/woman"
-                    android:text="女" />
-            </RadioGroup>
+                android:lines="3"
+                android:hint="" />
         </TableRow>
         
         <TableRow >
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="#FF666666"
-                android:text="类别："/>
+                android:text="讨论地点：" />
 
-            <RadioGroup
-                android:id="@+id/roleRegister"
+            <EditText
+                android:id="@+id/site2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:checkedButton="@+id/student"
-                android:orientation="horizontal" >
-
-                <RadioButton
-                    android:id="@+id/teacher"
-                    android:text="教师" />
-
-                <RadioButton
-                    android:id="@id/student"
-                    android:text="学生" />
-            </RadioGroup>
+                android:lines="2"
+                android:hint="" />
         </TableRow>
-
         <TableRow >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="成员：" />
 
+            <MultiAutoCompleteTextView
+                android:id="@+id/member2"
+                android:layout_width="fill_parent" 
+                android:layout_height="wrap_content"
+                android:hint="input86"/>
+        </TableRow>
+        
+        <TableRow >
             <TextView />
-
             <LinearLayout >
                 <Button
-                    android:id="@+id/Register"
+                    android:id="@+id/publish2"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="#FF33B5E6"
-                    android:text="注册" />
+                    android:text="发布" />
             </LinearLayout>
         </TableRow>
+        
     </TableLayout>
 </LinearLayout>

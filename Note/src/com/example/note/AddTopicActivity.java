@@ -25,9 +25,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.Toast;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -49,22 +49,28 @@ public class AddTopicActivity extends Activity{
 	EditText member;
 	String res[]=null;
 	ArrayAdapter<String> adapter;
-	AutoCompleteTextView autoCompleteTextView;
-	//private static final String[] phone = new String[] {"8611","8622","8633","8644"}; 
+	MultiAutoCompleteTextView multiautoCompleteTextView;
     public void onCreate(Bundle savedInstanceState){
   	  super.onCreate(savedInstanceState);
 		  setContentView(R.layout.addtopic);
-		 // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,phone);
-		  autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.member);
-		  autoCompleteTextView.setThreshold(1);
-		  autoCompleteTextView.addTextChangedListener(new TextWatcher(){
+		  multiautoCompleteTextView = (MultiAutoCompleteTextView) findViewById(R.id.member);
+		  multiautoCompleteTextView.setThreshold(1);
+		  multiautoCompleteTextView.addTextChangedListener(new TextWatcher(){
 			  public void onTextChanged(CharSequence s, int start, int before, int count){
 	              String str = s.toString();     
-                  String [] temp=getRemoteString(str);
-                  if(temp!=null){
-                  adapter = new ArrayAdapter<String>(AddTopicActivity.this,  
-	              android.R.layout.simple_dropdown_item_1line, temp); 
-                  autoCompleteTextView.setAdapter(adapter);
+	              int len = s.length();
+	              if(len!=0){
+	            	if(str.charAt(len-1)!=' '){
+	            		String [] tmp=str.split(", ");
+	                    String [] temp=remote.getRemoteString(processURL_findstring,tmp[tmp.length-1]);
+	                    if(temp!=null){
+	                    adapter = new ArrayAdapter<String>(AddTopicActivity.this,  
+	  	                android.R.layout.simple_dropdown_item_1line, temp); 
+	                    multiautoCompleteTextView.setAdapter(adapter);
+	                    Log.d("mylog","multiauto");
+	                    multiautoCompleteTextView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+	            	}
+	              }
                   }
 			  }
 		      public void beforeTextChanged(CharSequence s, int start, int count,  
@@ -103,36 +109,6 @@ public class AddTopicActivity extends Activity{
                }*/
   		   }
   	   });
-    }
-    private String[] getRemoteString(String prefix){
-    	try{
-    	    HttpClient httpclient = new DefaultHttpClient();
-         	final String URL= processURL_findstring+"prefix="+prefix;
-            HttpPost request=new HttpPost(URL);
-    	    request.addHeader("Accept","text/json");
-		    HttpResponse response =httpclient.execute(request);
-		    HttpEntity entity=response.getEntity();
-		    String json =EntityUtils.toString(entity,"UTF-8");
-		    if(json!=null){
-				JSONObject jsonObject=new JSONObject(json);
-				result=jsonObject.get("message").toString().trim();
-				res=result.split("\\)");
-				int size=res.length;
-				String len=Integer.toString(size);
-		    }else{
-		    	Log.d("mylog","json=null");
-		    }
-		    for(int j=0;j<res.length;++j){
-		    	res[j]=res[j]+");";
-		    }
-   	    } catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-    	return res;
     }
 	private void addTopicRemoteService(String title,String note,
 			 String conclusion,String userid,String site,String member){

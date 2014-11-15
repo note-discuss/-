@@ -1,0 +1,71 @@
+package com.note.action;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
+
+import com.note.DAO.TopicDAO;
+import com.note.DAO.UserDAO;
+import com.note.domain.Topic;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class GetTopicAction extends ActionSupport implements
+ServletRequestAware, ServletResponseAware {
+     private static final long serialVersionUID = 1L;
+
+     HttpServletRequest request;
+
+     HttpServletResponse response;
+     
+     private String topicid;
+     
+     public String getTopicid(){
+    	 return this.topicid;
+     }
+     
+     public void setTopicid(String topicid){
+    	 this.topicid=topicid;
+     }
+     public void setServletRequest(HttpServletRequest request) {
+	     this.request = request;
+      }
+
+     public void setServletResponse(HttpServletResponse response) {
+	      this.response = response;
+     }
+     
+     public void getTopic(){
+ 		try {
+			this.response.setContentType("text/json;charset=utf-8");
+			this.response.setCharacterEncoding("UTF-8");
+			System.out.println(topicid);
+			Map<String,String> json=new HashMap<String,String>();
+			TopicDAO topicdao = new TopicDAO();
+			Topic topic = topicdao.queryTopic(topicid);
+			if (topic != null) {
+				ArrayList<Topic> list = new ArrayList<Topic>();
+				list.add(topic);
+				JSONArray jsonarray = JSONArray.fromObject(list);
+				String topicstr=jsonarray.toString();
+				System.out.println("topicstr="+topicstr);
+				json.put("Topic", topicstr);
+			}
+			byte[] jsonBytes = json.toString().getBytes("utf-8");
+			response.setContentLength(jsonBytes.length);
+			response.getOutputStream().write(jsonBytes);
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+     }
+}

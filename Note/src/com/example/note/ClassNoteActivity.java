@@ -12,6 +12,8 @@ import java.util.Map;
 
 
 
+
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -32,6 +34,8 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -65,7 +69,6 @@ public class ClassNoteActivity extends ListActivity{
     	  final Bundle bundle=intent0.getExtras();
     	  userid = bundle.getString("id");
     	  final String URL= processURL_findTopicList+"userid="+userid;
-  		  //showlist(bundle);
   		  findViews(bundle); 
   		  remote(URL);
       }
@@ -104,7 +107,21 @@ public class ClassNoteActivity extends ListActivity{
        	  
        	  ListView listview = getListView();
        	  listview.setAdapter(adapter);//ÃÌº”  ≈‰∆˜
-       	//  this.setListAdapter(adapter);
+       	  listview.setOnItemClickListener(new OnItemClickListener(){
+       		  public void onItemClick(AdapterView<?> parent,View view,int position,long id){
+       			    //Log.i("mylog", "item class : "+ ((ListView) parent).
+       			     //getItemAtPosition(position).getClass().getSimpleName());
+       		          HashMap<String, String>  map = (HashMap<String, String>) ((ListView) parent).
+       				 getItemAtPosition(position);  
+       		         String  topic_id=map.get("id");
+       		         Intent notelist = new Intent(ClassNoteActivity.this,NoteListActivity.class);
+       		         Bundle notebundle = new Bundle();
+       		         notebundle.putString("topic_id", topic_id);
+       		         notebundle.putString("userid", userid);
+       		         notelist.putExtras(notebundle);
+       		         startActivity(notelist);
+       		  }
+       	  });
          }
       private void remote(String url){
       	try{
@@ -114,11 +131,9 @@ public class ClassNoteActivity extends ListActivity{
 		    HttpResponse response =httpclient.execute(request);
 		    HttpEntity entity=response.getEntity();
 		    String json =EntityUtils.toString(entity,"UTF-8");
-		    Log.d("mylog","json="+json);
 		    if(json!=null){
 				JSONObject jsonObject=new JSONObject(json);
 				result=jsonObject.get("TopicList").toString().trim();
-				Log.d("mylog","result="+result);
 		    	JSONArray jsonarray = new JSONArray(result);
 		    	int len = jsonarray.length();
 		    	ArrayList<Topic> list = new ArrayList<Topic>();
@@ -134,8 +149,6 @@ public class ClassNoteActivity extends ListActivity{
 		            String id= obj.getString("id");
 		            Topic topic = new Topic(userid,title,note,conclusion,date,site
 		            		,member,id);
-		            Log.d("mylog","Topic="+userid+title+note+conclusion+date+site
-		            		+member+id);
 		            list.add(topic);
 		    	}
 		    	showlist(list);
@@ -155,14 +168,13 @@ public class ClassNoteActivity extends ListActivity{
         int len = list1.size();
         
         for(int i=0;i<len;++i){
-        	Log.d("mylog","2");
         	Map<String, Object> map = new HashMap<String, Object>();
         	map.put("title", list1.get(i).getTitle());        	
         	String note = list1.get(i).getNote();
         	if(note.length()>100) note=note.substring(0, 99)+"°≠°≠";
         	map.put("note", note);
         	map.put("date", list1.get(i).getDate());
-        	//map.put("id", list1.get(i).getId());
+        	map.put("id", list1.get(i).getId());
         	list.add(map);
         }
         Log.d("mylog","return map");

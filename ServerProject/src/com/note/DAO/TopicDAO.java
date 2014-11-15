@@ -34,6 +34,25 @@ public class TopicDAO {
 		}	
 		return flag;
 	}
+	public Topic queryTopic(String topicid) {
+		Connection conn = dbpool.getConnection();
+		String sql_query="select * from topic where id = '"+topicid+"'";
+		System.out.println(sql_query);
+		Topic topic = null;
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql_query);
+			ArrayList<Topic> list1 = new ArrayList<Topic>();
+			while(rs.next()){
+				topic= new Topic(rs.getString("userid"),rs.getString("title"),
+				rs.getString("note"),rs.getString("conclusion"),rs.getString("date"),
+				rs.getString("site"),rs.getString("member"),rs.getString("id"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return topic;
+	}
 	public ArrayList<Topic> findTopicList(String memberid) {
 		Connection conn = dbpool.getConnection();
 		ArrayList<Topic> list = null;

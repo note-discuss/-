@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1" >
+     <TableRow >
+      
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:textSize="20dp"
+             android:text="标题    ：" />
+         <TextView 
+             android:id="@+id/title1"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:textColor="#FF33B5E6"
+             android:textAppearance="?android:attr/textAppearanceMedium"
+             android:layout_weight="1"/>
+      </TableRow>
+      
+      <TableRow >
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:textSize="20dp"
+             android:text="笔记    ：" />
+        <TextView 
+             android:id="@+id/note1"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:textColor="#FF33B5E6"
+             android:textAppearance="?android:attr/textAppearanceMedium"
+             android:layout_weight="1"/>
+      </TableRow>
+      
+      <TableRow >
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:textSize="20dp"
+             android:text="矛盾及结论   ：" />
+        <TextView 
+             android:id="@+id/conclusion1"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:textColor="#FF33B5E6"
+             android:textAppearance="?android:attr/textAppearanceMedium"
+             android:layout_weight="1"/>
+      </TableRow>
+      
+      <TableRow >
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:textSize="20dp"
+             android:text="成员 ：" />
+        <TextView 
+             android:id="@+id/member1"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:textColor="#FF33B5E6"
+             android:textAppearance="?android:attr/textAppearanceMedium"
+             android:layout_weight="1"/>
+      </TableRow>
+
+     <TableRow >
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center"
+             android:textSize="20dp"
+             android:text="地点：" />
+        <TextView 
+             android:id="@+id/site1"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:textColor="#FF33B5E6"
+             android:textAppearance="?android:attr/textAppearanceMedium"
+             android:layout_weight="1"/>
+      </TableRow>
+      
+
+      
+      <TableRow >
+        <TextView 
+             android:id="@+id/publisher1"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:textColor="#FF33B5E6"
+             android:textAppearance="?android:attr/textAppearanceMedium"
+             android:layout_weight="1"/>
+        <TextView 
+             android:id="@+id/date1"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:textColor="#FF33B5E6"
+             android:textAppearance="?android:attr/textAppearanceMedium"
+             android:layout_weight="1"/>
+       </TableRow>
+   </TableLayout>
+</LinearLayout>

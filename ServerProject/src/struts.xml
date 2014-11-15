@@ -31,5 +31,9 @@
 			method="myTopicList">
 			<result type="json"/>
 		</action>
+		<action name="getTopic" class="com.note.action.GetTopicAction"
+			method="getTopic">
+			<result type="json"/>
+		</action>
 	</package>
 </struts>
