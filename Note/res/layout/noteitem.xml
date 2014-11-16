@@ -12,13 +12,22 @@
             android:id="@android:id/list" 
             android:layout_width="fill_parent"  
             android:layout_height="wrap_content"/> 
-             <Button
-                 android:id="@+id/addnote1"
-                 android:layout_width="120dp"
-                 android:layout_height="wrap_content"
-                 android:textSize="20sp"
-                 android:textStyle="bold"
-                 android:text="添加笔记" /> 
          </TableLayout>
-
+         <RelativeLayout android:layout_width="fill_parent" 
+                android:layout_height="50.0dip"
+                android:layout_alignParentBottom="true" 
+                android:layout_marginTop="5.0dip">
+                <Button
+                    android:id="@+id/addnote1"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:focusable="false" 
+                    android:layout_width="wrap_content" 
+                    android:layout_height="wrap_content" 
+                    android:layout_marginRight="12.0dip"
+                    android:layout_toRightOf="@id/addtopic" 
+                    android:layout_centerVertical="true"
+                    android:textColor="#FF96AA39"
+                    android:text="添加笔记" />
+                </RelativeLayout>
 </RelativeLayout>

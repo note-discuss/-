@@ -115,8 +115,7 @@ public class AddNoteAction extends ActionSupport implements
 					site, member,topicid);
 			NoteDAO notedao = new NoteDAO();
 			boolean f = notedao.addNote(note1);
-			System.out
-					.println(title + note + userid + conclusion + site + date);
+			System.out.println(title + note + userid + conclusion + site + date);
 			if (f == true) {
 				json.put("message", "Ìí¼Ó³É¹¦£¡");
 			} else {

@@ -39,5 +39,9 @@
 			method="addNote">
 			<result type="json"/>
 		</action>
+		<action name="getNoteList" class="com.note.action.GetNoteListAction"
+			method="getNoteList">
+			<result type="json"/>
+		</action>
 	</package>
 </struts>

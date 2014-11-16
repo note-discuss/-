@@ -81,7 +81,10 @@ ServletResponseAware {
             //如果不采用接口注入的方式的获取HttpServletRequest，HttpServletResponse的方式
 			  // HttpServletRequest request =ServletActionContext.getRequest();
 			  // HttpServletResponse response=ServletActionContext.getResponse();
-			
+			   this.request.setCharacterEncoding("gbk");
+			   String url=request.getRequestURI();
+			   String url1=new String(url.getBytes("iso-8859-1"),"gb2312");
+			   System.out.println("url1="+url1);
 			   this.response.setContentType("text/json;charset=utf-8");
 			   this.response.setCharacterEncoding("UTF-8");
 			   //JSONObject json=new JSONObject(); 

@@ -115,6 +115,8 @@ public class RegisterActivity extends Activity {
 	    	HttpClient httpclient = new DefaultHttpClient();
 	    	//远程登录URL
 	    	//下面这句是原有的
+	    	username=java.net.URLEncoder.encode(username,"utf-8");
+	    	sex=java.net.URLEncoder.encode(sex,"iso-8859-1");
 	    	//processURL=processURL+"userName="+userName+"&password="+password;
 	    	processURL= processURL_constant+"username="+username+"&password="+password+
 	    			"&id="+id+"&sex="+sex+"&role="+role;
