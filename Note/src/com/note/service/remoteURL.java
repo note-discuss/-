@@ -15,7 +15,7 @@ import org.json.JSONObject;
 import android.util.Log;
 
 public class remoteURL {
-      final public String remoteURL = "http://172.17.133.231:8080/ServerProject/";
+      final public String remoteURL = "http://192.168.1.113:8080/ServerProject/";
       String result;
       String res[];
       public String[] getRemoteString(String processURL_findstring,String prefix){

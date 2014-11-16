@@ -35,5 +35,9 @@
 			method="getTopic">
 			<result type="json"/>
 		</action>
+		<action name="addNote" class="com.note.action.AddNoteAction"
+			method="addNote">
+			<result type="json"/>
+		</action>
 	</package>
 </struts>
