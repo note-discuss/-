@@ -59,32 +59,32 @@ public class AddTopicAction extends ActionSupport implements
 		return this.date;
 	}
 
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setUserid(String userid)throws Exception {
+		this.userid= new String(userid.getBytes("iso-8859-1"),"utf-8");
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setTitle(String title) throws Exception{
+		this.title= new String(title.getBytes("iso-8859-1"),"utf-8");
 	}
 
-	public void setMember(String member) {
-		this.member = member;
+	public void setMember(String member) throws Exception{
+		this.member= new String(member.getBytes("iso-8859-1"),"utf-8");
 	}
 
-	public void setNote(String note) {
-		this.note = note;
+	public void setNote(String note) throws Exception{
+		this.note= new String(note.getBytes("iso-8859-1"),"utf-8");
 	}
 
-	public void setConclusion(String conclusion) {
-		this.conclusion = conclusion;
+	public void setConclusion(String conclusion) throws Exception{
+		this.conclusion=new String(conclusion.getBytes("iso-8859-1"),"utf-8");
 	}
 
-	public void setSite(String site) {
-		this.site = site;
+	public void setSite(String site) throws Exception{
+		this.site=new String(site.getBytes("iso-8859-1"),"utf-8");
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setDate(String date) throws Exception{
+		this.date=new String(date.getBytes("iso-8859-1"),"utf-8");
 	}
 
 	public void setServletRequest(HttpServletRequest request) {

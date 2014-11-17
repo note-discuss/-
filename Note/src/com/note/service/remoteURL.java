@@ -21,6 +21,7 @@ public class remoteURL {
       public String[] getRemoteString(String processURL_findstring,String prefix){
       	try{
       	    HttpClient httpclient = new DefaultHttpClient();
+      	    prefix=java.net.URLEncoder.encode(prefix,"utf-8");
            	final String URL= processURL_findstring+"prefix="+prefix;
               HttpPost request=new HttpPost(URL);
       	    request.addHeader("Accept","text/json");

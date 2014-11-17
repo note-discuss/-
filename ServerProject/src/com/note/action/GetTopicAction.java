@@ -45,6 +45,7 @@ ServletRequestAware, ServletResponseAware {
      
      public void getTopic(){
  		try {
+ 			this.request.setCharacterEncoding("utf-8");
 			this.response.setContentType("text/json;charset=utf-8");
 			this.response.setCharacterEncoding("UTF-8");
 			System.out.println(topicid);

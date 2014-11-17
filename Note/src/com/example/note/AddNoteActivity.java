@@ -120,6 +120,7 @@ public class AddNoteActivity extends Activity {
    		    site=java.net.URLEncoder.encode(site,"utf-8");
    		    String userid=java.net.URLEncoder.encode(publisher1,"utf-8");
    		    String topicid=java.net.URLEncoder.encode(topicid1,"utf-8");
+   		    member=java.net.URLEncoder.encode(member,"utf-8");
    		    Log.d("mylog","userid="+userid);
 	    	HttpClient httpclient = new DefaultHttpClient();
 	    	Log.d("mylog","HttpClient");

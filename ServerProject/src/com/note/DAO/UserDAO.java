@@ -65,7 +65,7 @@ public class UserDAO {
 	public ArrayList<String> findName(String s) {
 		Connection conn = dbpool.getConnection();
 		ArrayList<String> list = new ArrayList<String>();
-		String sql_query="select * from user where id like '"+s+"%'";
+		String sql_query="select * from user where username like '"+s+"%'";
 		System.out.println(sql_query);
 		try {
 			stmt=conn.createStatement();

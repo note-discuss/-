@@ -102,9 +102,11 @@ public class LoginActivity extends Activity {
 			}
 		});
 	}
-	public void loginRemoteService(final String id,String password){
+	public void loginRemoteService(String id,String password){
     	try {
 	    	HttpClient httpclient = new DefaultHttpClient();
+	    	id=java.net.URLEncoder.encode(id,"utf-8");
+	    	password=java.net.URLEncoder.encode(password,"utf-8");
 	    	processURL= processURL_constant+"id="+id+"&password="+password;
 	    	Log.d("mylog", processURL);
 	        //创建HttpGet对象

@@ -108,8 +108,13 @@ public class ClassNoteActivity extends ListActivity{
   		 search.setOnClickListener(new OnClickListener(){
   			  public void onClick(View v){
   				  String searchstr = searchtext.getText().toString().trim();
+  				  try{
+  				  searchstr=java.net.URLEncoder.encode(searchstr,"utf-8");
   				  String URL_myTopic=processURL_myTopicList+"searchstr="+searchstr;
   				  remote(URL_myTopic);
+  				  }catch(Exception e){
+  					  e.printStackTrace();
+  				  }
   			  }
   		  });
       }

@@ -33,36 +33,36 @@ ServletResponseAware {
 		return password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String password)throws Exception {
+		this.password = new String(password.getBytes("iso-8859-1"),"utf-8");
 	}
 
 	public String getUsername() {
 		return username;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUsername(String username) throws Exception{
+		this.username = new String(username.getBytes("iso-8859-1"),"utf-8");
 	}
 	
-	public void setId(String id) {
-		this.id = id;
+	public void setId(String id)throws Exception {
+		this.id = new String(id.getBytes("iso-8859-1"),"utf-8");
 	}
 	
 	public String getId() {
 		return this.id;
 	}
 	
-	public void setSex(String sex) {
-		this.sex = sex;
+	public void setSex(String sex) throws Exception{
+		this.sex = new String(sex.getBytes("iso-8859-1"),"utf-8");
 	}
 	
 	public String getSex() {
 		return this.sex;
 	}
 	
-	public void setRole(String role) {
-		this.role = role;
+	public void setRole(String role) throws Exception{
+		this.role = new String(role.getBytes("iso-8859-1"),"utf-8");
 	}
 	
 	public String getRole() {
@@ -81,7 +81,7 @@ ServletResponseAware {
             //如果不采用接口注入的方式的获取HttpServletRequest，HttpServletResponse的方式
 			  // HttpServletRequest request =ServletActionContext.getRequest();
 			  // HttpServletResponse response=ServletActionContext.getResponse();
-			   this.request.setCharacterEncoding("gbk");
+			  // this.request.setCharacterEncoding("gbk");
 			   String url=request.getRequestURI();
 			   String url1=new String(url.getBytes("iso-8859-1"),"gb2312");
 			   System.out.println("url1="+url1);

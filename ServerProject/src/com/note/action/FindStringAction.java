@@ -29,8 +29,8 @@ public class FindStringAction extends ActionSupport implements
 		return this.prefix;
 	}
 
-	public void setPrefix(String prefix) {
-		this.prefix = prefix;
+	public void setPrefix(String prefix) throws Exception{
+		this.prefix= new String(prefix.getBytes("iso-8859-1"),"utf-8");
 	}
 
 	public void setServletRequest(HttpServletRequest request) {

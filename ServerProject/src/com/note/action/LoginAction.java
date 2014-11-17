@@ -28,12 +28,12 @@ public class LoginAction extends ActionSupport implements ServletRequestAware,
 		return password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String password) throws Exception{
+		this.password = new String(password.getBytes("iso-8859-1"),"utf-8");
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setId(String id) throws Exception{
+		this.id = new String(id.getBytes("iso-8859-1"),"utf-8");
 	}
 
 	public String getId() {

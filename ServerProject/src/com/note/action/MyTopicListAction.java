@@ -31,8 +31,8 @@ ServletResponseAware {
 		return this.searchstr;
 	}
 	
-	public void setSearchstr(String searchstr){
-		this.searchstr=searchstr;
+	public void setSearchstr(String searchstr) throws Exception{
+		this.searchstr= new String(searchstr.getBytes("iso-8859-1"),"utf-8");
 	}
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;

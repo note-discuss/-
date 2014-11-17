@@ -119,6 +119,8 @@ public class AddTopicActivity extends Activity{
    		    note=java.net.URLEncoder.encode(note,"utf-8");
    		    conclusion=java.net.URLEncoder.encode(conclusion,"utf-8");
    		    site=java.net.URLEncoder.encode(site,"utf-8");
+   		    userid=java.net.URLEncoder.encode(userid,"utf-8");
+   		    member=java.net.URLEncoder.encode(member,"utf-8");
 	    	HttpClient httpclient = new DefaultHttpClient();
 	    	processURL= processURL_constant+"title="+title+"&note="+note+
 	    			"&conclusion="+conclusion+"&date="+date+"&userid="+userid
