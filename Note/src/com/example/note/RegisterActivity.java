@@ -123,6 +123,7 @@ public class RegisterActivity extends Activity {
 	    	Log.d("mylog", processURL);
 	        //创建HttpGet对象
 	    	HttpPost request=new HttpPost(processURL);
+	    	request.setHeader("Content-Type", "charset=utf-8");
 	    	Log.d("mylog","request");
 	    	if(request==null) Log.d("mylog","request==null");
 	    	//请求信息类型MIME每种响应类型的输出（普通文本、html 和 XML，json）。允许的响应类型应当匹配资源类中生成的 MIME 类型

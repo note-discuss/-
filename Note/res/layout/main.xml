@@ -1,95 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
-    android:background="@drawable/c">
-      <!-- linearlayout:线性布局，在水平或者竖直方向上所有元素按线性顺序排列 
-         android:orientation属于linearout的属性控制，此处“vertical”表示元素按竖直方向排列，不写的话默认水平，这个属性在其他一些布局方式中是无效的
-         layout_width和layout_height都是“fill_parent",意思是在水平和竖直方向上适应屏幕大小
-    -->
+    android:background="#EEEEFF" >
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/re_head"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="欢迎进入登录界面! "
-        android:textColor="#ffffff"
-        android:textSize="30dp"
-        android:textStyle="bold" />
-    <!-- textview是在界面添加一个文本视图，这里的layout_height为wrap_content，大意就是有多大就显示多大，如果显示很大的图像就强制性扩展视图显示全部内容
-        gravity="center"是指”欢迎。。。“对于整个textview居中
-        layout_gravity="center是整个textview在界面水平方向居中
-        textSize字号，textStyle="bold"字体，此处为粗体
-     -->
+        android:layout_marginTop="30dip" >
 
-    <TableLayout
-        android:layout_width="fill_parent"
+        <ImageView
+            android:id="@+id/loginhead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/faceback" />
+
+        <ImageView
+            android:id="@+id/loginhead1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/ic_launcher" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/id_input"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:stretchColumns="1" >
-        <!-- stretchColumns意为延展列，即将由于0表示第一列，这句话指将表格布局中每一行的第二列水平拉伸填满空间 -->
-        <TableRow >
-        <!-- tablerow定义表格中新的一行 -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="#ffffff"
-                android:text="ID：" />
-            <EditText
-                android:id="@+id/id"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#ffffff"
-                android:hint="" />
-              <!-- edittext可编辑文本框，hint用于显示提示字 -->
-             <!-- 为edittext设置Android：id属性，该控件有唯一id，"@+id/username"指明在R.id中增加一个id为username，R.java会自动完成这个引用
-             在activity代码中可以通过findviewbyid（）获取edittext这个控件，并用函数将其中信息转化为字符串 -->
-        </TableRow>
-        
-        <TableRow >
-        </TableRow>
-        
-        <TableRow >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="#ffffff"
-                android:text="密码：" />
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:password="true"
-                android:textColor="#ffffff"
-                android:hint="" />
-        </TableRow>
-        
-       <TableRow >
-        </TableRow>
-        <TableRow >
-        </TableRow>
-        <TableRow >
-        </TableRow>       
-        <TableRow >
-            <TextView />
-            <LinearLayout >
-                <Button
-                    android:id="@+id/login"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="#ffffff"
-                    android:text="登录" />
-                <Button
-                    android:id="@+id/register"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:textColor="#ffffff"
-                    android:text="注册" />
-                <!-- 100dp中的dp是一种像素密度单位，在不同分辨率手机上显示的大小有些不同 -->
-            </LinearLayout>
-        </TableRow>
-    </TableLayout>
-</LinearLayout>
+        android:layout_below="@id/re_head"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/shurukuang" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="帐号:"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/id"
+            android:layout_width="180dip"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:textColor="#000000"
+            android:imeOptions="actionNext"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/xiala"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/expand" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/password_imput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_input"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/shurukuang" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="密码:"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="180dip"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:imeOptions="actionDone"
+            android:password="true"
+            android:textColor="#000000"
+            android:singleLine="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/expand"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/mainbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password_imput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dip" >
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:text="登录"
+            android:textColor="#FFFFFF"
+            android:textSize="18dip" />
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dip"
+            android:layout_toRightOf="@id/login"
+            android:background="@drawable/button"
+            android:text="注册"
+            android:textColor="#FFFFFF"
+            android:textSize="18dip" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/option"
+        android:layout_width="263dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mainbutton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dip"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip" >
+
+        <CheckBox
+            android:id="@+id/remember"
+            style="@drawable/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:checked="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/remember"
+            android:text="记住密码" />
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
