@@ -20,7 +20,7 @@ import com.note.domain.User;
 import android.util.Log;
 
 public class remoteURL {
-      final public String remoteURL = "http://172.16.128.44:8080/ServerProject/";
+      final public String remoteURL = "http://192.168.253.1:8080/ServerProject/";
       String result;
       String res[];
       public String[] getRemoteString(String processURL_findstring,String prefix){

@@ -92,6 +92,7 @@ public class NoteListActivity extends ListActivity{
         	map.put("conclusion", topic.getConclusion());
         	map.put("site",topic.getSite());
         	String name=remote.getRemoteUserName(topic.getUserid());
+        	Log.d("mylog","username="+name);
         	map.put("username", name);
         	list.add(map);
         	for(int i=0;i<list1.size();++i){

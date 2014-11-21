@@ -59,6 +59,7 @@ ServletResponseAware {
                  json.put("TopicList", topiclist);
               }else{
             	  System.out.println("list==null!");
+            	  json.put("TopicList","null");
               }
 			  byte[] jsonBytes = json.toString().getBytes("utf-8");
 			  response.setContentLength(jsonBytes.length);

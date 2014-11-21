@@ -112,6 +112,7 @@ public class ClassNoteActivity extends ListActivity{
       private void showlist(ArrayList<Topic> list){//显示笔记列表
        	  String[] from = {"title","note","date"};
        	  int[] to = {R.id.title,R.id.note,R.id.date};
+       	  Log.d("mylog","in showlist");
        	  SimpleAdapter adapter = new SimpleAdapter(this,
        			  getData(list),R.layout.topiclist,from,to);
        	  
@@ -141,13 +142,18 @@ public class ClassNoteActivity extends ListActivity{
 		    HttpResponse response =httpclient.execute(request);
 		    HttpEntity entity=response.getEntity();
 		    String json =EntityUtils.toString(entity,"UTF-8");
+		    ArrayList<Topic> list = new ArrayList<Topic>();
+		    Log.d("mylog",json);
 		    if(json!=null){
-				JSONObject jsonObject=new JSONObject(json);
-				result=jsonObject.get("TopicList").toString().trim();
-		    	JSONArray jsonarray = new JSONArray(result);
-		    	int len = jsonarray.length();
-		    	ArrayList<Topic> list = new ArrayList<Topic>();
-		    	for(int i=0;i<len;++i){
+		    	if(!json.equals("{}")){
+			    	JSONObject jsonObject=new JSONObject(json);
+			    	result=jsonObject.get("TopicList").toString().trim();
+			    	Log.d("mylog", result);
+		    	    JSONArray jsonarray = new JSONArray(result);
+		    	    int len = jsonarray.length();
+		    	    //list = new ArrayList<Topic>();
+		    	    Log.d("mylog","listsize="+Integer.toString(list.size()));
+		    	    for(int i=0;i<len;++i){
 		            JSONObject obj = jsonarray.getJSONObject(i);
 		            String title = obj.getString("title");
 		            String member= obj.getString("member");
@@ -160,7 +166,8 @@ public class ClassNoteActivity extends ListActivity{
 		            Topic topic = new Topic(userid,title,note,conclusion,date,site
 		            		,member,id);
 		            list.add(topic);
-		    	}
+		    	    }
+				}
 		    	showlist(list);
 		    }else{
 		    	Log.d("mylog","json=null");
@@ -187,6 +194,8 @@ public class ClassNoteActivity extends ListActivity{
         	map.put("id", list1.get(i).getId());
         	list.add(map);
         }
+        String len1=Integer.toString(list.size());
+        Log.d("mylog",len1);
 		return list;
 	}
 }

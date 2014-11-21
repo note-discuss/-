@@ -153,11 +153,7 @@ public class LoginActivity extends Activity {
 				result=jsonObject.get("message").toString().trim();
 				 Log.d("mylog","result="+result);
 			}
-		   if(result==null){ 
-			   Log.d("mylog","result=null");
-			   json="登录失败,请重新登录!";
-			   Toast.makeText(LoginActivity.this, json, Toast.LENGTH_LONG).show();
-		   }else if("登录成功！".equals(result)){
+		  if("登录成功！".equals(result)){
 			   saveData();
 			   Toast.makeText(LoginActivity.this, "登陆成功！", Toast.LENGTH_LONG).show();
 				Intent classnote=new Intent(LoginActivity.this,ClassNoteActivity.class);//启动register活动
@@ -165,6 +161,8 @@ public class LoginActivity extends Activity {
 				bundle.putString("id", id);
 				classnote.putExtras(bundle);
 				startActivity(classnote);
+		   }else{
+			   Toast.makeText(LoginActivity.this, result, Toast.LENGTH_LONG).show();
 		   }
 			//创建提示框提醒是否登录成功
 		  /* Log.d("mylog","AlertDialog");

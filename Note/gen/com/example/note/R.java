@@ -1094,17 +1094,19 @@ containing a value of this type.
         public static final int btn_normal=0x7f02005c;
         public static final int btn_pressed=0x7f02005d;
         public static final int button=0x7f02005e;
-        public static final int c=0x7f02005f;
-        public static final int checkbox=0x7f020060;
-        public static final int expand=0x7f020061;
-        public static final int faceback=0x7f020062;
-        public static final int ic_launcher=0x7f020063;
-        public static final int search=0x7f020064;
-        public static final int shape=0x7f020065;
-        public static final int shurukuang=0x7f020066;
-        public static final int silver=0x7f020069;
-        public static final int title=0x7f020067;
-        public static final int zhou=0x7f020068;
+        public static final int buyu=0x7f02005f;
+        public static final int c=0x7f020060;
+        public static final int checkbox=0x7f020061;
+        public static final int expand=0x7f020062;
+        public static final int faceback=0x7f020063;
+        public static final int ic_launcher=0x7f020064;
+        public static final int search=0x7f020065;
+        public static final int shape=0x7f020066;
+        public static final int shuge=0x7f020067;
+        public static final int shurukuang=0x7f020068;
+        public static final int silver=0x7f02006b;
+        public static final int title=0x7f020069;
+        public static final int zhou=0x7f02006a;
     }
     public static final class id {
         public static final int Register=0x7f05007a;
