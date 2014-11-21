@@ -61,14 +61,19 @@ public class NoteListActivity extends ListActivity{
     			  bundle.putString("publisher",myid);
     			  bundle.putString("topicid", topicid);
     			  intent.putExtras(bundle);
-    			  startActivity(intent);
+    			  startActivityForResult(intent,1);
     		  }
     	  });
+      }
+      public void onActivityResult(int requestCode, int resultCode, Intent data){
+    	  super.onActivityResult(requestCode, resultCode, data);
+    	  String URL=processURL+"topicid="+topicid;
+    	  remote(URL); 
       }
       private void showlist(Topic topic,ArrayList<Note> list1){
     	  if(list1==null) Log.d("mylog","in showlist list = null!");
     	  Log.d("mylog","in showlist topicid="+topic.getId());
-       	  String[] from = {"title","note","conclusion","member","site","userid","date"};
+       	  String[] from = {"title","note","conclusion","member","site","username","date"};
        	  int[] to = {R.id.title1,R.id.note1,R.id.conclusion1,R.id.member1,R.id.site1,R.id.publisher1,R.id.date1};
        	  SimpleAdapter adapter = new SimpleAdapter(this,
        			  getData(topic,list1),R.layout.noteitem_list,from,to);
@@ -86,6 +91,8 @@ public class NoteListActivity extends ListActivity{
         	map.put("userid", topic.getUserid());
         	map.put("conclusion", topic.getConclusion());
         	map.put("site",topic.getSite());
+        	String name=remote.getRemoteUserName(topic.getUserid());
+        	map.put("username", name);
         	list.add(map);
         	for(int i=0;i<list1.size();++i){
         		Map<String, Object> map1 = new HashMap<String, Object>();
@@ -97,6 +104,8 @@ public class NoteListActivity extends ListActivity{
             	map1.put("userid", list1.get(i).getUserid());
             	map1.put("conclusion", list1.get(i).getConclusion());
             	map1.put("site", list1.get(i).getSite());
+            	name=remote.getRemoteUserName(list1.get(i).getUserid());
+            	map1.put("username", name);
             	list.add(map1);
         	}
         	Log.d("mylog","list size = "+list.size());

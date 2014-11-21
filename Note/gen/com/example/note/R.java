@@ -858,10 +858,19 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f060002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f070003;
+        public static final int abc_search_url_text_holo=0x7f07000c;
         public static final int abc_search_url_text_normal=0x7f070000;
         public static final int abc_search_url_text_pressed=0x7f070002;
         public static final int abc_search_url_text_selected=0x7f070001;
+        public static final int alpha=0x7f070009;
+        public static final int black=0x7f070004;
+        public static final int c1=0x7f070003;
+        public static final int chat_myself=0x7f07000a;
+        public static final int chat_other=0x7f07000b;
+        public static final int darkgray=0x7f070008;
+        public static final int gray=0x7f070006;
+        public static final int gray_blue=0x7f070007;
+        public static final int white=0x7f070005;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1093,7 +1102,9 @@ containing a value of this type.
         public static final int search=0x7f020064;
         public static final int shape=0x7f020065;
         public static final int shurukuang=0x7f020066;
+        public static final int silver=0x7f020069;
         public static final int title=0x7f020067;
+        public static final int zhou=0x7f020068;
     }
     public static final class id {
         public static final int Register=0x7f05007a;

@@ -72,16 +72,7 @@ public class ClassNoteActivity extends ListActivity{
   		  findViews(bundle); 
   		  remote(URL);
       }
-      public void onRestart(Bundle savedInstanceState){
-    	  setContentView(R.layout.note);
-    	  super.onRestart();
-    	  Log.d("mylog","onRestart");
-    	  final String URL= processURL_findTopicList+"userid="+userid;
-  		  remote(URL);
-      }
-      public void OnActivityResult(int requestCode, int resultCode, Intent data){
-    	  setContentView(R.layout.note);
-    	  Log.d("mylog","onActivityResult");
+      public void onActivityResult(int requestCode, int resultCode, Intent data){
     	  super.onActivityResult(requestCode, resultCode, data);
     	  final String URL= processURL_findTopicList+"userid="+userid;
   		  remote(URL);  
@@ -95,7 +86,7 @@ public class ClassNoteActivity extends ListActivity{
 			public void onClick(View v) {
 				Intent intent=new Intent(ClassNoteActivity.this,AddTopicActivity.class);//Æô¶¯register»î¶¯
 				intent.putExtras(bundle);
-				startActivity(intent);
+				startActivityForResult(intent,1);
 			}
 		});
   		  userinfo.setOnClickListener(new OnClickListener(){

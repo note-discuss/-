@@ -48,6 +48,22 @@ public class UserDAO {
 		}
 		return false;
 	}
+	public User getUser(String id) {
+		Connection conn = dbpool.getConnection();
+		String sql_query="select * from user where id='"+id+"'";
+		User user = null;
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql_query);
+			while(rs.next()){
+				user = new User(rs.getString("id"), rs.getString("username"), rs.getString("password"),
+						rs.getString("role"), rs.getString("sex"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
 	public boolean login(String id,String password) {
 		Connection conn = dbpool.getConnection();
 		String sql_query="select * from user where id='"+id+"' and password='"+password+"'";

@@ -44,6 +44,7 @@ public class AddTopicActivity extends Activity{
 	Button button;
 	EditText title;
 	EditText note;
+	Intent intent;
 	EditText conclusion;
 	EditText site;
 	EditText member;
@@ -53,6 +54,7 @@ public class AddTopicActivity extends Activity{
     public void onCreate(Bundle savedInstanceState){
   	  super.onCreate(savedInstanceState);
 		  setContentView(R.layout.addtopic);
+		  intent=this.getIntent();
 		  multiautoCompleteTextView = (MultiAutoCompleteTextView) findViewById(R.id.member);
 		  multiautoCompleteTextView.setThreshold(1);
 		  multiautoCompleteTextView.addTextChangedListener(new TextWatcher(){
@@ -81,8 +83,13 @@ public class AddTopicActivity extends Activity{
 		  });
 		  findViews();  
     }
+    public void onBackPressed(){
+  	  super.onBackPressed();
+  	  Log.d("mylog","onBackPressed");
+  	  setResult(RESULT_OK, intent);
+  	  finish();
+    }
     private void findViews(){
-   	   Intent intent = this.getIntent();
    	   Bundle bundle = intent.getExtras();
    	   final String idstr = bundle.getString("id");
        button = (Button)findViewById(R.id.publish);

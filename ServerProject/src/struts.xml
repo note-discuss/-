@@ -43,5 +43,9 @@
 			method="getNoteList">
 			<result type="json"/>
 		</action>
+			<action name="getUser" class="com.note.action.GetUserAction"
+			method="getUser">
+			<result type="json"/>
+		</action>
 	</package>
 </struts>

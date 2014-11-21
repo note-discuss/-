@@ -2,41 +2,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical" >
 
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="1" >
+         >
      <TableRow >
       
-         <TextView
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_gravity="center"
-             android:textSize="20dp"
-             android:text="标题    ：" />
          <TextView 
              android:id="@+id/title1"
-             android:layout_width="fill_parent"
+             android:layout_width="250dip"
              android:layout_height="wrap_content"
-             android:textColor="#FF33B5E6"
+             android:textColor="@color/black"
+             android:textSize="30dp"
              android:textAppearance="?android:attr/textAppearanceMedium"
+             android:gravity="center"
              android:layout_weight="1"/>
       </TableRow>
       
       <TableRow >
-         <TextView
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_gravity="center"
-             android:textSize="20dp"
-             android:text="笔记    ：" />
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="笔记    ："
+              android:textSize="20dp" />
+
         <TextView 
              android:id="@+id/note1"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
-             android:textColor="#FF33B5E6"
+             android:textColor="@color/darkgray"
              android:textAppearance="?android:attr/textAppearanceMedium"
              android:layout_weight="1"/>
       </TableRow>
@@ -98,12 +96,13 @@
              android:layout_height="wrap_content"
              android:textColor="#FF33B5E6"
              android:textAppearance="?android:attr/textAppearanceMedium"
+             android:gravity="right"
              android:layout_weight="1"/>
         <TextView 
              android:id="@+id/date1"
-             android:layout_width="fill_parent"
+             android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:textColor="#FF33B5E6"
+             android:textColor="@color/darkgray"
              android:textAppearance="?android:attr/textAppearanceMedium"
              android:layout_weight="1"/>
        </TableRow>

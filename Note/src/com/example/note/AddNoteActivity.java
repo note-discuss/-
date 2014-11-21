@@ -43,6 +43,7 @@ public class AddNoteActivity extends Activity {
 	Button publish;
 	EditText title;
 	EditText note;
+	Intent intent;
 	EditText conclusion;
 	EditText site;
 	EditText member;
@@ -51,7 +52,7 @@ public class AddNoteActivity extends Activity {
     public void onCreate(Bundle savedInstanceState){
     	  super.onCreate(savedInstanceState);
   		  setContentView(R.layout.addnote);
-  		  Intent intent = this.getIntent();
+  		  intent = this.getIntent();
   		  Bundle bundle = intent.getExtras();
   		  publisher1=bundle.getString("publisher");
   		  topicid1=bundle.getString("topicid");
@@ -84,6 +85,12 @@ public class AddNoteActivity extends Activity {
 		  });
 		  findview();
     }
+    public void onBackPressed(){
+    	  super.onBackPressed();
+    	  Log.d("mylog","onBackPressed");
+    	  setResult(RESULT_OK, intent);
+    	  finish();
+      }
     public void findview(){
     	publish = (Button)findViewById(R.id.publish2);
     	title = (EditText)findViewById(R.id.title2);

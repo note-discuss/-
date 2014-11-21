@@ -86,7 +86,7 @@
 
         <EditText
             android:id="@+id/conclusion"
-            android:layout_width="230dip"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill_horizontal"
             android:background="@drawable/shurukuang"
