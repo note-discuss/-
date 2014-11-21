@@ -24,10 +24,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.note.R;
+import com.note.service.DataHelper;
 import com.note.service.UserService;
 import com.note.service.remoteURL;
 
@@ -40,6 +42,11 @@ public class LoginActivity extends Activity {
 	EditText id;
 	EditText password;
 	Button login,register;
+	protected CheckBox remember;
+	protected DataHelper helper;
+	protected final String db_remember = "remember";
+	protected final String db_name = "name";
+	protected final String db_password = "password";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,11 +66,27 @@ public class LoginActivity extends Activity {
 		         .build());
 		super.onCreate(savedInstanceState);	//savedInstanceState用于在pause时保存当前activity的状态
 	}
+	private void saveData() {
+		helper.putBoolean(db_remember, remember.isChecked());
+		if (remember.isChecked()) {
+			helper.putString(db_name, id.getText().toString());
+			helper.putString(db_password, password.getText().toString());
+		}
+	}
 	private void findViews() {
+		helper = DataHelper.getInstance(this);
+		remember = (CheckBox) findViewById(R.id.remember);
 		id=(EditText) findViewById(R.id.id);  //生成输入文本框
 		password=(EditText) findViewById(R.id.password);
 		login=(Button) findViewById(R.id.login);           //生成一个按钮，与布局里的login对应
 		register=(Button) findViewById(R.id.register);
+		remember.setChecked(helper.getBoolean(db_remember, true));
+		String NAME = helper.getString(db_name, null);
+		String PWD = helper.getString(db_password, null);
+		if (NAME != null && PWD != null) {
+			id.setText(NAME);
+			password.setText(PWD);
+		}
 		login.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {         //通过view可以获取点击的id，可以知道点击了哪个按钮
 				String idstr=id.getText().toString().trim();
@@ -135,6 +158,7 @@ public class LoginActivity extends Activity {
 			   json="登录失败,请重新登录!";
 			   Toast.makeText(LoginActivity.this, json, Toast.LENGTH_LONG).show();
 		   }else if("登录成功！".equals(result)){
+			   saveData();
 			   Toast.makeText(LoginActivity.this, "登陆成功！", Toast.LENGTH_LONG).show();
 				Intent classnote=new Intent(LoginActivity.this,ClassNoteActivity.class);//启动register活动
 				Bundle bundle= new Bundle();
