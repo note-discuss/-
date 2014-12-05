@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#EEEEFF" 
+    android:orientation="vertical" >
+
+        <TableLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1"
+            >
+			<TableRow 
+			    android:background="@drawable/shape"
+			    android:width="200dp">
+			<TextView 
+            android:layout_width="fill_parent"  
+            android:layout_height="wrap_content"  
+            android:layout_gravity="left"   
+            android:drawableLeft="@drawable/search1"  
+              
+            android:padding="10px" 
+            android:singleLine="true"  
+             android:textColor="#FF33B5E6"/>
+            <EditText  
+            android:id="@+id/searchtext"  
+            android:layout_width="fill_parent"  
+            android:layout_height="wrap_content"   
+            android:maxLength="15"
+            android:padding="10px"                                              
+             android:textColor="#FF33B5E6"/>
+             <Button
+                    android:id="@+id/search"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#FF33B5E6"
+                    android:text="搜索" />
+            </TableRow>
+            <ListView 
+            android:id="@android:id/list" 
+            android:layout_width="fill_parent"  
+            android:layout_height="wrap_content"/>  
+         </TableLayout>
+            <RelativeLayout android:layout_width="fill_parent" 
+                android:layout_height="50.0dip"
+                android:layout_alignParentBottom="true" 
+                android:layout_marginTop="5.0dip">
+                <Button
+                    android:id="@+id/addtopic"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:focusable="false" 
+                    android:layout_width="wrap_content" 
+                    android:layout_height="wrap_content" 
+                    android:layout_marginLeft="8.0dip" 
+                    android:layout_marginRight="12.0dip" 
+                    android:layout_alignParentLeft="true" 
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/button"
+                    android:textColor="#FFFFFF"
+                    android:text="新建主题" />
+   
+                <Button
+                    android:id="@+id/userinfo"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:focusable="false" 
+                    android:layout_width="wrap_content" 
+                    android:layout_height="wrap_content" 
+                    android:layout_marginRight="12.0dip"
+                    android:layout_toRightOf="@id/addtopic" 
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/button"
+                    android:textColor="#FFFFFF"
+                    android:text="个人中心" />
+                </RelativeLayout>
+</RelativeLayout>
