@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     android:id="@+id/ScrollView" android:layout_width="fill_parent"   
+     android:layout_height="wrap_content" >   
+<RelativeLayout 
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#EEEEFF" >
@@ -12,21 +15,18 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
             android:gravity="center"
+            android:textStyle="bold"
             android:text="请输入你的笔记"
             android:textColor="#FF33B5E6"
-            android:textSize="21dip"
-            android:textStyle="bold" />
-
+            android:textSize="21dip" />
     </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/title_input"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+         
         android:layout_below="@id/head"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dip"
@@ -38,16 +38,14 @@
             android:text="标题:"
             android:layout_width="70dip"
             android:gravity="left|center"
-            android:layout_weight="1"
             android:textColor="#000000" />
 
         <EditText
             android:id="@+id/title"
-            android:layout_width="260dip"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shurukuang1"
-            android:imeOptions="actionNext"
-            android:layout_weight="1"
+           
             android:lines="2"
             android:textColor="#000000" />
 
@@ -55,27 +53,24 @@
 
     <LinearLayout
         android:id="@+id/note_input"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-         android:orientation="horizontal"
         android:layout_below="@id/title_input"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dip" >
 
         <TextView
             
             android:layout_height="wrap_content"
             android:layout_width="70dip"
-            android:layout_weight="1"
             android:gravity="left|center"
             android:text="讨论纪要:"
             android:textColor="#000000" />
 
         <EditText
             android:id="@+id/note"
-            android:layout_width="260dip"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            
             android:background="@drawable/shurukuang1"
             android:imeOptions="actionDone"
             android:lines="7"
@@ -85,9 +80,8 @@
 
     <LinearLayout
         android:id="@+id/conclusion_input"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-         android:orientation="horizontal"
         android:layout_below="@id/note_input"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dip" >
@@ -96,14 +90,12 @@
             android:layout_width="70dip"
             android:layout_height="wrap_content"
             android:gravity="left|center"
-            android:layout_weight="1"
             android:text="矛盾及结论:"
             android:textColor="#000000" />
 
         <EditText
             android:id="@+id/conclusion"
-            android:layout_width="260dip"
-            android:layout_weight="1"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             
             android:background="@drawable/shurukuang1"
@@ -116,9 +108,8 @@
 
     <LinearLayout
         android:id="@+id/site_input"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-         android:orientation="horizontal"
         android:layout_below="@id/conclusion_input"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dip" >
@@ -127,16 +118,14 @@
             android:layout_width="70dip"
             android:layout_height="wrap_content"
             android:gravity="left|center"
-            android:layout_weight="1"
             android:text="讨论地点:"
             android:textColor="#000000" />
 
         <EditText
             android:id="@+id/site"
-            android:layout_width="260dip"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shurukuang1"
-            android:layout_weight="1"
             android:imeOptions="actionDone"
             android:textColor="#000000"
             android:lines="2" />
@@ -144,9 +133,8 @@
     </LinearLayout>
     <LinearLayout
         android:id="@+id/member_input"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-         android:orientation="horizontal"
         android:layout_below="@id/site_input"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dip" >
@@ -155,16 +143,14 @@
             android:layout_width="70dip"
             android:layout_height="wrap_content"
             android:gravity="left|center"
-            android:layout_weight="1"
             android:text="成员:"
             android:textColor="#000000" />
 
             <MultiAutoCompleteTextView
                 android:id="@+id/member"
                 android:background="@drawable/shurukuang1"
-                android:layout_width="260dip"
+                android:layout_width="fill_parent"
                 android:textColor="#000000"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:lines="2"/>
 
@@ -189,3 +175,4 @@
     </RelativeLayout>
 
 </RelativeLayout>
+</ScrollView>

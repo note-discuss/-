@@ -155,4 +155,40 @@
              android:layout_weight="1"/>
          
    </LinearLayout>
+   <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/site1"
+        android:orientation="horizontal"
+         >
+      
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="0"
+             >
+            <ImageView
+                android:background="@drawable/mark"
+                android:layout_width="20dip"
+                android:layout_height="20dip"
+                android:gravity="left" />
+        </RelativeLayout>
+        <EditText 
+             android:id="@+id/conflict"
+             
+             android:layout_width="fill_parent"  
+            android:layout_height="36dip"  
+            android:background="@drawable/bg_edittext"   
+            android:padding="5dip" 
+            android:hint="请输入矛盾"
+            android:textColorHint="@color/darkgray"
+            android:textSize="15dip"      
+             android:textColor="#FF0000"             
+             android:lines="2"
+             android:layout_weight="1"/>
+        
+      </LinearLayout>
 </LinearLayout>
