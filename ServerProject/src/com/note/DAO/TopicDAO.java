@@ -34,6 +34,23 @@ public class TopicDAO {
 		}	
 		return flag;
 	}
+	public boolean updateConclusion(String conclusion,String topicid){
+		Connection conn  = dbpool.getConnection();
+		boolean flag=false;
+		try{
+			String update_str="update topic set conclusion='"+
+			conclusion+"' where id='"+topicid+"';";
+			stmt=conn.createStatement();
+			int return_count=stmt.executeUpdate(update_str);
+			if(return_count==1){
+				flag=true;
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return flag;
+	}
 	public Topic queryTopic(String topicid) {
 		Connection conn = dbpool.getConnection();
 		String sql_query="select * from topic where id = '"+topicid+"'";

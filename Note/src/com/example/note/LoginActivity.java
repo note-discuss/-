@@ -131,27 +131,20 @@ public class LoginActivity extends Activity {
 	    	id=java.net.URLEncoder.encode(id,"utf-8");
 	    	password=java.net.URLEncoder.encode(password,"utf-8");
 	    	processURL= processURL_constant+"id="+id+"&password="+password;
-	    	Log.d("mylog", processURL);
 	        //创建HttpGet对象
 	    	HttpPost request=new HttpPost(processURL);
-	    	Log.d("mylog","request");
 	    	if(request==null) Log.d("mylog","request==null");
 	    	request.addHeader("Accept","text/json");
 	        //获取响应的结果
-	    	Log.d("mylog","addHeader");
 			HttpResponse response =httpclient.execute(request);
-			Log.d("mylog","response");
 			if(response==null) Log.d("mylog","response==null");
 			//获取HttpEntity
 			HttpEntity entity=response.getEntity();
 			//获取响应的结果信息
 			String json =EntityUtils.toString(entity,"UTF-8");
 			if(json!=null){
-				Log.d("mylog",json);
 				JSONObject jsonObject=new JSONObject(json);
-				 Log.d("mylog","new json");
 				result=jsonObject.get("message").toString().trim();
-				 Log.d("mylog","result="+result);
 			}
 		  if("登录成功！".equals(result)){
 			   saveData();

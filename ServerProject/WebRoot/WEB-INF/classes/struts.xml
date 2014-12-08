@@ -47,5 +47,9 @@
 			method="getUser">
 			<result type="json"/>
 		</action>
+			<action name="addConflict" class="com.note.action.AddConflictAction"
+			method="addConflict">
+			<result type="json"/>
+		</action>
 	</package>
 </struts>

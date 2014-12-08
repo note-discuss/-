@@ -69,7 +69,6 @@ public class AddTopicActivity extends Activity{
 	                    adapter = new ArrayAdapter<String>(AddTopicActivity.this,  
 	  	                android.R.layout.simple_dropdown_item_1line, temp); 
 	                    multiautoCompleteTextView.setAdapter(adapter);
-	                    Log.d("mylog","multiauto");
 	                    multiautoCompleteTextView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 	            	}
 	              }

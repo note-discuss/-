@@ -33,6 +33,23 @@ public class NoteDAO {
 		}	
 		return flag;
 	}
+	public boolean updateConclusion(String conclusion,String noteid){
+		Connection conn  = dbpool.getConnection();
+		boolean flag=false;
+		try{
+			String update_str="update note set conclusion='"+
+			conclusion+"' where id='"+noteid+"';";
+			stmt=conn.createStatement();
+			int return_count=stmt.executeUpdate(update_str);
+			if(return_count==1){
+				flag=true;
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return flag;
+	}
 	public ArrayList<Note> queryNoteByTopicId(String topicid) {
 		Connection conn = dbpool.getConnection();
 		ArrayList<Note> list = null;

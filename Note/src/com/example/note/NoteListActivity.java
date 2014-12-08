@@ -39,6 +39,7 @@ import android.widget.Toast;
 public class NoteListActivity extends ListActivity{
 	  static remoteURL remote = new remoteURL();
 	  private   String processURL=remote.remoteURL+"getTopic.action?";
+	  private   String addconflictURL=remote.remoteURL+"addConflict.action?";
 	  private final String processURL_findNoteList=remote.remoteURL+"getNoteList.action?";
 	  String topicid;
 	  Bundle bundle;
@@ -90,12 +91,22 @@ public class NoteListActivity extends ListActivity{
        			  addconflict.setOnClickListener(new OnClickListener(){
        				  public void onClick(View v){
        					TextView note_id=(TextView)view.findViewById(R.id.noteid);
+       					TextView topic_id=(TextView)view.findViewById(R.id.topicid);
        					TextView conclusion=(TextView)view.findViewById(R.id.conclusion1);
        					EditText conflict=(EditText)view.findViewById(R.id.conflict);
        					String conflictstr=conflict.getText().toString();
+       					String topicid=topic_id.getText().toString();
        					String noteid=note_id.getText().toString();
        					String conclusionstr=conclusion.getText().toString();
-       					Toast.makeText(NoteListActivity.this, noteid, Toast.LENGTH_LONG).show();
+       					//Toast.makeText(NoteListActivity.this, noteid, Toast.LENGTH_LONG).show();
+       					boolean f=addRemoteConflict(conclusionstr,conflictstr,topicid,noteid);
+       					if(f){
+       			    	  String URL=processURL+"topicid="+topicid;
+       			    	  remote(URL);
+       					}
+       					else{
+       						Toast.makeText(NoteListActivity.this, "通信出错！", Toast.LENGTH_LONG).show();
+       					}
        				  }
        			  });
        			  return view;
@@ -110,8 +121,8 @@ public class NoteListActivity extends ListActivity{
         	map.put("title", topic.getTitle());        	
         	map.put("note", topic.getNote());
         	map.put("date", topic.getDate());
-        	map.put("id", topic.getId());
-        	map.put("topicid", "-1");
+        	map.put("topicid", topic.getId());
+        	map.put("id", "-1");
         	map.put("member", topic.getMember());
         	map.put("userid", topic.getUserid());
         	map.put("conclusion", topic.getConclusion());
@@ -138,6 +149,32 @@ public class NoteListActivity extends ListActivity{
         	Log.d("mylog","list size = "+list.size());
 		return list;
 	}
+      private boolean addRemoteConflict(String conclusion,String conflict,String topicid,String noteid){//给远端发送新加矛盾的noteid,topicid,矛盾，以及结论
+      	try{
+    	    HttpClient httpclient = new DefaultHttpClient();
+    	    conclusion=conclusion+";"+conflict+"\\("+myid+"\\)";
+    	    conclusion=java.net.URLEncoder.encode(conclusion,"utf-8");
+    	    topicid=java.net.URLEncoder.encode(topicid,"utf-8");
+    	    noteid=java.net.URLEncoder.encode(noteid,"utf-8");
+    	    String url=addconflictURL+"conclusion="+conclusion+"&topicid="+topicid+"&noteid="+noteid;
+            HttpPost request=new HttpPost(url);
+    	    request.addHeader("Accept","text/json");
+		    HttpResponse response =httpclient.execute(request);
+		    HttpEntity entity=response.getEntity();
+		    String json =EntityUtils.toString(entity,"UTF-8");
+		    if(json!=null){
+				JSONObject jsonObject=new JSONObject(json);
+				result=jsonObject.get("message").toString().trim();
+                if(result.equals("true")) return true;
+                else return false;
+		    	}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch(JSONException e){
+			e.printStackTrace();
+		}
+      	return false;
+    }
       private void remote(String url){//获得当前主题信息
         	try{
       	    HttpClient httpclient = new DefaultHttpClient();
