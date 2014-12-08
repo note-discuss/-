@@ -1123,7 +1123,7 @@ containing a value of this type.
         public static final int zhou=0x7f020078;
     }
     public static final class id {
-        public static final int Register=0x7f05007d;
+        public static final int Register=0x7f050081;
         public static final int ScrollView=0x7f05003c;
         public static final int action_bar=0x7f05001c;
         public static final int action_bar_activity_content=0x7f050015;
@@ -1136,8 +1136,9 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f050082;
+        public static final int action_settings=0x7f050086;
         public static final int activity_chooser_view_content=0x7f050025;
+        public static final int addconflict=0x7f050074;
         public static final int addnote1=0x7f050067;
         public static final int addtopic=0x7f050065;
         public static final int always=0x7f05000b;
@@ -1149,8 +1150,9 @@ containing a value of this type.
         public static final int conclusion2=0x7f050043;
         public static final int conclusion_input=0x7f05004e;
         public static final int conclusion_input2=0x7f050042;
-        public static final int conflict=0x7f050070;
-        public static final int date=0x7f05007e;
+        public static final int conflict=0x7f050072;
+        public static final int conflictbutton=0x7f050073;
+        public static final int date=0x7f050082;
         public static final int date1=0x7f05006a;
         public static final int default_activity_button=0x7f050028;
         public static final int dialog=0x7f05000e;
@@ -1166,7 +1168,7 @@ containing a value of this type.
         public static final int homeAsUp=0x7f050005;
         public static final int icon=0x7f05002a;
         public static final int id=0x7f05005a;
-        public static final int idRegister=0x7f050075;
+        public static final int idRegister=0x7f050079;
         public static final int id_input=0x7f050059;
         public static final int ifRoom=0x7f05000a;
         public static final int image=0x7f050027;
@@ -1176,14 +1178,14 @@ containing a value of this type.
         public static final int loginhead=0x7f050057;
         public static final int loginhead1=0x7f050058;
         public static final int mainbutton=0x7f05005e;
-        public static final int man=0x7f050079;
+        public static final int man=0x7f05007d;
         public static final int member=0x7f050053;
         public static final int member1=0x7f05006e;
         public static final int member2=0x7f050047;
         public static final int member_input=0x7f050052;
         public static final int member_input2=0x7f050046;
         public static final int middle=0x7f050012;
-        public static final int name=0x7f05007f;
+        public static final int name=0x7f050083;
         public static final int never=0x7f050009;
         public static final int none=0x7f050010;
         public static final int normal=0x7f050000;
@@ -1192,9 +1194,10 @@ containing a value of this type.
         public static final int note2=0x7f050041;
         public static final int note_input=0x7f05004c;
         public static final int note_input2=0x7f050040;
+        public static final int noteid=0x7f050071;
         public static final int option=0x7f050061;
         public static final int password=0x7f05005d;
-        public static final int passwordRegister=0x7f050076;
+        public static final int passwordRegister=0x7f05007a;
         public static final int password_imput=0x7f05005c;
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
@@ -1205,13 +1208,13 @@ containing a value of this type.
         public static final int publisher1=0x7f050069;
         public static final int radio=0x7f05002f;
         public static final int re_head=0x7f050056;
-        public static final int re_head1=0x7f050071;
+        public static final int re_head1=0x7f050075;
         public static final int register=0x7f050060;
-        public static final int register1=0x7f050073;
-        public static final int registerhead=0x7f050072;
+        public static final int register1=0x7f050077;
+        public static final int registerhead=0x7f050076;
         public static final int remember=0x7f050062;
-        public static final int role=0x7f050081;
-        public static final int roleRegister=0x7f05007a;
+        public static final int role=0x7f050085;
+        public static final int roleRegister=0x7f05007e;
         public static final int search=0x7f050064;
         public static final int search_badge=0x7f050032;
         public static final int search_bar=0x7f050031;
@@ -1224,8 +1227,8 @@ containing a value of this type.
         public static final int search_src_text=0x7f050037;
         public static final int search_voice_btn=0x7f05003b;
         public static final int searchtext=0x7f050063;
-        public static final int sex=0x7f050080;
-        public static final int sexRegister=0x7f050077;
+        public static final int sex=0x7f050084;
+        public static final int sexRegister=0x7f05007b;
         public static final int shortcut=0x7f05002e;
         public static final int showCustom=0x7f050007;
         public static final int showHome=0x7f050004;
@@ -1236,10 +1239,10 @@ containing a value of this type.
         public static final int site_input=0x7f050050;
         public static final int site_input2=0x7f050044;
         public static final int split_action_bar=0x7f05001e;
-        public static final int student=0x7f05007b;
+        public static final int student=0x7f05007f;
         public static final int submit_area=0x7f050039;
         public static final int tabMode=0x7f050002;
-        public static final int teacher=0x7f05007c;
+        public static final int teacher=0x7f050080;
         public static final int thefirst=0x7f050068;
         public static final int title=0x7f05002b;
         public static final int title1=0x7f05006b;
@@ -1247,12 +1250,13 @@ containing a value of this type.
         public static final int title_input=0x7f05004b;
         public static final int title_input2=0x7f05003e;
         public static final int top_action_bar=0x7f050020;
+        public static final int topicid=0x7f050070;
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;
         public static final int userinfo=0x7f050066;
-        public static final int usernameRegister=0x7f050074;
+        public static final int usernameRegister=0x7f050078;
         public static final int withText=0x7f05000c;
-        public static final int woman=0x7f050078;
+        public static final int woman=0x7f05007c;
         public static final int xiala=0x7f05005b;
     }
     public static final class integer {

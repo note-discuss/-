@@ -153,6 +153,26 @@
              android:layout_gravity="right"
              android:textAppearance="?android:attr/textAppearanceMedium"
              android:layout_weight="1"/>
+          <TextView 
+             android:id="@+id/topicid"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:textColor="@color/darkgray"
+             android:textSize="17dp"
+             android:visibility="gone"
+             android:layout_gravity="right"
+             android:textAppearance="?android:attr/textAppearanceMedium"
+             android:layout_weight="1"/>
+            <TextView 
+             android:id="@+id/noteid"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:textColor="@color/darkgray"
+             android:textSize="17dp"
+             android:visibility="gone"
+             android:layout_gravity="right"
+             android:textAppearance="?android:attr/textAppearanceMedium"
+             android:layout_weight="1"/>
          
    </LinearLayout>
    <LinearLayout
@@ -178,7 +198,6 @@
         </RelativeLayout>
         <EditText 
              android:id="@+id/conflict"
-             
              android:layout_width="fill_parent"  
             android:layout_height="36dip"  
             android:background="@drawable/bg_edittext"   
@@ -189,6 +208,23 @@
              android:textColor="#FF0000"             
              android:lines="2"
              android:layout_weight="1"/>
+            <RelativeLayout
+        android:id="@+id/conflictbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/member_input2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dip" >
+
+        <Button
+            android:id="@+id/addconflict"
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:text="添加"
+            android:textColor="#FFFFFF"
+            android:textSize="18dip" />
+        </RelativeLayout>
         
       </LinearLayout>
 </LinearLayout>

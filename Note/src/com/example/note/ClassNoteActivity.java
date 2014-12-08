@@ -123,7 +123,7 @@ public class ClassNoteActivity extends ListActivity{
        			    //Log.i("mylog", "item class : "+ ((ListView) parent).
        			     //getItemAtPosition(position).getClass().getSimpleName());
        		          HashMap<String, String>  map = (HashMap<String, String>) ((ListView) parent).
-       				 getItemAtPosition(position);  
+       				 getItemAtPosition(position); 
        		         String  topic_id=map.get("id");
        		         Intent notelist = new Intent(ClassNoteActivity.this,NoteListActivity.class);
        		         Bundle notebundle = new Bundle();

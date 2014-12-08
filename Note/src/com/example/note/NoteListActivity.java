@@ -23,13 +23,18 @@ import com.note.service.remoteURL;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class NoteListActivity extends ListActivity{
 	  static remoteURL remote = new remoteURL();
@@ -73,10 +78,29 @@ public class NoteListActivity extends ListActivity{
       private void showlist(Topic topic,ArrayList<Note> list1){
     	  if(list1==null) Log.d("mylog","in showlist list = null!");
     	  Log.d("mylog","in showlist topicid="+topic.getId());
-       	  String[] from = {"title","note","conclusion","member","site","username","date"};
-       	  int[] to = {R.id.title1,R.id.note1,R.id.conclusion1,R.id.member1,R.id.site1,R.id.publisher1,R.id.date1};
+       	  String[] from = {"title","note","conclusion","member","site","username","date","topicid","id"};
+       	  int[] to = {R.id.title1,R.id.note1,R.id.conclusion1,R.id.member1,R.id.site1,R.id.publisher1,
+       			  R.id.date1,R.id.topicid,R.id.noteid};
        	  SimpleAdapter adapter = new SimpleAdapter(this,
-       			  getData(topic,list1),R.layout.noteitem_list,from,to);
+       			  getData(topic,list1),R.layout.noteitem_list,from,to){
+       		  public View getView(int position,View convertView,ViewGroup parent){
+       			  final int p=position;
+       			  final View view=super.getView(position,convertView,parent);
+       			  Button addconflict=(Button)view.findViewById(R.id.addconflict);
+       			  addconflict.setOnClickListener(new OnClickListener(){
+       				  public void onClick(View v){
+       					TextView note_id=(TextView)view.findViewById(R.id.noteid);
+       					TextView conclusion=(TextView)view.findViewById(R.id.conclusion1);
+       					EditText conflict=(EditText)view.findViewById(R.id.conflict);
+       					String conflictstr=conflict.getText().toString();
+       					String noteid=note_id.getText().toString();
+       					String conclusionstr=conclusion.getText().toString();
+       					Toast.makeText(NoteListActivity.this, noteid, Toast.LENGTH_LONG).show();
+       				  }
+       			  });
+       			  return view;
+       		  }
+       	  };
        	  ListView listview = getListView();
        	  listview.setAdapter(adapter);//ÃÌº”  ≈‰∆˜
       }
@@ -87,6 +111,7 @@ public class NoteListActivity extends ListActivity{
         	map.put("note", topic.getNote());
         	map.put("date", topic.getDate());
         	map.put("id", topic.getId());
+        	map.put("topicid", "-1");
         	map.put("member", topic.getMember());
         	map.put("userid", topic.getUserid());
         	map.put("conclusion", topic.getConclusion());
@@ -98,6 +123,7 @@ public class NoteListActivity extends ListActivity{
         	for(int i=0;i<list1.size();++i){
         		Map<String, Object> map1 = new HashMap<String, Object>();
         		map1.put("title", list1.get(i).getTitle());
+        		map1.put("topicid", list1.get(i).getTopicid());
         		map1.put("note", list1.get(i).getNote());
             	map1.put("date", list1.get(i).getDate());
             	map1.put("id", list1.get(i).getId());
