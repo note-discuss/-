@@ -38,6 +38,9 @@
         <activity 
             android:name="AddNoteActivity"></activity>
         <uses-library android:name="android.test.runner"/>
+        <activity 
+            android:name="NoteItemActivity"></activity>
+        <uses-library android:name="android.test.runner"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET" /> 
 </manifest>

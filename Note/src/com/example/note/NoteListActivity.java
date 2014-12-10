@@ -29,12 +29,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class NoteListActivity extends ListActivity{
 	  static remoteURL remote = new remoteURL();
@@ -47,6 +49,7 @@ public class NoteListActivity extends ListActivity{
 	  String result;
 	  String myid;
 	  Button addnote;
+	  Button addmember;
       public void onCreate(Bundle savedInstanceState){
     	  super.onCreate(savedInstanceState);
     	  setContentView(R.layout.noteitem);
@@ -60,6 +63,7 @@ public class NoteListActivity extends ListActivity{
       }
       private void findview(){
     	  addnote = (Button) findViewById(R.id.addnote1);
+    	  addmember=(Button) findViewById(R.id.addmember1);
     	  addnote.setOnClickListener(new OnClickListener(){
     		  public void onClick(View v){
     			  Intent intent = new Intent(NoteListActivity.this,AddNoteActivity.class);
@@ -114,9 +118,40 @@ public class NoteListActivity extends ListActivity{
        	  };
        	  ListView listview = getListView();
        	  listview.setAdapter(adapter);//添加适配器
+       	  listview.setOnItemClickListener(new OnItemClickListener(){
+       		  public void onItemClick(AdapterView<?> parent,View view,int position,long id){
+       		         HashMap<String, String>  map = (HashMap<String, String>) ((ListView) parent).
+       				 getItemAtPosition(position); 
+       		         String  topicidstr=map.get("topicid");
+       		         String  noteidstr=map.get("id");
+       		         String  titlestr=map.get("title");
+       		         String  usernamestr=map.get("username");
+       		         String  notestr=map.get("note");
+       		         String  conclusionstr=map.get("conclusion");
+       		         String  conflictstr=map.get("conclusion1");
+       		         String  memberstr=map.get("member");
+       		         String  datestr=map.get("date");
+       		         String  sitestr=map.get("site");
+       		         Intent noteitem = new Intent(NoteListActivity.this,NoteItemActivity.class);
+       		         Bundle noteitembundle = new Bundle();
+       		         noteitembundle.putString("topicid", topicidstr);
+       		         noteitembundle.putString("noteid", noteidstr);
+       		         noteitembundle.putString("userid", myid);
+       		         noteitembundle.putString("conflict", conflictstr);
+       		         noteitembundle.putString("username", usernamestr);
+       		         noteitembundle.putString("conclusions", conclusionstr);
+       		         noteitembundle.putString("date", datestr);
+       		         noteitembundle.putString("site", sitestr);
+       		         noteitembundle.putString("member", memberstr);
+       		         noteitembundle.putString("title", titlestr);
+       		         noteitem.putExtras(noteitembundle);
+       		         startActivity(noteitem);
+       		  }
+       	  });
       }
   	  private List<Map<String, Object>> getData(Topic topic,ArrayList<Note> list1) {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		String str[]=new String[100];
         	Map<String, Object> map = new HashMap<String, Object>();
         	map.put("title", topic.getTitle());        	
         	map.put("note", topic.getNote());
@@ -125,7 +160,9 @@ public class NoteListActivity extends ListActivity{
         	map.put("id", "-1");
         	map.put("member", topic.getMember());
         	map.put("userid", topic.getUserid());
-        	map.put("conclusion", topic.getConclusion());
+        	map.put("conclusion1", topic.getConclusion());
+        	str=topic.getConclusion().split(";");
+        	map.put("conclusion", str[0]);
         	map.put("site",topic.getSite());
         	String name=remote.getRemoteUserName(topic.getUserid());
         	Log.d("mylog","username="+name);
@@ -140,7 +177,9 @@ public class NoteListActivity extends ListActivity{
             	map1.put("id", list1.get(i).getId());
             	map1.put("member", list1.get(i).getMember());
             	map1.put("userid", list1.get(i).getUserid());
-            	map1.put("conclusion", list1.get(i).getConclusion());
+            	map1.put("conclusion1", list1.get(i).getConclusion());
+            	String [] str1=list1.get(i).getConclusion().split(";");
+            	map1.put("conclusion", str1[0]);
             	map1.put("site", list1.get(i).getSite());
             	name=remote.getRemoteUserName(list1.get(i).getUserid());
             	map1.put("username", name);
@@ -152,7 +191,8 @@ public class NoteListActivity extends ListActivity{
       private boolean addRemoteConflict(String conclusion,String conflict,String topicid,String noteid){//给远端发送新加矛盾的noteid,topicid,矛盾，以及结论
       	try{
     	    HttpClient httpclient = new DefaultHttpClient();
-    	    conclusion=conclusion+";"+conflict+"\\("+myid+"\\)";
+    	    String myname=remote.getRemoteUserName(myid);
+    	    conclusion=conclusion+";"+conflict+"\\("+myname+"\\)";
     	    conclusion=java.net.URLEncoder.encode(conclusion,"utf-8");
     	    topicid=java.net.URLEncoder.encode(topicid,"utf-8");
     	    noteid=java.net.URLEncoder.encode(noteid,"utf-8");

@@ -3,14 +3,13 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:descendantFocusability="blocksDescendants"
     android:orientation="vertical" >
 
     <LinearLayout 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5px"        
-        android:id="@+id/thefirst"
+        android:id="@+id/thefirst2"
         android:orientation="horizontal">
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -28,7 +27,7 @@
                 android:gravity="left" />
         </RelativeLayout>
         <TextView 
-             android:id="@+id/publisher1"
+             android:id="@+id/publisher2"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
              android:textColor="@color/black"
@@ -36,7 +35,7 @@
              android:gravity="left"
              android:layout_weight="3"/>
         <TextView 
-             android:id="@+id/date1"
+             android:id="@+id/date2"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
              android:textColor="@color/darkgray"
@@ -45,7 +44,7 @@
              android:layout_weight="1"/>
     </LinearLayout>
          <TextView 
-             android:id="@+id/title1"
+             android:id="@+id/title2"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
              android:layout_below="@id/thefirst"
@@ -57,12 +56,12 @@
              android:layout_weight="1"/>
       
         <TextView 
-             android:id="@+id/note1"
+             android:id="@+id/note2"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
              android:textSize="17dp"
              android:lineSpacingExtra="3dip"
-             android:layout_below="@id/title1"
+             android:layout_below="@id/title2"
              android:textColor="@color/black"
              android:layout_marginLeft="10px"
              android:layout_marginRight="10px"
@@ -71,7 +70,7 @@
 
 
     <LinearLayout 
-        android:layout_below="@id/note1"
+        android:layout_below="@id/note2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -90,7 +89,7 @@
                 android:gravity="left" />
         </RelativeLayout>
         <TextView 
-             android:id="@+id/conclusion1"
+             android:id="@+id/conclusion2"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
              android:textSize="17dp"
@@ -101,7 +100,7 @@
       <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/note1"
+        android:layout_below="@id/note2"
         android:orientation="horizontal">
             <RelativeLayout
             android:layout_width="wrap_content"
@@ -118,7 +117,7 @@
                 android:gravity="left" />
               </RelativeLayout>
         <TextView 
-             android:id="@+id/member1"
+             android:id="@+id/member2"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
              android:textColor="@color/black"
@@ -146,7 +145,7 @@
                 android:gravity="right" />
         </RelativeLayout>         
         <TextView 
-             android:id="@+id/site1"
+             android:id="@+id/site2"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
              android:textColor="@color/darkgray"
@@ -154,26 +153,7 @@
              android:layout_gravity="right"
              android:textAppearance="?android:attr/textAppearanceMedium"
              android:layout_weight="1"/>
-          <TextView 
-             android:id="@+id/topicid"
-             android:layout_width="fill_parent"
-             android:layout_height="wrap_content"
-             android:textColor="@color/darkgray"
-             android:textSize="17dp"
-             android:visibility="gone"
-             android:layout_gravity="right"
-             android:textAppearance="?android:attr/textAppearanceMedium"
-             android:layout_weight="1"/>
-            <TextView 
-             android:id="@+id/noteid"
-             android:layout_width="fill_parent"
-             android:layout_height="wrap_content"
-             android:textColor="@color/darkgray"
-             android:textSize="17dp"
-             android:visibility="gone"
-             android:layout_gravity="right"
-             android:textAppearance="?android:attr/textAppearanceMedium"
-             android:layout_weight="1"/>
+
          
    </LinearLayout>
    <LinearLayout
@@ -198,7 +178,7 @@
                 android:gravity="left" />
         </RelativeLayout>
         <EditText 
-             android:id="@+id/conflict"
+             android:id="@+id/conflict2"
              android:layout_width="fill_parent"  
             android:layout_height="36dip"  
             android:background="@drawable/bg_edittext"   
@@ -208,7 +188,6 @@
             android:textSize="15dip"      
              android:textColor="#FF0000"             
              android:lines="2"
-             android:focusable="false" 
              android:layout_weight="1"/>
             <RelativeLayout
         android:id="@+id/conflictbutton"
@@ -219,12 +198,11 @@
         android:layout_marginTop="10dip" >
 
         <Button
-            android:id="@+id/addconflict"
+            android:id="@+id/addconflict2"
             android:layout_width="80dip"
             android:layout_height="wrap_content"
             android:background="@drawable/button"
             android:text="添加"
-            android:focusable="false"
             android:textColor="#FFFFFF"
             android:textSize="18dip" />
         </RelativeLayout>
