@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:descendantFocusability="blocksDescendants"
+    android:id="@+id/linearlayout"
     android:orientation="vertical" >
 
     <LinearLayout 
@@ -165,6 +165,16 @@
              android:textAppearance="?android:attr/textAppearanceMedium"
              android:layout_weight="1"/>
             <TextView 
+             android:id="@+id/clandcf"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:textColor="@color/darkgray"
+             android:textSize="17dp"
+             android:visibility="gone"
+             android:layout_gravity="right"
+             android:textAppearance="?android:attr/textAppearanceMedium"
+             android:layout_weight="1"/>
+            <TextView 
              android:id="@+id/noteid"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
@@ -181,6 +191,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/site1"
         android:orientation="horizontal"
+        android:focusable="false" 
          >
       
         <RelativeLayout
@@ -208,7 +219,6 @@
             android:textSize="15dip"      
              android:textColor="#FF0000"             
              android:lines="2"
-             android:focusable="false" 
              android:layout_weight="1"/>
             <RelativeLayout
         android:id="@+id/conflictbutton"

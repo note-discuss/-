@@ -25,6 +25,7 @@ public class Note {
 		this.date = date;
 		this.site = site;
 		this.member = member;
+		System.out.println("In Note id="+id);
 		this.id=id;
 		this.topicid=topicid;
 	}

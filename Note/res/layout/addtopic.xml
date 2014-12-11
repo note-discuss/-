@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
      android:id="@+id/ScrollView" android:layout_width="fill_parent"   
-     android:layout_height="wrap_content" >   
+     android:layout_height="fill_parent" >   
 <RelativeLayout 
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -38,14 +38,16 @@
             android:text="标题:"
             android:layout_width="70dip"
             android:gravity="left|center"
+            android:layout_gravity="start"
             android:textColor="#000000" />
 
         <EditText
             android:id="@+id/title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="start"
             android:background="@drawable/shurukuang1"
-           
+            android:layout_marginRight="3dip"
             android:lines="2"
             android:textColor="#000000" />
 
@@ -63,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_width="70dip"
             android:gravity="left|center"
+            android:layout_gravity="start"
             android:text="讨论纪要:"
             android:textColor="#000000" />
 
@@ -70,7 +73,8 @@
             android:id="@+id/note"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            
+            android:layout_marginRight="3dip"
+            android:gravity="start"
             android:background="@drawable/shurukuang1"
             android:imeOptions="actionDone"
             android:lines="7"
@@ -90,6 +94,7 @@
             android:layout_width="70dip"
             android:layout_height="wrap_content"
             android:gravity="left|center"
+            android:layout_gravity="start"
             android:text="矛盾及结论:"
             android:textColor="#000000" />
 
@@ -97,7 +102,8 @@
             android:id="@+id/conclusion"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            
+            android:layout_marginRight="3dip"
+            android:gravity="start"
             android:background="@drawable/shurukuang1"
             android:imeOptions="actionDone"
             android:lines="4"
@@ -118,6 +124,7 @@
             android:layout_width="70dip"
             android:layout_height="wrap_content"
             android:gravity="left|center"
+            android:layout_gravity="start"
             android:text="讨论地点:"
             android:textColor="#000000" />
 
@@ -126,6 +133,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shurukuang1"
+            android:layout_marginRight="3dip"
+            android:gravity="start"
             android:imeOptions="actionDone"
             android:textColor="#000000"
             android:lines="2" />
@@ -143,6 +152,7 @@
             android:layout_width="70dip"
             android:layout_height="wrap_content"
             android:gravity="left|center"
+            android:layout_gravity="start"
             android:text="成员:"
             android:textColor="#000000" />
 
@@ -151,6 +161,7 @@
                 android:background="@drawable/shurukuang1"
                 android:layout_width="fill_parent"
                 android:textColor="#000000"
+                android:layout_marginRight="3dip"
                 android:layout_height="wrap_content"
                 android:lines="2"/>
 

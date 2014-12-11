@@ -39,6 +39,7 @@ public class NoteDAO {
 		try{
 			String update_str="update note set conclusion='"+
 			conclusion+"' where id='"+noteid+"';";
+			System.out.println(update_str);
 			stmt=conn.createStatement();
 			int return_count=stmt.executeUpdate(update_str);
 			if(return_count==1){
@@ -64,8 +65,7 @@ public class NoteDAO {
 				f=true;
 				Note note = new Note(rs.getString("userid"),rs.getString("title"),
 				rs.getString("note"),rs.getString("conclusion"),rs.getString("date"),
-				rs.getString("site"),rs.getString("member"),rs.getString("id")+
-				rs.getString("topicid"));
+				rs.getString("site"),rs.getString("member"),rs.getString("id"),rs.getString("topicid"));
 				list1.add(note);
 			}
 			if(f==true) list=list1;

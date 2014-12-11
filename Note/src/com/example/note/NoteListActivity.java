@@ -1,6 +1,8 @@
 package com.example.note;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +34,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -83,30 +86,69 @@ public class NoteListActivity extends ListActivity{
       private void showlist(Topic topic,ArrayList<Note> list1){
     	  if(list1==null) Log.d("mylog","in showlist list = null!");
     	  Log.d("mylog","in showlist topicid="+topic.getId());
-       	  String[] from = {"title","note","conclusion","member","site","username","date","topicid","id"};
-       	  int[] to = {R.id.title1,R.id.note1,R.id.conclusion1,R.id.member1,R.id.site1,R.id.publisher1,
+       	  String[] from = {"title","note","conclusion","conclusion1","member","site","username","date","topicid","id"};
+       	  int[] to = {R.id.title1,R.id.note1,R.id.conclusion1,R.id.clandcf,R.id.member1,R.id.site1,R.id.publisher1,
        			  R.id.date1,R.id.topicid,R.id.noteid};
        	  SimpleAdapter adapter = new SimpleAdapter(this,
        			  getData(topic,list1),R.layout.noteitem_list,from,to){
        		  public View getView(int position,View convertView,ViewGroup parent){
        			  final int p=position;
        			  final View view=super.getView(position,convertView,parent);
+ 				  final TextView note_id=(TextView)view.findViewById(R.id.noteid);
+ 				  final TextView topic_id=(TextView)view.findViewById(R.id.topicid);
+ 				  final TextView title =(TextView)view.findViewById(R.id.title1);
+ 				  final TextView note =(TextView)view.findViewById(R.id.note1);
+ 				  final TextView conclusion=(TextView)view.findViewById(R.id.conclusion1);
+ 				  final TextView member=(TextView)view.findViewById(R.id.member1);
+ 				  final TextView site=(TextView)view.findViewById(R.id.site1);
+ 				  final TextView date=(TextView)view.findViewById(R.id.date1);
+ 				  final TextView username=(TextView)view.findViewById(R.id.publisher1);
+ 				  final TextView clandcf=(TextView)view.findViewById(R.id.clandcf);
+ 				  final EditText conflict=(EditText)view.findViewById(R.id.conflict);
+       		      LinearLayout view1=(LinearLayout)view.findViewById(R.id.linearlayout);
+       			  view1.setOnClickListener(new OnClickListener(){
+       				  public void onClick(View v){
+            		         String  topicidstr=topic_id.getText().toString();
+               		         String  noteidstr=note_id.getText().toString();
+               		         String  titlestr=title.getText().toString();
+               		         String  usernamestr=username.getText().toString();
+               		         String  notestr=note.getText().toString();
+               		         String  conclusionstr=conclusion.getText().toString();
+               		         String  conflictstr=clandcf.getText().toString();
+               		         String  memberstr=member.getText().toString();
+               		         String  datestr=date.getText().toString();
+               		         String  sitestr=site.getText().toString();
+               		         Intent noteitem = new Intent(NoteListActivity.this,NoteItemActivity.class);
+               		         Bundle noteitembundle = new Bundle();
+               		         noteitembundle.putString("topicid", topicidstr);
+               		         noteitembundle.putString("noteid", noteidstr);
+               		         noteitembundle.putString("userid", myid);
+               		         noteitembundle.putString("conflict", conflictstr);
+               		         noteitembundle.putString("username", usernamestr);
+               		         noteitembundle.putString("conclusions", conclusionstr);
+               		         noteitembundle.putString("date", datestr);
+               		         noteitembundle.putString("site", sitestr);
+               		         noteitembundle.putString("note", notestr);
+               		         noteitembundle.putString("member", memberstr);
+               		         noteitembundle.putString("title", titlestr);
+               		         noteitem.putExtras(noteitembundle);
+               		         startActivity(noteitem);
+       				  }
+       			  });
        			  Button addconflict=(Button)view.findViewById(R.id.addconflict);
        			  addconflict.setOnClickListener(new OnClickListener(){
        				  public void onClick(View v){
-       					TextView note_id=(TextView)view.findViewById(R.id.noteid);
-       					TextView topic_id=(TextView)view.findViewById(R.id.topicid);
-       					TextView conclusion=(TextView)view.findViewById(R.id.conclusion1);
-       					EditText conflict=(EditText)view.findViewById(R.id.conflict);
        					String conflictstr=conflict.getText().toString();
        					String topicid=topic_id.getText().toString();
        					String noteid=note_id.getText().toString();
-       					String conclusionstr=conclusion.getText().toString();
+       					String clandcfstr=clandcf.getText().toString();
+       					String datestr=getDate();
        					//Toast.makeText(NoteListActivity.this, noteid, Toast.LENGTH_LONG).show();
-       					boolean f=addRemoteConflict(conclusionstr,conflictstr,topicid,noteid);
+       					boolean f=addRemoteConflict(clandcfstr,conflictstr,topicid,noteid,datestr);
        					if(f){
-       			    	  String URL=processURL+"topicid="+topicid;
-       			    	  remote(URL);
+       			    	  /*String URL=processURL+"topicid="+topicid;
+       			    	  remote(URL);*/
+       			    	  Toast.makeText(NoteListActivity.this, "添加成功！", Toast.LENGTH_LONG).show();
        					}
        					else{
        						Toast.makeText(NoteListActivity.this, "通信出错！", Toast.LENGTH_LONG).show();
@@ -118,7 +160,7 @@ public class NoteListActivity extends ListActivity{
        	  };
        	  ListView listview = getListView();
        	  listview.setAdapter(adapter);//添加适配器
-       	  listview.setOnItemClickListener(new OnItemClickListener(){
+       	 /* listview.setOnItemClickListener(new OnItemClickListener(){
        		  public void onItemClick(AdapterView<?> parent,View view,int position,long id){
        		         HashMap<String, String>  map = (HashMap<String, String>) ((ListView) parent).
        				 getItemAtPosition(position); 
@@ -142,13 +184,20 @@ public class NoteListActivity extends ListActivity{
        		         noteitembundle.putString("conclusions", conclusionstr);
        		         noteitembundle.putString("date", datestr);
        		         noteitembundle.putString("site", sitestr);
+       		         noteitembundle.putString("note", notestr);
        		         noteitembundle.putString("member", memberstr);
        		         noteitembundle.putString("title", titlestr);
        		         noteitem.putExtras(noteitembundle);
        		         startActivity(noteitem);
        		  }
-       	  });
+       	  });*/
       }
+  	private String getDate(){
+		java.util.Date date = new java.util.Date();
+		DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String res = df.format(date);
+		return res;
+	}
   	  private List<Map<String, Object>> getData(Topic topic,ArrayList<Note> list1) {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		String str[]=new String[100];
@@ -188,11 +237,11 @@ public class NoteListActivity extends ListActivity{
         	Log.d("mylog","list size = "+list.size());
 		return list;
 	}
-      private boolean addRemoteConflict(String conclusion,String conflict,String topicid,String noteid){//给远端发送新加矛盾的noteid,topicid,矛盾，以及结论
+      private boolean addRemoteConflict(String conclusion,String conflict,String topicid,String noteid,String date){//给远端发送新加矛盾的noteid,topicid,矛盾，以及结论
       	try{
     	    HttpClient httpclient = new DefaultHttpClient();
     	    String myname=remote.getRemoteUserName(myid);
-    	    conclusion=conclusion+";"+conflict+"\\("+myname+"\\)";
+    	    conclusion=conclusion+";"+conflict+"\\("+myname+"-"+date+"\\)";
     	    conclusion=java.net.URLEncoder.encode(conclusion,"utf-8");
     	    topicid=java.net.URLEncoder.encode(topicid,"utf-8");
     	    noteid=java.net.URLEncoder.encode(noteid,"utf-8");

@@ -8,7 +8,9 @@ import java.util.Map;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +26,7 @@ import com.note.domain.Note;
 import com.note.domain.Topic;
 import com.note.service.remoteURL;
 
-public class NoteItemActivity extends ListActivity{
+public class NoteItemActivity extends Activity{
 	  static remoteURL remote = new remoteURL();
 	  private   String processURL=remote.remoteURL+"getTopic.action?";
 	  private   String addconflictURL=remote.remoteURL+"addConflict.action?";
@@ -43,31 +45,73 @@ public class NoteItemActivity extends ListActivity{
 	  String result;
 	  String myid;
     public void onCreate(Bundle savedInstanceState){
+    	String test[] = {"","","","","","","","","","",""};
   	  super.onCreate(savedInstanceState);
-  	  setContentView(R.layout.conflict);
+  	  setContentView(R.layout.noteitemview);
   	  intent = this.getIntent();
   	  bundle = intent.getExtras();
   	  topicid=bundle.getString("topicid");
   	  noteid=bundle.getString("noteid");
-  	  conclusion=bundle.getString("conflict");
+  	  conclusion=bundle.getString("conflict");	  
   	  title=bundle.getString("title");
   	  note=bundle.getString("note");
+  	  Log.d("mylog","In NoteItemActivity note="+note);
   	  site=bundle.getString("site");
   	  date=bundle.getString("date");
   	  member=bundle.getString("member");
   	  username=bundle.getString("username");
   	  myid=bundle.getString("userid");
   	  String URL=processURL+"topicid="+topicid;
-  	  showlist();
+  	  
+  	  String Con = conclusion;
+  	  int i = 0;
+  	  
+  	  while((Con.indexOf(';')!=-1)&&i<=10)
+  	  {
+  		  int temp = Con.indexOf(';');
+  		  test[i] = Con.substring(0,temp+1);
+  		  if(Con.length()!=temp+1)
+  			  Con = Con.substring(temp+1);
+  		  else
+  			  break;
+  		  i++;
+  	  }
+  	  String str = "<font color='black'><b>"+test[0]+"</b></font>"  + "<font color= 'red'><b>"+test[1]+"</b></font>"
+  	  	  +"<font color= 'yellow'><b>"+test[2]+"</b></font>" + "<font color= 'blue'><b>"+test[3]+"</b></font>"
+  	  	  +"<font color= 'maroon'><b>"+test[4]+"</b></font>" + "<font color= 'aqua'><b>"+test[5]+"</b></font>"
+  	  	  +"<font color= 'gray'><b>"+test[6]+"</b></font>" + "<font color= 'purple'><b>"+test[7]+"</b></font>"
+  	  	  +"<font color= 'olive'><b>"+test[8]+"</b></font>" + "<font color= 'lime'><b>"+test[9]+"</b></font>"
+  	  	  +"<font color= 'navy'><b>"+test[10]+"</b></font>";
+  	  
+  	  TextView publisher =  (TextView)findViewById(R.id.publisher2);
+	  publisher.setText(username);
+	  TextView day =  (TextView)findViewById(R.id.date2);
+  	  day.setText(date);
+  	  TextView Title =  (TextView)findViewById(R.id.title2);
+	  Title.setText(title);
+	  TextView Note =  (TextView)findViewById(R.id.note2);
+  	  Note.setText(note);
+  	  TextView tv =  (TextView)findViewById(R.id.conclusion2);
+  	  if(conclusion.indexOf(';')!=-1)
+  		  tv.setText(Html.fromHtml(str));
+  	  else{
+  		  tv.setText(conclusion);
+  		  tv.setTextColor(Color.parseColor("#000000"));
+  	  }
+  	  TextView par =  (TextView)findViewById(R.id.member2);
+	  par.setText(member);
+	  TextView place =  (TextView)findViewById(R.id.site2);
+  	  place.setText(site);
+  	  //showlist();
     }
-    private void showlist(){
+    /*private void showlist(){
      	  String[] from = {"title","note","conclusion","member","site","username","date","topicid","id"};
      	  int[] to = {R.id.title2,R.id.note2,R.id.conclusion2,R.id.member2,R.id.site2,R.id.publisher2,
      			  R.id.date2};
      	  SimpleAdapter adapter = new SimpleAdapter(this,
      			  getData(),R.layout.noteitemview,from,to);
      	  ListView listview = getListView();
-     	  listview.setAdapter(adapter);//ÃÌº”  ≈‰∆˜
+     	  listview.setAdapter(adapter);//√å√≠¬º√ì√ä√ä√Ö√§√Ü√∑
     }
 	  private List<Map<String, Object>> getData() {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
@@ -84,5 +128,5 @@ public class NoteItemActivity extends ListActivity{
       	map.put("username", username);
       	list.add(map);
 		return list;
-	}
+	}*/
 }
