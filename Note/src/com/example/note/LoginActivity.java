@@ -143,6 +143,7 @@ public class LoginActivity extends Activity {
 			//获取响应的结果信息
 			String json =EntityUtils.toString(entity,"UTF-8");
 			if(json!=null){
+				Log.d("sae","in login json="+json);
 				JSONObject jsonObject=new JSONObject(json);
 				result=jsonObject.get("message").toString().trim();
 			}
