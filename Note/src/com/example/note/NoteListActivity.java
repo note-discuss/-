@@ -108,6 +108,8 @@ public class NoteListActivity extends ListActivity{
        		      LinearLayout view1=(LinearLayout)view.findViewById(R.id.linearlayout);
        			  view1.setOnClickListener(new OnClickListener(){
        				  public void onClick(View v){
+               		         Intent noteitem = new Intent(NoteListActivity.this,NoteItemActivity.class);
+               		         Bundle noteitembundle = new Bundle();//这里只能传过去这次getview的数据，若同时需要刷新数据，只能再访问一次数据库
             		         String  topicidstr=topic_id.getText().toString();
                		         String  noteidstr=note_id.getText().toString();
                		         String  titlestr=title.getText().toString();
@@ -118,8 +120,6 @@ public class NoteListActivity extends ListActivity{
                		         String  memberstr=member.getText().toString();
                		         String  datestr=date.getText().toString();
                		         String  sitestr=site.getText().toString();
-               		         Intent noteitem = new Intent(NoteListActivity.this,NoteItemActivity.class);
-               		         Bundle noteitembundle = new Bundle();
                		         noteitembundle.putString("topicid", topicidstr);
                		         noteitembundle.putString("noteid", noteidstr);
                		         noteitembundle.putString("userid", myid);
@@ -287,7 +287,7 @@ public class NoteListActivity extends ListActivity{
   		            String id= obj.getString("id");
   		            Topic topic = new Topic(userid,title,note,conclusion,date,site
   		            		,member,id);
-  		            String NOTEURL=processURL_findNoteList+"&topicid="+id;
+  		            String NOTEURL=processURL_findNoteList+"&topicid="+id+"&f="+"1";
   		            remoteNote(topic,NOTEURL);
   		    	}
   		} catch (IOException e) {

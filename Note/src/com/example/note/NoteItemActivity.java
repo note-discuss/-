@@ -1,23 +1,39 @@
 package com.example.note;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +45,9 @@ import com.note.service.remoteURL;
 public class NoteItemActivity extends Activity{
 	  static remoteURL remote = new remoteURL();
 	  private   String processURL=remote.remoteURL+"getTopic.action?";
-	  private   String addconflictURL=remote.remoteURL+"addConflict.action?";
+	  private final String processURL_findstring =remote.remoteURL+"jfindString.action?";
+	  private final String changememberURL=remote.remoteURL+"changeMember.action?";
+	  private   String gettopicURL=remote.remoteURL+"getTopic.action?";
 	  private final String processURL_findNoteList=remote.remoteURL+"getNoteList.action?";
 	  String topicid;
 	  String noteid;
@@ -44,13 +62,16 @@ public class NoteItemActivity extends Activity{
 	  Intent intent;
 	  String result;
 	  String myid;
+	  Button btn;
+	  ArrayAdapter<String> adapter;
+	  MultiAutoCompleteTextView multiautoCompleteTextView;
     public void onCreate(Bundle savedInstanceState){
     	String test[] = {"","","","","","","","","","",""};
   	  super.onCreate(savedInstanceState);
   	  setContentView(R.layout.noteitemview);
   	  intent = this.getIntent();
   	  bundle = intent.getExtras();
-  	  topicid=bundle.getString("topicid");
+  	  /*topicid=bundle.getString("topicid");
   	  noteid=bundle.getString("noteid");
   	  conclusion=bundle.getString("conflict");	  
   	  title=bundle.getString("title");
@@ -60,8 +81,50 @@ public class NoteItemActivity extends Activity{
   	  date=bundle.getString("date");
   	  member=bundle.getString("member");
   	  username=bundle.getString("username");
-  	  myid=bundle.getString("userid");
+  	  myid=bundle.getString("userid");*/
+   	  topicid=bundle.getString("topicid");
+	  noteid=bundle.getString("noteid");
+	  Log.d("mylog","topicid="+topicid+"noteid="+noteid);
+  	  btn=(Button)findViewById(R.id.changememberbutton);
   	  String URL=processURL+"topicid="+topicid;
+      show();
+	  multiautoCompleteTextView = (MultiAutoCompleteTextView) findViewById(R.id.changemember);
+	  multiautoCompleteTextView.setThreshold(1);
+	  multiautoCompleteTextView.addTextChangedListener(new TextWatcher(){
+		  public void onTextChanged(CharSequence s, int start, int before, int count){
+              String str = s.toString();     
+              int len = s.length();
+              if(len!=0){
+            	if(str.charAt(len-1)!=' '){
+            		String [] tmp=str.split(", ");
+                    String [] temp=remote.getRemoteString(processURL_findstring,tmp[tmp.length-1]);
+                    if(temp!=null){
+                    adapter = new ArrayAdapter<String>(NoteItemActivity.this,  
+  	                android.R.layout.simple_dropdown_item_1line, temp); 
+                    multiautoCompleteTextView.setAdapter(adapter);
+                    multiautoCompleteTextView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+            	}
+              }
+              }
+		  }
+	      public void beforeTextChanged(CharSequence s, int start, int count,  
+	                int after) {  
+	      }  
+	      public void afterTextChanged(Editable s) {  
+	      }  
+	  });
+	  btn.setOnClickListener(new OnClickListener(){
+		  public void onClick(View v){
+			  try{
+			  String member=multiautoCompleteTextView.getText().toString();
+			  member=java.net.URLEncoder.encode(member,"utf-8");
+			  String url=changememberURL+"topicid="+topicid+"&noteid="+noteid+"&member="+member;
+			  remote(url);
+			  }catch(Exception e){
+				  e.printStackTrace();
+			  }
+		  }
+	  });
   	  
   	  String Con = conclusion;
   	  int i = 0;
@@ -236,4 +299,110 @@ public class NoteItemActivity extends Activity{
       	list.add(map);
 		return list;
 	}*/
+    public void show(){
+    	String url;
+    	if(noteid.equals("-1")){
+			url=gettopicURL+"topicid="+topicid;
+			remoteTopic(url);
+		}else{
+			url=processURL_findNoteList+"noteid="+noteid+"&f=2";
+			remoteNote(url);
+		}
+    }
+	public void remote(String URL){
+    	try {
+	    	HttpClient httpclient = new DefaultHttpClient();
+	    	HttpPost request=new HttpPost(URL);
+	    	if(request==null) Log.d("mylog","request==null");
+	    	request.addHeader("Accept","text/json");
+	        //获取响应的结果
+			HttpResponse response =httpclient.execute(request);
+			if(response==null) Log.d("mylog","response==null");
+			//获取HttpEntity
+			HttpEntity entity=response.getEntity();
+			//获取响应的结果信息
+			String json =EntityUtils.toString(entity,"UTF-8");
+			if(json!=null){
+				Log.d("sae","in login json="+json);
+				JSONObject jsonObject=new JSONObject(json);
+				result=jsonObject.get("message").toString().trim();
+			}
+		  if("true".equals(result)){
+			   Toast.makeText(NoteItemActivity.this, "修改成功！", Toast.LENGTH_LONG).show();
+		   }else{
+			   Toast.makeText(NoteItemActivity.this, result, Toast.LENGTH_LONG).show();
+		   }		 
+    	 } catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
+    private void remoteTopic(String url){//获得当前主题信息
+    	try{
+  	    HttpClient httpclient = new DefaultHttpClient();
+        HttpPost request=new HttpPost(url);
+  	    request.addHeader("Accept","text/json");
+		    HttpResponse response =httpclient.execute(request);
+		    HttpEntity entity=response.getEntity();
+		    String json =EntityUtils.toString(entity,"UTF-8");
+		    if(json!=null){
+			JSONObject jsonObject=new JSONObject(json);
+			result=jsonObject.get("Topic").toString().trim();
+	    	JSONArray jsonarray = new JSONArray(result);
+	    	JSONObject obj = jsonarray.getJSONObject(0);
+		            title = obj.getString("title");
+		            member= obj.getString("member");
+		            site  = obj.getString("site");
+		            date = obj.getString("date");
+		            note = obj.getString("note");
+		            conclusion = obj.getString("conclusion");
+		    	}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch(JSONException e){
+			e.printStackTrace();
+		}
+  }
+  private void remoteNote(String url){//获得该主题的所有笔记并传给show
+    	try{
+  	    HttpClient httpclient = new DefaultHttpClient();
+        HttpPost request=new HttpPost(url);
+  	    request.addHeader("Accept","text/json");
+		    HttpResponse response =httpclient.execute(request);
+		    HttpEntity entity=response.getEntity();
+		    String json =EntityUtils.toString(entity,"UTF-8");
+		    Log.d("mylog","json="+json);
+		    ArrayList<Note> list =new ArrayList<Note>();
+		    if(json!=null){
+		    	if(!(json.equals("{NoteList=list==null!}"))){
+				JSONObject jsonObject=new JSONObject(json);
+				Log.d("mylog","jsonobject");
+				result=jsonObject.get("NoteList").toString().trim();
+				Log.d("mylog","result");
+		    	    JSONArray jsonarray = new JSONArray(result);
+		    	    int len = jsonarray.length();
+		    	    for(int i=0;i<len;++i){
+		                JSONObject obj = jsonarray.getJSONObject(i);
+		                title = obj.getString("title");
+		                member= obj.getString("member");
+		                site  = obj.getString("site");
+		                date = obj.getString("date");
+		                note = obj.getString("note");
+		                conclusion = obj.getString("conclusion");
+		        	}
+		    	}
+		    }else{
+		    	Log.d("mylog","json=null");
+		    }
+ 	    } catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch(JSONException e){
+			e.printStackTrace();
+		}
+    }
 }
