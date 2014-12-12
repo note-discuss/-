@@ -2,9 +2,10 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
      android:id="@+id/ScrollView" android:layout_width="fill_parent"   
      android:layout_height="fill_parent" >   
-<RelativeLayout 
+<LinearLayout 
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:orientation="vertical"
     android:background="#EEEEFF" >
     <RelativeLayout
         android:id="@+id/head2"
@@ -183,19 +184,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/member_input2"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:layout_marginTop="10dip" >
-
+        
         <Button
             android:id="@+id/publish2"
             android:layout_width="80dip"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:background="@drawable/button"
             android:text="发布"
             android:textColor="#FFFFFF"
             android:textSize="18dip" />
-
     </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>
 </ScrollView>

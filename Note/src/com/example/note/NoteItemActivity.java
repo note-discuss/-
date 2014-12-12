@@ -68,6 +68,8 @@ public class NoteItemActivity extends Activity{
   	  
   	  while((Con.indexOf(';')!=-1)&&i<=10)
   	  {
+  		  if(i==0)
+  			  Con = Con+";";
   		  int temp = Con.indexOf(';');
   		  test[i] = Con.substring(0,temp+1);
   		  if(Con.length()!=temp+1)
@@ -76,13 +78,118 @@ public class NoteItemActivity extends Activity{
   			  break;
   		  i++;
   	  }
-  	  String str = "<font color='black'><b>"+test[0]+"</b></font>"  + "<font color= 'red'><b>"+test[1]+"</b></font>"
-  	  	  +"<font color= 'yellow'><b>"+test[2]+"</b></font>" + "<font color= 'blue'><b>"+test[3]+"</b></font>"
-  	  	  +"<font color= 'maroon'><b>"+test[4]+"</b></font>" + "<font color= 'aqua'><b>"+test[5]+"</b></font>"
-  	  	  +"<font color= 'gray'><b>"+test[6]+"</b></font>" + "<font color= 'purple'><b>"+test[7]+"</b></font>"
-  	  	  +"<font color= 'olive'><b>"+test[8]+"</b></font>" + "<font color= 'lime'><b>"+test[9]+"</b></font>"
-  	  	  +"<font color= 'navy'><b>"+test[10]+"</b></font>";
+  	  i = 0;
   	  
+  	  String shiyan = "";
+  	  String tmp1 = "";
+  	  String tmp2 = "";
+  	  while(i<=10&&test[i]!="")
+  	  {
+  		  if(i!=0){
+  			  shiyan = shiyan + "<br/>";
+  			  tmp1 = test[i].substring(0,test[i].indexOf('('));
+  			  tmp2 = test[i].substring(test[i].indexOf('('),test[i].length()-1);
+  		  }
+  		  switch(i)
+  		  {
+  		  case 0:
+  			  shiyan = shiyan + "<font color='black'>";
+  			  shiyan = shiyan + test[0];
+  			  shiyan = shiyan + "</font>";
+  			  break;
+  		  case 1:
+  			  shiyan = shiyan + "<font color='red'>";
+			  shiyan = shiyan + tmp1;
+			  shiyan = shiyan + "</font><br/>";
+			  shiyan = shiyan + "<font color='red'>";
+			  shiyan = shiyan + tmp2;
+			  shiyan = shiyan + "</font>";
+			  break;
+  		  case 2:
+  			  shiyan = shiyan + "<font color='yellow'>";
+			  shiyan = shiyan + tmp1;
+			  shiyan = shiyan + "</font><br/>";
+			  shiyan = shiyan + "<font color='yellow'>";
+			  shiyan = shiyan + tmp2;
+			  shiyan = shiyan + "</font>";
+			  break;
+  		  case 3:
+  			  shiyan = shiyan + "<font color='blue'>";
+			  shiyan = shiyan + tmp1;
+			  shiyan = shiyan + "</font><br/>";
+			  shiyan = shiyan + "<font color='blue'>";
+			  shiyan = shiyan + tmp2;
+			  shiyan = shiyan + "</font>";
+			  break;
+  		  case 4:
+  			  shiyan = shiyan + "<font color='maroon'>";
+			  shiyan = shiyan + tmp1;
+			  shiyan = shiyan + "</font><br/>";
+			  shiyan = shiyan + "<font color='maroon'>";
+			  shiyan = shiyan + tmp2;
+			  shiyan = shiyan + "</font>";
+			  break;
+  		  case 5:
+  			  shiyan = shiyan + "<font color='aqua'>";
+			  shiyan = shiyan + tmp1;
+			  shiyan = shiyan + "</font><br/>";
+			  shiyan = shiyan + "<font color='aqua'>";
+			  shiyan = shiyan + tmp2;
+			  shiyan = shiyan + "</font>";
+			  break;
+  		  case 6:
+  			  shiyan = shiyan + "<font color='gray'>";
+			  shiyan = shiyan + tmp1;
+			  shiyan = shiyan + "</font><br/>";
+			  shiyan = shiyan + "<font color='gray'>";
+			  shiyan = shiyan + tmp2;
+			  shiyan = shiyan + "</font>";
+			  break;
+  		  case 7:
+  			  shiyan = shiyan + "<font color='purple'>";
+			  shiyan = shiyan + tmp1;
+			  shiyan = shiyan + "</font><br/>";
+			  shiyan = shiyan + "<font color='purple'>";
+			  shiyan = shiyan + tmp2;
+			  shiyan = shiyan + "</font>";
+			  break;
+  		  case 8:
+  			  shiyan = shiyan + "<font color='olive'>";
+			  shiyan = shiyan + tmp1;
+			  shiyan = shiyan + "</font><br/>";
+			  shiyan = shiyan + "<font color='olive'>";
+			  shiyan = shiyan + tmp2;
+			  shiyan = shiyan + "</font>";
+			  break;
+  		  case 9:
+  			  shiyan = shiyan + "<font color='lime'>";
+			  shiyan = shiyan + tmp1;
+			  shiyan = shiyan + "</font><br/>";
+			  shiyan = shiyan + "<font color='lime'>";
+			  shiyan = shiyan + tmp2;
+			  shiyan = shiyan + "</font>";
+			  break;
+  		  case 10:
+  			  shiyan = shiyan + "<font color='navy'>";
+			  shiyan = shiyan + tmp1;
+			  shiyan = shiyan + "</font><br/>";
+			  shiyan = shiyan + "<font color='navy'>";
+			  shiyan = shiyan + tmp2;
+			  shiyan = shiyan + "</font>";
+			  break;
+  		  default:
+				  break;
+  		  }
+  		  i++;
+  	  }
+  	  /*System.out.println("shiyan="+shiyan);
+  	  String str = "<font color='black'><b>"+test[0]+"</b></font>"  + "<font color= 'red'><b>"+test[1]+"</b></font>"
+  	  	  +"<font color= 'yellow'><b>"+test[2]+"</b></font>" + "<font color= 'blue'><b>"+test[3]+"</b></font><br/>"
+  	  	  +"<font color= 'maroon'><b>"+test[4]+"</b></font><br/>" + "<font color= 'aqua'><b>"+test[5]+"</b></font><br/>"
+  	  	  +"<font color= 'gray'><b>"+test[6]+"</b></font><br/>" + "<font color= 'purple'><b>"+test[7]+"</b></font><br/>"
+  	  	  +"<font color= 'olive'><b>"+test[8]+"</b></font><br/>" + "<font color= 'lime'><b>"+test[9]+"</b></font><br/>"
+  	  	  +"<font color= 'navy'><b>"+test[10]+"</b></font><br/>";
+  	  System.out.println("str="+str);*/
   	  TextView publisher =  (TextView)findViewById(R.id.publisher2);
 	  publisher.setText(username);
 	  TextView day =  (TextView)findViewById(R.id.date2);
@@ -93,7 +200,7 @@ public class NoteItemActivity extends Activity{
   	  Note.setText(note);
   	  TextView tv =  (TextView)findViewById(R.id.conclusion2);
   	  if(conclusion.indexOf(';')!=-1)
-  		  tv.setText(Html.fromHtml(str));
+  		  tv.setText(Html.fromHtml(shiyan));
   	  else{
   		  tv.setText(conclusion);
   		  tv.setTextColor(Color.parseColor("#000000"));
