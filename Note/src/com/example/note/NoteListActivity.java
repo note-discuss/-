@@ -66,7 +66,6 @@ public class NoteListActivity extends ListActivity{
       }
       private void findview(){
     	  addnote = (Button) findViewById(R.id.addnote1);
-    	  addmember=(Button) findViewById(R.id.addmember1);
     	  addnote.setOnClickListener(new OnClickListener(){
     		  public void onClick(View v){
     			  Intent intent = new Intent(NoteListActivity.this,AddNoteActivity.class);

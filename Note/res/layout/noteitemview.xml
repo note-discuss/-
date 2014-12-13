@@ -167,22 +167,6 @@
         android:layout_below="@id/site1"
         android:orientation="horizontal"
          >
-      
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dip"
-            android:layout_marginTop="3dip"
-            android:layout_weight="0"
-             >
-            <ImageView
-                android:background="@drawable/mark"
-                android:layout_width="20dip"
-                android:layout_height="20dip"
-                android:gravity="left" />
-        </RelativeLayout>
           <MultiAutoCompleteTextView
              android:id="@+id/changemember"
              android:layout_width="fill_parent"  
@@ -203,7 +187,7 @@
 
         <Button
             android:id="@+id/changememberbutton"
-            android:layout_width="80dip"
+            android:layout_width="100dip"
             android:layout_height="wrap_content"
             android:background="@drawable/button"
             android:text="修改成员"

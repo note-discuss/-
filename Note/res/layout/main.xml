@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#EEEEFF" >
+    android:background="#ECECEC" >
 
     <RelativeLayout
         android:id="@+id/re_head"
@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="@drawable/ic_launcher" />
+            android:background="@drawable/note" />
     </RelativeLayout>
 
     <LinearLayout
@@ -100,9 +100,9 @@
             android:id="@+id/login"
             android:layout_width="80dip"
             android:layout_height="wrap_content"
-            android:background="@drawable/button"
             android:text="登录"
-            android:textColor="#FFFFFF"
+            android:background="@drawable/button"
+            android:textColor="#ffffff"
             android:textSize="18dip" />
 
         <Button
@@ -111,9 +111,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="60dip"
             android:layout_toRightOf="@id/login"
-            android:background="@drawable/button"
             android:text="注册"
-            android:textColor="#FFFFFF"
+            android:background="@drawable/button"
+            android:textColor="#ffffff"
             android:textSize="18dip" />
     </RelativeLayout>
 

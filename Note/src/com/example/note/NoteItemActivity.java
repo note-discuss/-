@@ -80,10 +80,11 @@ public class NoteItemActivity extends Activity{
   	  site=bundle.getString("site");
   	  date=bundle.getString("date");
   	  member=bundle.getString("member");
-  	  username=bundle.getString("username");
-  	  myid=bundle.getString("userid");*/
+  	  username=bundle.getString("username");*/
    	  topicid=bundle.getString("topicid");
+      username=bundle.getString("username");
 	  noteid=bundle.getString("noteid");
+	  myid=bundle.getString("userid");
 	  Log.d("mylog","topicid="+topicid+"noteid="+noteid);
   	  btn=(Button)findViewById(R.id.changememberbutton);
   	  String URL=processURL+"topicid="+topicid;

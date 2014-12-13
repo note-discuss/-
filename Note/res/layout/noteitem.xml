@@ -14,7 +14,7 @@
             android:layout_width="fill_parent"  
             android:layout_height="wrap_content"/> 
          </TableLayout>
-         <RelativeLayout android:layout_width="fill_parent" 
+        <RelativeLayout android:layout_width="fill_parent" 
                 android:layout_height="50.0dip"
                 android:layout_alignParentBottom="true" 
                 android:layout_marginTop="5.0dip">
@@ -27,18 +27,6 @@
                     android:layout_height="wrap_content" 
                     android:layout_marginRight="12.0dip"
                     android:layout_toRightOf="@id/addtopic" 
-                    android:layout_centerVertical="true"
-                    android:textColor="#FF96AA39"
-                    android:text="添加笔记" />
-                <Button
-                    android:id="@+id/addmember1"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:focusable="false" 
-                    android:layout_width="wrap_content" 
-                    android:layout_height="wrap_content" 
-                    android:layout_marginRight="12.0dip"
-                    android:layout_toRightOf="@id/addnote1" 
                     android:layout_centerVertical="true"
                     android:textColor="#FF96AA39"
                     android:text="添加笔记" />
