@@ -50,6 +50,10 @@
 			<action name="addConflict" class="com.note.action.AddConflictAction"
 			method="addConflict">
 			<result type="json"/>
+				</action>
+		<action name="changeMember" class="com.note.action.ChangeMemberAction"
+			method="changeMember">
+			<result type="json"/>
 		</action>
 	</package>
 </struts>

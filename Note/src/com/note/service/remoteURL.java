@@ -20,7 +20,7 @@ import com.note.domain.User;
 import android.util.Log;
 
 public class remoteURL {
-      final public String remoteURL = "http://192.168.173.1:8080/classnote/";
+      final public String remoteURL = "http://172.16.128.44:8080/classnote/";
       /*final public String remoteURL = "http://serverproject.sinaapp.com/";*/
       String result;
       String res[];

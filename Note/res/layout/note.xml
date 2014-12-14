@@ -9,23 +9,23 @@
             android:layout_height="wrap_content"
             android:stretchColumns="1"
             >
-			<TableRow 
-			    android:background="@drawable/shape"
-			    android:width="200dp">
-			<TextView 
-            android:layout_width="wrap_content"  
-            android:layout_height="wrap_content"  
+            <TableRow  >
+            <TextView 
+            android:layout_width="35px"  
+            android:layout_height="40px"  
+            android:layout_marginLeft="2dip"
             android:layout_gravity="left"   
-            android:drawableLeft="@drawable/search1"  
-              
-            android:padding="10px" 
-            android:singleLine="true"  
-             android:textColor="#FF33B5E6"/>
+            android:drawableLeft="@drawable/search1"          
+             />
             <EditText  
             android:id="@+id/searchtext"  
             android:layout_width="fill_parent"  
-            android:layout_height="wrap_content"   
-            android:padding="10px"                                              
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edittext"  
+            android:padding="5dip"    
+            android:singleLine="true"
+            android:maxLength="15"                   
+            android:layout_gravity="center_vertical"             
              android:textColor="#FF33B5E6"/>
              <Button
                     android:id="@+id/search"

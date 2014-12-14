@@ -33,6 +33,24 @@ public class NoteDAO {
 		}	
 		return flag;
 	}
+	public boolean updateMember(String member,String noteid){
+		Connection conn  = dbpool.getConnection();
+		boolean flag=false;
+		try{
+			String update_str="update note set member='"+
+					member+"' where id='"+noteid+"';";
+			System.out.println(update_str);
+			stmt=conn.createStatement();
+			int return_count=stmt.executeUpdate(update_str);
+			if(return_count==1){
+				flag=true;
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return flag;
+	}
 	public boolean updateConclusion(String conclusion,String noteid){
 		Connection conn  = dbpool.getConnection();
 		boolean flag=false;
@@ -50,6 +68,29 @@ public class NoteDAO {
 			e.printStackTrace();
 		}
 		return flag;
+	}
+	public ArrayList<Note> queryNoteByNoteId(String noteid) {
+		Connection conn = dbpool.getConnection();
+		ArrayList<Note> list = null;
+		boolean f=false;
+		String sql_query="select * from note where id='"+noteid+"'";
+		System.out.println(sql_query);
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql_query);
+			ArrayList<Note> list1 = new ArrayList<Note>();
+			while(rs.next()){
+				f=true;
+				Note note = new Note(rs.getString("userid"),rs.getString("title"),
+				rs.getString("note"),rs.getString("conclusion"),rs.getString("date"),
+				rs.getString("site"),rs.getString("member"),rs.getString("id"),rs.getString("topicid"));
+				list1.add(note);
+			}
+			if(f==true) list=list1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	public ArrayList<Note> queryNoteByTopicId(String topicid) {
 		Connection conn = dbpool.getConnection();

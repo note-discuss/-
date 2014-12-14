@@ -18,6 +18,7 @@ public class UserDAO {
     
 	public boolean addUser(User user) {
 		Connection conn  = dbpool.getConnection();
+		if(conn==null) System.out.println("in addUser conn == null!");
 		boolean flag=false;
 		String sql_insert="insert into user (id,username,password,sex,role) values('"+
 		user.getId()+"','"+user.getUsername()+"','"+user.getPassword()+"','"

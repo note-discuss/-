@@ -29,13 +29,31 @@ ServletResponseAware {
 	HttpServletResponse response;
 	
 	private String topicid;
+	private String noteid;
+	private String f;
 	
 	public void setTopicid(String topicid) {
 		this.topicid = topicid;
 	}
 	
+	public void setF(String f) {
+		this.f =f;
+	}
+	
+	public void setNoteid(String noteid) {
+		this.noteid = noteid;
+	}
+	
 	public String getTopicid() {
 		return this.topicid;
+	}
+	
+	public String getNoteid() {
+		return this.noteid;
+	}
+	
+	public String getF() {
+		return this.f;
 	}
 	
 	public void setServletRequest(HttpServletRequest request) {
@@ -52,7 +70,12 @@ ServletResponseAware {
 			   this.response.setCharacterEncoding("UTF-8");
 			  Map<String,String> json=new HashMap<String,String>();
 			  NoteDAO notedao= new NoteDAO();
-              ArrayList<Note> list = notedao.queryNoteByTopicId(topicid);
+			  ArrayList<Note> list;
+			  if(f.equals("1")){
+                list = notedao.queryNoteByTopicId(topicid);
+			  }else{
+				  list=notedao.queryNoteByNoteId(noteid);
+			  }
               if(list!=null){
                  JSONArray jsonarray = JSONArray.fromObject(list);//³ö´í
                  String notelist=jsonarray.toString();
