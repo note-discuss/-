@@ -23,7 +23,10 @@ import com.note.domain.Note;
 import com.note.domain.Topic;
 import com.note.service.remoteURL;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -46,6 +49,7 @@ public class NoteListActivity extends ListActivity{
 	  private   String processURL=remote.remoteURL+"getTopic.action?";
 	  private   String addconflictURL=remote.remoteURL+"addConflict.action?";
 	  private final String processURL_findNoteList=remote.remoteURL+"getNoteList.action?";
+	  private final String processURL_deleteNote=remote.remoteURL+"deleteNote.action?";
 	  String topicid;
 	  Bundle bundle;
 	  Intent intent;
@@ -104,6 +108,33 @@ public class NoteListActivity extends ListActivity{
  				  final TextView username=(TextView)view.findViewById(R.id.publisher1);
  				  final TextView clandcf=(TextView)view.findViewById(R.id.clandcf);
  				  final EditText conflict=(EditText)view.findViewById(R.id.conflict);
+ 				  final Button delete=(Button)view.findViewById(R.id.delete1);
+ 				  if(p==0) delete.setVisibility(View.INVISIBLE);
+       			  delete.setOnClickListener(new OnClickListener(){
+       				  public void onClick(View v){
+       					  String mes;
+       	     			 AlertDialog.Builder builder=new Builder(NoteListActivity.this);
+       	    			 builder.setTitle("提示")
+       	    			 .setMessage("确定删除该笔记吗？")
+       	    			 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+       	    				@Override
+       	    				public void onClick(DialogInterface dialog, int which) {
+       	    					String noteid=note_id.getText().toString();
+       	    					String topicid=topic_id.getText().toString();
+       	    					String url=processURL_deleteNote+"topicid="+topicid+"&noteid="+noteid;
+       	    					remoteDelete(url);
+       	    					dialog.dismiss();
+       	    				}
+       	    			}).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+       						
+       						@Override
+       						public void onClick(DialogInterface dialog, int which) {
+       							// TODO Auto-generated method stub
+       							dialog.dismiss();
+       						}
+       					}).create().show();
+       				  }
+       			  });
        		      LinearLayout view1=(LinearLayout)view.findViewById(R.id.linearlayout);
        			  view1.setOnClickListener(new OnClickListener(){
        				  public void onClick(View v){
@@ -191,6 +222,35 @@ public class NoteListActivity extends ListActivity{
        		  }
        	  });*/
       }
+  	public void remoteDelete(String url){
+    	try {
+	    	HttpClient httpclient = new DefaultHttpClient();
+	    	HttpPost request=new HttpPost(url);
+	    	if(request==null) Log.d("mylog","request==null");
+	    	request.addHeader("Accept","text/json");
+			HttpResponse response =httpclient.execute(request);
+			if(response==null) Log.d("mylog","response==null");
+			HttpEntity entity=response.getEntity();
+			String json =EntityUtils.toString(entity,"UTF-8");
+			if(json!=null){
+				JSONObject jsonObject=new JSONObject(json);
+				result=jsonObject.get("message").toString().trim();
+			}
+		  if("true".equals(result)){
+			  Toast.makeText(NoteListActivity.this, "删除成功！", Toast.LENGTH_LONG).show();
+	    	  String URL=processURL+"topicid="+topicid;
+	    	  remote(URL);
+		   }else{
+			   Toast.makeText(NoteListActivity.this, "通信出错！", Toast.LENGTH_LONG).show();
+		   }
+    	 } catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
   	private String getDate(){
 		java.util.Date date = new java.util.Date();
 		DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

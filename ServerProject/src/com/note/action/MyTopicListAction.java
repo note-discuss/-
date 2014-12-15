@@ -26,13 +26,22 @@ ServletResponseAware {
 	HttpServletResponse response;
 	
 	private String searchstr;
+	private String userid;
 
 	public String getSearchstr(){
 		return this.searchstr;
 	}
 	
-	public void setSearchstr(String searchstr) throws Exception{
-		this.searchstr= new String(searchstr.getBytes("iso-8859-1"),"utf-8");
+	public String getUserid(){
+		return this.searchstr;
+	}
+	
+	public void setSearchstr(String searchstr) {
+		this.searchstr= searchstr;
+	}
+	
+	public void setUserid(String userid){
+		this.userid= userid;
 	}
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
@@ -49,7 +58,7 @@ ServletResponseAware {
 			   //JSONObject json=new JSONObject(); 
 			  Map<String,String> json=new HashMap<String,String>();
 			  TopicDAO topicdao= new TopicDAO();
-           ArrayList<Topic> list = topicdao.findMyTopicList(searchstr);
+           ArrayList<Topic> list = topicdao.findMyTopicList(searchstr,userid);
            if(list!=null){
          	  System.out.println(list.get(0).getDate());
          	  JSONArray jsonarray = JSONArray.fromObject(list);//³ö´í

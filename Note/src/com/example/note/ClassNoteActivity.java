@@ -14,6 +14,14 @@ import java.util.Map;
 
 
 
+
+
+
+
+
+
+
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -26,7 +34,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -36,10 +47,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.note.R;
@@ -55,6 +68,7 @@ public class ClassNoteActivity extends ListActivity{
 	  private   String processURL=remote.remoteURL+"getTopicList.action?";
 	  private final String processURL_findTopicList=remote.remoteURL+"getTopicList.action?";
 	  private final String processURL_myTopicList=remote.remoteURL+"myTopicList.action?";
+	  private final String processURL_deleteNote=remote.remoteURL+"deleteNote.action?";
 	  EditText searchtext;
 	  Button   addtopic;
 	  Button   userinfo;
@@ -101,7 +115,7 @@ public class ClassNoteActivity extends ListActivity{
   				  String searchstr = searchtext.getText().toString().trim();
   				  try{
   				  searchstr=java.net.URLEncoder.encode(searchstr,"utf-8");
-  				  String URL_myTopic=processURL_myTopicList+"searchstr="+searchstr;
+  				  String URL_myTopic=processURL_myTopicList+"searchstr="+searchstr+"&userid="+userid;
   				  remote(URL_myTopic);
   				  }catch(Exception e){
   					  e.printStackTrace();
@@ -110,8 +124,8 @@ public class ClassNoteActivity extends ListActivity{
   		  });
       }
       private void showlist(ArrayList<Topic> list){//显示笔记列表
-       	  String[] from = {"title","note","date"};
-       	  int[] to = {R.id.title,R.id.note,R.id.date};
+       	  String[] from = {"title","note","date","id"};
+       	  int[] to = {R.id.title,R.id.note,R.id.date,R.id.id};
        	  Log.d("mylog","in showlist");
        	  SimpleAdapter adapter = new SimpleAdapter(this,
        			  getData(list),R.layout.topiclist,from,to);
@@ -133,7 +147,64 @@ public class ClassNoteActivity extends ListActivity{
        		         startActivity(notelist);
        		  }
        	  });
+       	  listview.setOnItemLongClickListener(new OnItemLongClickListener(){
+              public boolean onItemLongClick(AdapterView<?> arg0, View arg1,  
+                      int arg2, long arg3) {  
+                  TextView topic_id = (TextView)arg1.findViewById(R.id.id); 
+                  final String topicid=topic_id.getText().toString();
+                  String id=Long.toString(arg3);
+                  String position=Integer.toString(arg2);
+     			 AlertDialog.Builder builder=new Builder(ClassNoteActivity.this);
+    			 builder.setTitle("提示")
+    			 .setMessage("确定删除该主题及该主题下的所有笔记吗？")
+    			 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+    				@Override
+    				public void onClick(DialogInterface dialog, int which) {
+    					String url=processURL_deleteNote+"topicid="+topicid+"&noteid=-1";
+    					remoteDelete(url);
+    					dialog.dismiss();
+    				}
+    			}).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						dialog.dismiss();
+					}
+				}).create().show();
+                  return true;
+              }  
+       	  });
          }
+  	public void remoteDelete(String url){
+    	try {
+	    	HttpClient httpclient = new DefaultHttpClient();
+	    	HttpPost request=new HttpPost(url);
+	    	if(request==null) Log.d("mylog","request==null");
+	    	request.addHeader("Accept","text/json");
+			HttpResponse response =httpclient.execute(request);
+			if(response==null) Log.d("mylog","response==null");
+			HttpEntity entity=response.getEntity();
+			String json =EntityUtils.toString(entity,"UTF-8");
+			if(json!=null){
+				JSONObject jsonObject=new JSONObject(json);
+				result=jsonObject.get("message").toString().trim();
+			}
+		  if("true".equals(result)){
+			  Toast.makeText(ClassNoteActivity.this, "删除成功！", Toast.LENGTH_LONG).show();
+			  final String URL= processURL_findTopicList+"userid="+userid;
+			  remote(URL);
+		   }else{
+			   Toast.makeText(ClassNoteActivity.this, "通信出错！", Toast.LENGTH_LONG).show();
+		   }
+    	 } catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
       private void remote(String url){
       	try{
     	    HttpClient httpclient = new DefaultHttpClient();
@@ -182,8 +253,7 @@ public class ClassNoteActivity extends ListActivity{
       }
   	  private List<Map<String, Object>> getData(ArrayList<Topic> list1) {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-        int len = list1.size();
-        
+        int len = list1.size();      
         for(int i=0;i<len;++i){
         	Map<String, Object> map = new HashMap<String, Object>();
         	map.put("title", list1.get(i).getTitle());        	
@@ -195,7 +265,6 @@ public class ClassNoteActivity extends ListActivity{
         	list.add(map);
         }
         String len1=Integer.toString(list.size());
-        Log.d("mylog",len1);
 		return list;
 	}
 }

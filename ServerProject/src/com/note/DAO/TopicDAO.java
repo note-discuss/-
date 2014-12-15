@@ -15,6 +15,21 @@ public class TopicDAO {
     ResultSet rs=null;
     DBPool dbpool = new DBPool();
     
+    public boolean deleteTopic(String topicid) {
+    	boolean flag=false;
+    	String sql_delete="delete from topic where id='"+topicid+"'";
+		Connection conn=dbpool.getConnection();
+		try {
+			Statement stmt=conn.createStatement();
+			int value=stmt.executeUpdate(sql_delete);
+			if(value>0){
+				flag=true;	
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
 	public boolean addTopic(Topic topic) {//添加一个主题
 		Connection conn  = dbpool.getConnection();
 		boolean flag=false;
@@ -111,11 +126,11 @@ public class TopicDAO {
 		}
 		return list;
 	}
-	public ArrayList<Topic> findMyTopicList(String title) {
+	public ArrayList<Topic> findMyTopicList(String title,String userid) {
 		Connection conn = dbpool.getConnection();
 		ArrayList<Topic> list = null;
 		boolean f=false;
-		String sql_query="select * from topic where title like '%"+title+"%'";
+		String sql_query="select * from topic where title like '%"+title+"%' and userid = '"+userid + "'";
 		System.out.println(sql_query);
 		try {
 			stmt=conn.createStatement();

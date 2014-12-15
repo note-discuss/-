@@ -18,7 +18,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -63,6 +66,7 @@ public class NoteItemActivity extends Activity{
 	  String result;
 	  String myid;
 	  Button btn;
+	  TextView par;
 	  ArrayAdapter<String> adapter;
 	  MultiAutoCompleteTextView multiautoCompleteTextView;
     public void onCreate(Bundle savedInstanceState){
@@ -116,14 +120,30 @@ public class NoteItemActivity extends Activity{
 	  });
 	  btn.setOnClickListener(new OnClickListener(){
 		  public void onClick(View v){
-			  try{
-			  String member=multiautoCompleteTextView.getText().toString();
-			  member=java.net.URLEncoder.encode(member,"utf-8");
-			  String url=changememberURL+"topicid="+topicid+"&noteid="+noteid+"&member="+member;
-			  remote(url);
-			  }catch(Exception e){
-				  e.printStackTrace();
-			  }
+				 AlertDialog.Builder builder=new Builder(NoteItemActivity.this);
+				 builder.setTitle("提示")
+				 .setMessage("确定要修改成员吗？")
+				 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						  try{
+							  String member=multiautoCompleteTextView.getText().toString();
+							  String member1=java.net.URLEncoder.encode(member,"utf-8");
+							  String url=changememberURL+"topicid="+topicid+"&noteid="+noteid+"&member="+member1;
+							  boolean f=remote(url);
+							  if(f){
+								  par.setText(member);
+							  }
+							  }catch(Exception e){
+								  e.printStackTrace();
+							  }
+						dialog.dismiss();
+					}
+				}).setNegativeButton("取消", new DialogInterface.OnClickListener(){
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+				}).create().show();
 		  }
 	  });
   	  
@@ -269,7 +289,7 @@ public class NoteItemActivity extends Activity{
   		  tv.setText(conclusion);
   		  tv.setTextColor(Color.parseColor("#000000"));
   	  }
-  	  TextView par =  (TextView)findViewById(R.id.member2);
+  	  par =  (TextView)findViewById(R.id.member2);
 	  par.setText(member);
 	  TextView place =  (TextView)findViewById(R.id.site2);
   	  place.setText(site);
@@ -310,7 +330,7 @@ public class NoteItemActivity extends Activity{
 			remoteNote(url);
 		}
     }
-	public void remote(String URL){
+	public boolean remote(String URL){
     	try {
 	    	HttpClient httpclient = new DefaultHttpClient();
 	    	HttpPost request=new HttpPost(URL);
@@ -330,8 +350,10 @@ public class NoteItemActivity extends Activity{
 			}
 		  if("true".equals(result)){
 			   Toast.makeText(NoteItemActivity.this, "修改成功！", Toast.LENGTH_LONG).show();
+			   return true;
 		   }else{
 			   Toast.makeText(NoteItemActivity.this, result, Toast.LENGTH_LONG).show();
+			   return false;
 		   }		 
     	 } catch (ClientProtocolException e) {
 			e.printStackTrace();
@@ -340,6 +362,7 @@ public class NoteItemActivity extends Activity{
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+    	 return false;
 	}
     private void remoteTopic(String url){//获得当前主题信息
     	try{

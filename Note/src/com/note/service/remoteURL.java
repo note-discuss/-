@@ -14,10 +14,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.note.ClassNoteActivity;
 import com.note.domain.Topic;
 import com.note.domain.User;
 
 import android.util.Log;
+import android.widget.Toast;
 
 public class remoteURL {
      /* final public String remoteURL = "http://172.16.128.44:8080/classnote/";*/

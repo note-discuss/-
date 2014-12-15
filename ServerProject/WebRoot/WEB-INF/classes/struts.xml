@@ -55,5 +55,9 @@
 			method="changeMember">
 			<result type="json"/>
 		</action>
+			<action name="deleteNote" class="com.note.action.DeleteNoteAction"
+			method="deleteNote">
+			<result type="json"/>
+		</action>
 	</package>
 </struts>

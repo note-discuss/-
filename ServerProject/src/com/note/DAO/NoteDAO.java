@@ -14,6 +14,37 @@ public class NoteDAO {
     Statement stmt=null;
     ResultSet rs=null;
     DBPool dbpool = new DBPool();
+    
+    public boolean deleteNoteByTopicId(String topicid) {
+    	boolean flag=false;
+    	String sql_delete="delete from note where topicid='"+topicid+"'";
+		Connection conn=dbpool.getConnection();
+		try {
+			Statement stmt=conn.createStatement();
+			int value=stmt.executeUpdate(sql_delete);
+			if(value>0){
+				flag=true;	
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
+    public boolean deleteNoteByNoteId(String noteid) {
+    	boolean flag=false;
+    	String sql_delete="delete from note where id='"+noteid+"'";
+		Connection conn=dbpool.getConnection();
+		try {
+			Statement stmt=conn.createStatement();
+			int value=stmt.executeUpdate(sql_delete);
+			if(value>0){
+				flag=true;	
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
 	public boolean addNote(Note note) {
 		Connection conn  = dbpool.getConnection();
 		boolean flag=false;
