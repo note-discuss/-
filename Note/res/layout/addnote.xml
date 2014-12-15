@@ -100,7 +100,7 @@
         <TextView
             android:layout_width="70dip"
             android:layout_height="wrap_content"
-            android:text="矛盾及结论:"
+            android:text="结论:"
             
             android:gravity="left"
             android:layout_gravity="start"

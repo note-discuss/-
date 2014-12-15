@@ -29,6 +29,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.MultiAutoCompleteTextView;
+import android.widget.Toast;
 
 import com.note.service.remoteURL;
 
@@ -147,17 +148,15 @@ public class AddNoteActivity extends Activity {
 		   if(result==null){ 
 			   json="通信出错！";
 		   }
-			//创建提示框提醒是否登录成功
-		   Log.d("mylog","AlertDialog");
-			 AlertDialog.Builder builder=new Builder(AddNoteActivity.this);
-			 builder.setTitle("提示")
-			 .setMessage(result)
-			 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.dismiss();
-				}
-			}).create().show();
+		   Toast.makeText(AddNoteActivity.this, result, Toast.LENGTH_LONG).show();
+		   if(result.equals("添加成功！")){
+			   Bundle bundle = new Bundle();
+			   Intent intent1=new Intent(AddNoteActivity.this,NoteListActivity.class);
+			   bundle.putString("topic_id", topicid1);
+			   bundle.putString("userid", publisher1);
+			   intent1.putExtras(bundle);
+			   startActivity(intent1);
+		   }
 		 
     	 } catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block

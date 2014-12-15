@@ -32,10 +32,12 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -57,6 +59,7 @@ public class NoteListActivity extends ListActivity{
 	  String myid;
 	  Button addnote;
 	  Button addmember;
+	  int count=0;
       public void onCreate(Bundle savedInstanceState){
     	  super.onCreate(savedInstanceState);
     	  setContentView(R.layout.noteitem);
@@ -96,6 +99,8 @@ public class NoteListActivity extends ListActivity{
        			  getData(topic,list1),R.layout.noteitem_list,from,to){
        		  public View getView(int position,View convertView,ViewGroup parent){
        			  final int p=position;
+       			  final View cview=convertView;
+       			  final ViewGroup vg=parent;
        			  final View view=super.getView(position,convertView,parent);
  				  final TextView note_id=(TextView)view.findViewById(R.id.noteid);
  				  final TextView topic_id=(TextView)view.findViewById(R.id.topicid);

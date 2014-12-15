@@ -143,8 +143,14 @@ public class AddTopicActivity extends Activity{
 		   if(result==null){ 
 			   json="通信出错！";
 		   }
-			//创建提示框提醒是否登录成功
-		   Log.d("mylog","AlertDialog");
+		   Toast.makeText(AddTopicActivity.this, result, Toast.LENGTH_LONG).show();
+		   if(result.equals("添加成功！")){
+			   Bundle bundle = intent.getExtras();
+			   Intent intent1=new Intent(AddTopicActivity.this,ClassNoteActivity.class);
+			   intent1.putExtras(bundle);
+			   startActivity(intent1);
+		   }
+		   /*Log.d("mylog","AlertDialog");
 			 AlertDialog.Builder builder=new Builder(AddTopicActivity.this);
 			 builder.setTitle("提示")
 			 .setMessage(result)
@@ -153,7 +159,7 @@ public class AddTopicActivity extends Activity{
 				public void onClick(DialogInterface dialog, int which) {
 					dialog.dismiss();
 				}
-			}).create().show();
+			}).create().show();*/
 		 
     	 } catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block

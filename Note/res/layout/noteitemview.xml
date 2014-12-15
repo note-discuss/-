@@ -30,14 +30,15 @@
                 android:layout_height="40dip"
                 android:gravity="left" />
         </RelativeLayout>
-        <TextView 
+        <EditText 
              android:id="@+id/publisher2"
              android:layout_width="fill_parent"
              android:layout_height="wrap_content"
              android:textColor="@color/black"
              android:textAppearance="?android:attr/textAppearanceMedium"
              android:gravity="left"
-             android:layout_weight="3"/>
+             android:enabled="false"
+             android:layout_weight="2"/>
         <TextView 
              android:id="@+id/date2"
              android:layout_width="fill_parent"
