@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+<!-- setting encoding,DynamicMethod,language      
+<constant name="struts.custom.i18n.resources" value="messageResource"></constant>    -->
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.enable.DynamicMethodInvocation"  value="true"/>
+	<!-- add package here extends="struts-default"-->
+	<package name="default" extends="json-default"><!--需要将struts-default改为-->
+		<action name="jregister" class="com.note.action.RegisterAction"
+			method="register">
+			<result type="json"/>
+		</action>
+			<action name="addTopic" class="com.note.action.AddTopicAction"
+			method="addTopic">
+			<result type="json"/>
+		</action>
+		<action name="jlogin" class="com.note.action.LoginAction"
+			method="login">
+			<result type="json"/>
+		</action>
+		<action name="jfindString" class="com.note.action.FindStringAction"
+			method="findString">
+			<result type="json"/>
+		</action>
+		<action name="getTopicList" class="com.note.action.GetTopicListAction"
+			method="getTopicList">
+			<result type="json"/>
+		</action>
+		<action name="myTopicList" class="com.note.action.MyTopicListAction"
+			method="myTopicList">
+			<result type="json"/>
+		</action>
+		<action name="getTopic" class="com.note.action.GetTopicAction"
+			method="getTopic">
+			<result type="json"/>
+		</action>
+		<action name="addNote" class="com.note.action.AddNoteAction"
+			method="addNote">
+			<result type="json"/>
+		</action>
+		<action name="getNoteList" class="com.note.action.GetNoteListAction"
+			method="getNoteList">
+			<result type="json"/>
+		</action>
+			<action name="getUser" class="com.note.action.GetUserAction"
+			method="getUser">
+			<result type="json"/>
+		</action>
+			<action name="addConflict" class="com.note.action.AddConflictAction"
+			method="addConflict">
+			<result type="json"/>
+				</action>
+		<action name="changeMember" class="com.note.action.ChangeMemberAction"
+			method="changeMember">
+			<result type="json"/>
+		</action>
+			<action name="deleteNote" class="com.note.action.DeleteNoteAction"
+			method="deleteNote">
+			<result type="json"/>
+		</action>
+	</package>
+</struts>
